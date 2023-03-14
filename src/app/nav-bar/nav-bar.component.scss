@@ -1,6 +1,8 @@
 $color-primario: #007bff;
 $color-secundario: #393E46;
 $color-terciario: #28a745;
+$dark-grey: #222831;
+
 
 
 .navbar {
@@ -12,4 +14,11 @@ $color-terciario: #28a745;
     justify-content: center;
     align-items: center;
     height: 100%;
-}       
+}
+.navbar:nth-of-type(2){
+    background-color: $dark-grey !important;
+}
+
+.d-flex {
+    display: block !important;
+}
