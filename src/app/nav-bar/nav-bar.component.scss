@@ -2,8 +2,14 @@ $bg-color: #222831;
 $color-primario: #007bff;
 $color-secundario: #393E46;
 $color-terciario: #28a745;
+<<<<<<< HEAD
 $color-letra: white;
 $color-letra-hover: rgb(163, 159, 159);
+=======
+$dark-grey: #222831;
+
+
+>>>>>>> b201635 (Navbar fixed)
 
 .navbar {
     background-color: $bg-color !important;
@@ -25,9 +31,20 @@ $color-letra-hover: rgb(163, 159, 159);
 .search-container {
     margin-left: 11rem !important ;
     height: 100%;
+<<<<<<< HEAD
 }       
 @media (max-width:1024px){
     #search-box{
         display: none;
     }
 }
+=======
+}
+.navbar:nth-of-type(2){
+    background-color: $dark-grey !important;
+}
+
+.d-flex {
+    display: block !important;
+}
+>>>>>>> b201635 (Navbar fixed)
