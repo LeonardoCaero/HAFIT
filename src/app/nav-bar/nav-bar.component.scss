@@ -6,6 +6,11 @@ $dark-grey: #222831;
 
 $color-letra: white;
 $color-letra-hover: rgb(163, 159, 159);
+=======
+$dark-grey: #222831;
+
+
+>>>>>>> b201635 (Navbar fixed)
 
 .navbar {
     background-color: $bg-color !important;
@@ -41,3 +46,13 @@ $color-letra-hover: rgb(163, 159, 159);
         display: none;
     }
 }
+=======
+}
+.navbar:nth-of-type(2){
+    background-color: $dark-grey !important;
+}
+
+.d-flex {
+    display: block !important;
+}
+>>>>>>> b201635 (Navbar fixed)
