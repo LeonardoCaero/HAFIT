@@ -1,0 +1,15 @@
+$color-primario: #007bff;
+$color-secundario: #393E46;
+$color-terciario: #28a745;
+
+
+.navbar {
+    background-color: $color-secundario !important;
+    
+}
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}       
