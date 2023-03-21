@@ -1,12 +1,20 @@
+$bg-color: #222831;
 $color-primario: #007bff;
 $color-secundario: #393E46;
 $color-terciario: #28a745;
-
+$color-letra: white;
+$color-letra-hover: rgb(163, 159, 159);
 
 .navbar {
-    background-color: $color-secundario !important;
-    
+    background-color: $bg-color !important;
+    a{
+        color: $color-letra;
+    }
+    a:hover{
+        color: $color-letra-hover;
+    }
 }
+
 .search-container {
     display: flex;
     justify-content: center;
