@@ -1,4 +1,14 @@
+$color-terciario: #28a745;
 .example-card {
     max-width: 400px;
     margin-bottom: 8px;
-  }
+}
+
+.btn-buy{
+  background-color: $color-terciario;
+  border-color: $color-terciario;
+}
+.btn-buy:hover{
+  background-color: #268d3e;
+  border-color: #268d3e;
+}
