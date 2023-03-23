@@ -1,9 +1,31 @@
 $color-terciario: #28a745;
 .example-card {
-    max-width: 400px;
-    margin-bottom: 8px;
+  height: 20rem;
+    width: 20rem;
+    max-width: 30rem;
+    color: white;
+  transition: 500ms;
+  &:hover{
+    transform: scale(1.05);
+    transition: 500ms;
+  }
 }
-
+mat-card-content{
+  p{
+    margin-bottom: 0;
+  }
+  a{
+    color:white;
+    text-decoration: none;
+    &:hover{
+      color: rgb(70, 69, 69);
+    }
+  }
+  
+}
+.container{
+  margin-top: 2rem;
+}
 .btn-buy{
   background-color: $color-terciario;
   border-color: $color-terciario;

@@ -1,7 +1,7 @@
 $bg-color: #393E46; 
-.main{
-    background-color: $bg-color;
-}
-.heigth-caroussel{
-    height: 30rem;
+$color-terciario: #28a745;
+
+.promo-items{
+    color: $color-terciario;
+    margin-top:10rem;
 }

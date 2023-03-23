@@ -7,20 +7,27 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeProductsComponent } from './home-products/home-products.component';
 import {MatCardModule} from '@angular/material/card'; 
+import { ProductDataService } from './services/product-data.service';
+import { HttpClientModule } from '@angular/common/http';
+import { FooterComponent } from './footer/footer.component';
+import { CarouselItemsComponent } from './carousel-items/carousel-items.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
-    HomeProductsComponent
+    HomeProductsComponent,
+    FooterComponent,
+    CarouselItemsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatCardModule
   ],
-  providers: [],
+  providers: [ProductDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -13,6 +13,14 @@ $color-letra-hover: rgb(163, 159, 159);
     a:hover{
         color: $color-letra-hover;
     }
+   
+}
+.search-icon{
+    color: $color-terciario;
+}
+.custom-toggler{
+    border-color: $color-terciario !important;
+    color: $color-terciario !important;
 }
 
 .search-container {
