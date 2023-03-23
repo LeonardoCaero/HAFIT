@@ -1,0 +1,12 @@
+mat-card{
+    width: 15rem  !important;
+    height: 15rem;
+    
+    img{
+        object-fit: cover;
+        overflow: hidden;
+    }
+    mat-card-footer{
+        background-color: transparent !important;
+    }
+}

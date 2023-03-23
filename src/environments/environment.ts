@@ -9,4 +9,5 @@ export const environment = {
     product: 'Product',
     user: 'User',
   },
+  defaultImage: "https://sesamobakery.com/wp-content/uploads/2020/12/product-default-list-350.jpg"
 };

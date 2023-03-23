@@ -5,29 +5,14 @@
     <div *ngIf="products.length==0">
         <h4>No products found</h4>
     </div>
-    <div *ngIf="products.length>0" class="table-responsive">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Description</th>
-                    <th>Type</th>
-                    <th>Stock</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let product of products">
-                    <td>{{product.name}}</td>
-                    <td>{{product.price.$numberDecimal}}</td>
-                    <td>{{product.description}}</td>
-                    <td>{{product.type}}</td>
-                    <td>{{product.stock}}</td>
-                    <app-product-card [product]="product"></app-product-card>
-                </tr>
-            </tbody>
-        </table>
+    <div *ngIf="products.length>0" class="d-flex">
+        <div class="container text-center w-25">HOLA</div>
+        <div class="container text-center w-75 d-flex gap-3 pt-3">
+            <div *ngFor="let product of products" class="row row-cols-4">
+                <app-product-card [product]="product" class="col"></app-product-card>
+            </div>
+        </div>
 
-          
+
     </div>
 </div>
