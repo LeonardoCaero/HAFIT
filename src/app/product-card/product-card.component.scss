@@ -1,12 +1,36 @@
-mat-card{
-    width: 15rem  !important;
-    height: 15rem;
+// mat-card {
+//     width: 15rem !important;
+//     height: 15rem;
+//     background-size: cover;
+//     transition: 500ms;
+
+//     img {
+//         object-fit: cover;
+//         overflow: hidden;
+//     }
+
+//     mat-card-footer {
+//         background-color: transparent !important;
+//     }
+
+//     a {
+//         color: white;
+//         &:hover{
+//             color: white !important;
+//         }
+//     }
+// }
+
+// mat-card:hover {
+//     transform: scale(1.05);
+//     transition: 500ms;
+// }
+
+#imageTest{
     
+    overflow: hidden;
     img{
-        object-fit: cover;
-        overflow: hidden;
-    }
-    mat-card-footer{
-        background-color: transparent !important;
+        max-height: 20rem;
+        object-fit: contain;
     }
 }
