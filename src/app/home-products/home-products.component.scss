@@ -1,15 +1,16 @@
 $color-terciario: #28a745;
 .example-card {
   height: 20rem;
-    width: 20rem;
-    max-width: 30rem;
-    color: white;
+  width: 20rem;
+  max-width: 30rem;
+  color: white;
   transition: 500ms;
   &:hover{
     transform: scale(1.05);
     transition: 500ms;
   }
 }
+
 mat-card-content{
   p{
     margin-bottom: 0;
@@ -22,9 +23,12 @@ mat-card-content{
     }
   }
   
+
 }
 .container{
   margin-top: 2rem;
+  background-color: #dfdfdf11;
+  border-radius:0.3rem;
 }
 .btn-buy{
   background-color: $color-terciario;
@@ -34,3 +38,33 @@ mat-card-content{
   background-color: #268d3e;
   border-color: #268d3e;
 }
+.promo-items{
+    color: $color-terciario;
+    margin-top:10rem;
+}
+.container-promo{     
+    background-color: #dfdfdf11;
+  border-radius:0.3rem;
+}
+
+#myVideo {
+    right: 0;
+    min-width: 100%; 
+    height: fit-content;
+  }
+  
+  .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    color:white;
+    width: 30rem;
+    padding: 20px;
+    h1{
+        font-family: hafit-font;
+        color: $color-terciario;
+    }
+  }

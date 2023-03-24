@@ -11,6 +11,7 @@ import { ProductDataService } from './services/product-data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './footer/footer.component';
 import { CarouselItemsComponent } from './carousel-items/carousel-items.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CarouselItemsComponent } from './carousel-items/carousel-items.componen
     NavBarComponent,
     HomeProductsComponent,
     FooterComponent,
-    CarouselItemsComponent
+    CarouselItemsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
