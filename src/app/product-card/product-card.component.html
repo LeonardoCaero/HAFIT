@@ -1,14 +1,9 @@
-<!-- <mat-card [style.background-image]="'url(' + product.image + ')'" class="d-flex flex-column-reverse align-items-start p-3">
-        <a>{{product.name}}</a>
-        <a>{{product.price.$numberDecimal}}€</a>
-    </mat-card> -->
-
 <div class="row my-2">
     <div class="col-lg-4 col-md-6 col-sm-6 w-100">
-        <div class="card rounded overflow-hidden" style="border: none;">
+        <mat-card class="rounded overflow-hidden" style="border: none;">
             <div class="topPart" style="position: relative;">
                 <div class="inside">
-                    <div class="icon"><i class="material-icons">info_outline</i></div>
+                    <div class="icon"><mat-icon>info_outline</mat-icon></div>
                     <div class="contents">
                         <table>
                             <tr>
@@ -22,23 +17,26 @@
                 </div>
                 <img [src]="productImage" class="w-100">
             </div>
-            <div class="card-body bottom">
+            <mat-card-content class="bottom">
                 <div class="left">
                     <div class="details">
                         <h3>{{product.name}}</h3>
-                        <p>{{product.price.$numberDecimal}}</p>
+                        <p>{{product.price.$numberDecimal}}€</p>
+                        
                     </div>
-                    <div class="buy"><i class="material-icons">add_shopping_cart</i></div>
+                    <div class="buy">
+                        <mat-icon>add_shopping_cart</mat-icon>
+                    </div>
                 </div>
                 <div class="right">
-                    <div class="done"><i class="material-icons">done</i></div>
+                    <div class="done"><mat-icon>done</mat-icon></div>
                     <div class="details">
                         <h3>{{product.name}}</h3>
                         <p>Added to your cart</p>
                     </div>
-                    <div class="remove"><i class="material-icons">clear</i></div>
+                    <div class="remove"><mat-icon>clear</mat-icon></div>
                 </div>
-            </div>
-        </div>
+            </mat-card-content>
+        </mat-card>
     </div>
 </div>
