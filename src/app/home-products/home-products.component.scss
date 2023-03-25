@@ -29,6 +29,7 @@ mat-card-content{
   margin-top: 2rem;
   background-color: #dfdfdf11;
   border-radius:0.3rem;
+  max-width: 80%;
 }
 .btn-buy{
   background-color: $color-terciario;
@@ -50,6 +51,7 @@ mat-card-content{
 #myVideo {
     right: 0;
     min-width: 100%; 
+    max-width: 100%;
     height: fit-content;
   }
   
@@ -68,3 +70,14 @@ mat-card-content{
         color: $color-terciario;
     }
   }
+  @media (max-width:1024px){
+    .content{
+        max-width: 100%;
+    }
+    .promo-items{     
+    margin-top: 1rem !important;
+  }
+  mat-card-content{
+    margin-right: 2rem;
+  }
+}

@@ -1,47 +1,46 @@
-<nav class="navbar navbar-expand-lg nav-bg-color">
-    <div class="container-fluid ms-xl-4 ps-4 ">
-      <a class="navbar-brand" href="#">
-        <img src="../../assets/images/logos/full-logo.png" alt="Logo HA" height="50">
-      </a>
-        <button class="navbar-toggler justify-content-end custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        </div>
-
-        <div class="container-fluid">
-        <form class="d-flex ">
-          <div class="input-group rounded-pill">
-            <input class="form-control border-0" type="search" placeholder="Buscar..." aria-label="Buscar">
-            <span class="input-group-text border-0" onclick=""><i class="fa-solid fa-magnifying-glass search-icon"></i></span>
-          </div>
-        </form>
-</div>
-
-      <div class="collapse navbar-collapse justify-content-end me-2" id="navbarSupportedContent">
-        <ul class="navbar-nav  ml-auto mb-2 mb-lg-0">
-          <li class="nav-item ">
-            <a class="nav-link" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Nosotros</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Servicios</a>
-          </li>
-          <li class="nav-item"> 
-            <a class="nav-link" href="#">Contacto</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Tienda</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['login']" ><i class="fa-solid fa-user"></i></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
-          </li>
-       
-        </ul>
-       
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid ms-4 ps-4">
+    <a class="navbar-brand" href="#">
+      <img src="../../assets/images/logos/full-logo.png" alt="Logo HA" height="50">
+    </a>
+    <button class="navbar-toggler justify-content-end custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <div class="container-fluid mx-auto search-container"  id="search-box">
+    <form class="d-flex ">
+      <div class="input-group rounded-pill">
+        <input class="form-control border-0" type="search" placeholder="Buscar..." aria-label="Buscar">
+        <span class="input-group-text border-0" onclick=""><i class="fa-solid fa-magnifying-glass search-icon"></i></span>
       </div>
-  
+    </form>
+  </div>
+
+  <div class="collapse navbar-collapse justify-content-end me-2 text-center" id="navbarSupportedContent">
+    <ul class="navbar-nav mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Nosotros</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Servicios</a>
+      </li>
+      <li class="nav-item"> 
+        <a class="nav-link" href="#">Contacto</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Tienda</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['login']" ><i class="fa-solid fa-user"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+      </li>
+      <li class="nav-item d-flex align-items-center ms-3">
+      </li>
+    </ul>
+  </div>
+</nav>

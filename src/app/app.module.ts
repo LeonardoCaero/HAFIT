@@ -13,6 +13,8 @@ import { FooterComponent } from './footer/footer.component';
 import { CarouselItemsComponent } from './carousel-items/carousel-items.component';
 import { LoginComponent } from './login/login.component';
 
+import {MatIconModule} from '@angular/material/icon';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,8 @@ import { LoginComponent } from './login/login.component';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatCardModule
+    MatCardModule,
+    MatIconModule
   ],
   providers: [ProductDataService],
   bootstrap: [AppComponent]

@@ -11,7 +11,7 @@ $color-letra-hover: rgb(163, 159, 159);
         color: $color-letra;
     }
     a:hover{
-        color: $color-letra-hover;
+        color: $color-terciario;
     }
    
 }
@@ -19,13 +19,15 @@ $color-letra-hover: rgb(163, 159, 159);
     color: $color-terciario;
 }
 .custom-toggler{
-    border-color: $color-terciario !important;
-    color: $color-terciario !important;
+  color: $color-terciario !important;
 }
 
 .search-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-left: 11rem !important ;
     height: 100%;
 }       
+@media (max-width:1024px){
+    #search-box{
+        display: none;
+    }
+}
