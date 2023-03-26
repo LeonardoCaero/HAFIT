@@ -12,10 +12,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { TestShopComponent } from './test-shop/test-shop.component';
 import {MatGridListModule} from '@angular/material/grid-list';
-import {MatIconModule} from '@angular/material/icon'; 
+import {MatIconModule} from '@angular/material/icon';
+import { CarouselComponent } from './carousel/carousel.component'; 
 
 @NgModule({
-  declarations: [AppComponent, NavBarComponent, ProductListComponent, ProductCardComponent, TestShopComponent],
+  declarations: [AppComponent, NavBarComponent, ProductListComponent, ProductCardComponent, TestShopComponent, CarouselComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

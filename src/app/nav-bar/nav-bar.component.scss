@@ -1,24 +1,38 @@
-$color-primario: #007bff;
-$color-secundario: #393E46;
-$color-terciario: #28a745;
+$primary-color: #007bff;
+$secondary-color: #393E46;
+$main-color: #28a745;
 $dark-grey: #222831;
 
-
-
 .navbar {
-    background-color: $color-secundario !important;
-    
+    background-color: $secondary-color !important;
 }
-.search-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
-.navbar:nth-of-type(2){
+
+.navbar:nth-of-type(2) {
     background-color: $dark-grey !important;
 }
 
-.d-flex {
-    display: block !important;
+
+
+
+
+i {
+    font-size: x-large;
+}
+
+.navbar-collapse {
+    text-align: center;
+    transition: 0.5s;
+
+    li:hover {
+        background-color: lighten($color: $dark-grey, $amount: 1);
+        transition: 0.5s;
+    }
+}
+
+.container-fluid {
+    justify-content: center;
+}
+
+#nav2 {
+    height: 3rem;
 }
