@@ -5,7 +5,9 @@ $color-terciario: #28a745;
 $color-letra: white;
 $color-letra-hover: rgb(163, 159, 159);
 .container{
-    max-width: 81%;
+    max-width: 100%;
+    bottom: 0;
+    width: 100%;
 }
 .footer-bg{
     background-color: $bg-color;

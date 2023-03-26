@@ -18,29 +18,37 @@
 
   <div class="collapse navbar-collapse justify-content-end me-2 text-center" id="navbarSupportedContent">
     <ul class="navbar-nav mb-2 mb-lg-0">
-      <li class="nav-item">
-        <a class="nav-link" aria-current="page" href="#">Home</a>
+      <li class="nav-item" onmouseover="PlaySound('mySound')">
+        <a class="nav-link" aria-current="page" href="#"  onmouseover="PlaySound('mySound')" id="audio">Home</a>
+      </li> 
+      <li class="nav-item"  onmouseover="PlaySound('mySound')">
+        <a class="nav-link" href="#"  onmouseover="PlaySound('mySound')">Nosotros</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Nosotros</a>
+      <li class="nav-item"  onmouseover="PlaySound('mySound')">
+        <a class="nav-link" href="#"  onmouseover="PlaySound('mySound')">Servicios</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Servicios</a>
+      <li class="nav-item"  onmouseover="PlaySound('mySound')"> 
+        <a class="nav-link" href="#"  onmouseover="PlaySound('mySound')">Contacto</a>
       </li>
-      <li class="nav-item"> 
-        <a class="nav-link" href="#">Contacto</a>
+      <li class="nav-item"  onmouseover="PlaySound('mySound')">
+        <a class="nav-link" href="#"  onmouseover="PlaySound('mySound')">Tienda</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Tienda</a>
+      <li class="nav-item"  onmouseover="PlaySound('mySound')">
+        <a class="nav-link" [routerLink]="['login']"  onmouseover="PlaySound('mySound')" ><i class="fa-solid fa-user"></i></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['login']" ><i class="fa-solid fa-user"></i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+      <li class="nav-item"  onmouseover="PlaySound('mySound')">
+        <a class="nav-link" href="#"  onmouseover="PlaySound('mySound')"><i class="fa-solid fa-cart-shopping"></i></a>
       </li>
       <li class="nav-item d-flex align-items-center ms-3">
       </li>
     </ul>
   </div>
+  <audio id='mySound' src='../../assets/sounds/Mario (Here We Go!) - Sound Effect (HD).mp3'></audio>
 </nav>
+
+<script>
+ function PlaySound(soundobj) {
+    var thissound=document.getElementById(soundobj);
+    thissound.play();
+    }
+</script>
