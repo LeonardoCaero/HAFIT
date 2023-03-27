@@ -6,8 +6,7 @@ $bg-color: #D9D9D9;
     margin-left: 15rem;
     background-color: $bg-color;
     max-width: 30%;
-    height: 50%;
-    max-height: 50%;
+    height: auto;
     animation: slide-in 0.8s ease-out;
     
     a{
@@ -15,7 +14,7 @@ $bg-color: #D9D9D9;
     }
 }
 .container-left{
-    margin-top: -25% !important;
+    margin-top: -23% !important;
     float: right ;
     bottom: 50% !important;
     padding-top :0rem !important;
@@ -65,7 +64,7 @@ app-footer{
         height: auto;
         margin-top: 4rem !important;
         margin-left: auto !important;
-        margin-right: 7.5rem !important ;
+        margin-right: 7.2rem !important ;
         // padding-left: 2rem !important;
     }
     app-footer{
