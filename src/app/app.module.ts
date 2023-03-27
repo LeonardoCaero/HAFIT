@@ -11,22 +11,45 @@ import { MatCardModule } from '@angular/material/card';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { TestShopComponent } from './test-shop/test-shop.component';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatIconModule} from '@angular/material/icon';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
 import { CarouselComponent } from './carousel/carousel.component';
 import { FooterComponent } from './footer/footer.component';
-import { HomeComponent } from './home/home.component'; 
+import { HomeComponent } from './home/home.component';
+import { AuthModule } from '@auth0/auth0-angular';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { LoginButtonComponent } from './login-button/login-button.component';
+import { LogoutButtonComponent } from './logout-button/logout-button.component';
 
 @NgModule({
-  declarations: [AppComponent, NavBarComponent, ProductListComponent, ProductCardComponent, TestShopComponent, CarouselComponent, FooterComponent, HomeComponent],
+  declarations: [
+    AppComponent,
+    NavBarComponent,
+    ProductListComponent,
+    ProductCardComponent,
+    TestShopComponent,
+    CarouselComponent,
+    FooterComponent,
+    HomeComponent,
+    UserProfileComponent,
+    LoginButtonComponent,
+    LogoutButtonComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatCardModule,  
+    MatCardModule,
     MatGridListModule,
-    MatIconModule
+    MatIconModule,
+    AuthModule.forRoot({
+      domain: 'dev-jwr2u354q8g4qn7i.us.auth0.com',
+      clientId: 'KvYM7uivBTAza66zaPJPmtBUz0kpoUCw',
+      authorizationParams: {
+        redirect_uri: window.location.origin,
+      },
+    }),
   ],
   providers: [ProductDataService],
   bootstrap: [AppComponent],

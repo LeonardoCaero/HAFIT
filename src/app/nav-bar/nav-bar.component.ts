@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-nav-bar',
@@ -6,7 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent {
-  constructor(){
+  constructor(private auth: AuthService){
 
   }
 
@@ -15,6 +16,9 @@ export class NavBarComponent {
     audio.src = "../assets/sounds/swoosh.mp3";
     audio.load();
     audio.play();
+  }
+  login() {
+    this.auth.loginWithRedirect();
   }
 
   ngOnInit(): void{
