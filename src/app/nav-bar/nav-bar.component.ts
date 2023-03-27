@@ -10,7 +10,14 @@ export class NavBarComponent {
 
   }
 
+  playSound() {
+    let audio = new Audio();
+    audio.src = "../assets/sounds/swoosh.mp3";
+    audio.load();
+    audio.play();
+  }
+
   ngOnInit(): void{
-    
+
   }
 }

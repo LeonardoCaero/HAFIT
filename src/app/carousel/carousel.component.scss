@@ -1,0 +1,12 @@
+$bg-color: #393E46; 
+$color-terciario: #28a745;
+.main{
+    background-color: $bg-color;
+}
+.heigth-caroussel{
+    height: 50rem;
+}
+
+img{
+    object-fit: cover;
+}

@@ -13,10 +13,12 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import { TestShopComponent } from './test-shop/test-shop.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
-import { CarouselComponent } from './carousel/carousel.component'; 
+import { CarouselComponent } from './carousel/carousel.component';
+import { FooterComponent } from './footer/footer.component';
+import { HomeComponent } from './home/home.component'; 
 
 @NgModule({
-  declarations: [AppComponent, NavBarComponent, ProductListComponent, ProductCardComponent, TestShopComponent, CarouselComponent],
+  declarations: [AppComponent, NavBarComponent, ProductListComponent, ProductCardComponent, TestShopComponent, CarouselComponent, FooterComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

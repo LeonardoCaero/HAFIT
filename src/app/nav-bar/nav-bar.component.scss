@@ -8,11 +8,10 @@ $dark-grey: #222831;
 }
 
 .navbar:nth-of-type(2) {
+    padding: 0;
+    height: 3rem;
     background-color: $dark-grey !important;
 }
-
-
-
 
 
 i {
@@ -24,7 +23,7 @@ i {
     transition: 0.5s;
 
     li:hover {
-        background-color: lighten($color: $dark-grey, $amount: 1);
+        background-color: $main-color;
         transition: 0.5s;
     }
 }
