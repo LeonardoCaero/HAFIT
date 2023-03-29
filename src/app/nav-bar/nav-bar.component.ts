@@ -7,7 +7,12 @@ import { AuthService } from '@auth0/auth0-angular';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent {
+  public userProfile: any;
+
   constructor(private auth: AuthService){
+    this.auth.user$.subscribe((user) => {
+      this.userProfile = user;
+    });
 
   }
 
@@ -24,4 +29,5 @@ export class NavBarComponent {
   ngOnInit(): void{
 
   }
+
 }

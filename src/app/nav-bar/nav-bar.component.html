@@ -10,8 +10,9 @@
       </div>
     </form>
     <div class="navbar-icons">
-      <a href="#">
-        <i class="fa-regular fa-user text-light mx-2 " (click)="login()"></i>
+      <a href="#" id="loginIcon" [routerLink]="['user-profile']">
+        <i class="fa-regular fa-user text-light mx-2 " *ngIf="!userProfile" (click)="login()"></i>
+        <img *ngIf="userProfile" [src]="userProfile.picture" alt="User profile picture" />
       </a>
       <a href="#">
         <i class="fa-solid fa-basket-shopping text-light mx-2"></i>
