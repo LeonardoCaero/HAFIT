@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark position-relative w-100">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
-      <img src="../../assets/images/logos/full-logo.png" alt="Logo" height="40" (mouseover)="playSound()">
+      <img src="../../assets/images/logos/full-logo.png" alt="Logo" height="40">
     </a>
     <form class="d-flex mx-auto my-2 my-lg-0">
       <div class="input-group rounded-pill">
@@ -11,7 +11,7 @@
     </form>
     <div class="navbar-icons">
       <a href="#" id="loginIcon" [routerLink]="['user-profile']">
-        <i class="fa-regular fa-user text-light mx-2 " *ngIf="!userProfile" (click)="login()"></i>
+        <i class="fa-regular fa-user text-light mx-2 " *ngIf="!userProfile"></i>
         <img *ngIf="userProfile" [src]="userProfile.picture" alt="User profile picture" />
       </a>
       <a href="#">
