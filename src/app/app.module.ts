@@ -18,8 +18,6 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { AuthModule } from '@auth0/auth0-angular';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { LoginButtonComponent } from './login-button/login-button.component';
-import { LogoutButtonComponent } from './logout-button/logout-button.component';
 
 @NgModule({
   declarations: [
@@ -32,8 +30,6 @@ import { LogoutButtonComponent } from './logout-button/logout-button.component';
     FooterComponent,
     HomeComponent,
     UserProfileComponent,
-    LoginButtonComponent,
-    LogoutButtonComponent,
   ],
   imports: [
     BrowserModule,

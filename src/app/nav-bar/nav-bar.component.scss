@@ -2,34 +2,52 @@ $primary-color: #007bff;
 $secondary-color: #393E46;
 $main-color: #28a745;
 $dark-grey: #222831;
+$transition-time: 0.5s;
 
-.navbar {
+.jumbo {
     background-color: $secondary-color !important;
 }
 
-.navbar:nth-of-type(2) {
-    padding: 0;
+.navbar:nth-of-type(1) {
     background-color: $dark-grey !important;
 }
 
 i {
-    font-size: x-large;
+    color: #fff;
+    font-size: large;
+    transition: $transition-time;
+}
+
+.fa-shopping-cart:hover {
+    color: $main-color;
+    transition: $transition-time;
+}
+
+#userDropdown {
+    color: #fff;
+    transition: $transition-time;
+
+    &:hover {
+        color: $main-color;
+        transition: $transition-time;
+    }
+}
+
+#searchButton {
+    border-color: #fff;
+    background-color: $main-color;
+
+    &:hover {
+        background-color: darken($color: $main-color, $amount: 5);
+    }
 }
 
 .navbar-collapse {
     text-align: center;
-    transition: 0.5s;
+    transition: $transition-time;
 
     li:hover {
         background-color: $main-color;
-        transition: 0.5s;
+        transition: $transition-time;
     }
-}
-
-.container-fluid {
-    justify-content: center;
-}
-
-#nav2 {
-    height: 3rem;
 }
