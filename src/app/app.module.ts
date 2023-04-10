@@ -18,6 +18,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { AuthButtonComponent } from './auth-button/auth-button.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AuthButtonLogoutComponent } from './auth-button-logout/auth-button-logout.component';
+import { PlansComponent } from './plans/plans.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { AuthButtonLogoutComponent } from './auth-button-logout/auth-button-logo
     LoginComponent,
     AuthButtonComponent,
     UserProfileComponent,
-    AuthButtonLogoutComponent
+    AuthButtonLogoutComponent,
+    PlansComponent
 
   ],
   imports: [

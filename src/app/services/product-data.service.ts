@@ -13,6 +13,6 @@ export class ProductDataService {
   products: IProduct[] = [];
 
   public getProducts(): Observable<HttpResponse<any>> {
-    return this._http.get('http://localhost:8000/api/products', { observe: 'response' });
+    return this._http.get('http://localhost:8000/api/product/all', { observe: 'response' });
   }
 }
