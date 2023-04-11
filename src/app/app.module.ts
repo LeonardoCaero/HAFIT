@@ -19,6 +19,8 @@ import { AuthButtonComponent } from './auth-button/auth-button.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AuthButtonLogoutComponent } from './auth-button-logout/auth-button-logout.component';
 import { PlansComponent } from './plans/plans.component';
+import { PlansFormComponent } from './plans-form/plans-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -32,7 +34,8 @@ import { PlansComponent } from './plans/plans.component';
     AuthButtonComponent,
     UserProfileComponent,
     AuthButtonLogoutComponent,
-    PlansComponent
+    PlansComponent,
+    PlansFormComponent
 
   ],
   imports: [
@@ -41,7 +44,7 @@ import { PlansComponent } from './plans/plans.component';
     HttpClientModule,
     BrowserAnimationsModule,
     MatCardModule,
-    MatIconModule,
+    MatIconModule,  
     AuthModule.forRoot({
       domain: 'dev-jwr2u354q8g4qn7i.us.auth0.com',
       clientId: 'KvYM7uivBTAza66zaPJPmtBUz0kpoUCw',
@@ -49,6 +52,8 @@ import { PlansComponent } from './plans/plans.component';
         redirect_uri: window.location.origin
       }
     }),
+    FormsModule,
+    ReactiveFormsModule,
   ],
 
   providers: [ProductDataService],

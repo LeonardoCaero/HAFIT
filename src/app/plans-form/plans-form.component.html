@@ -1,0 +1,23 @@
+<h3 class="fill-remaining-space">Nou plan</h3>
+<div class="container">
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
+    
+    <div class="form-element">
+      <input placeholder="Name" formControlName="name">
+    </div>
+    <div class="form-element">
+      <input placeholder="ID" formControlName="planId">
+    </div>
+    <div class="form-element">
+      <input placeholder="Description" formControlName="description">
+    </div>
+
+    <div class="form-element">
+      <button  color="primary" type="submit" class="button">Submit</button>
+      <a href=""(click)="deletePlan()">Delete</a>
+    </div>
+  </form>
+</div>
+<div class="alert alert-danger" *ngIf="errorMessage">
+  {{errorMessage}}
+</div>

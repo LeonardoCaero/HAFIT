@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeProductsComponent } from './home-products/home-products.component';
 import { LoginComponent } from './login/login.component';
+import { PlansFormComponent } from './plans-form/plans-form.component';
 import { PlansComponent } from './plans/plans.component';
 
 const routes: Routes = [
   {path:'', component: HomeProductsComponent},
   {path:'login', component: LoginComponent},
   {path: 'plans', component: PlansComponent},
+  {path: 'edit/:planId',component: PlansFormComponent},
   {path:'', redirectTo:'home', pathMatch: 'full'},
 ];
 

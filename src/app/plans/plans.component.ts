@@ -19,5 +19,6 @@ export class PlansComponent implements OnInit{
     }
    })
   }
+ 
 plans: IPlan[] = [];
 }

@@ -13,6 +13,15 @@ export class PlanDataService {
   plans:  IPlan[] = [];
 
   public getPlans(): Observable<HttpResponse<any>>{
-    return this._http.get('http://localhost:8000/api/plan/all', { observe: 'response' });
+    return this._http.get(environment.apiUrl+'plan/all', { observe: 'response' });
+  }
+  public getPlan(data:any): Observable<HttpResponse<IPlan[]>>{
+    return this._http.get<IPlan[]>(environment.apiUrl+'plan/'+data, { observe: 'response' });
+  }
+  public updatePlans(dada:any): Observable<HttpResponse<IPlan[]>> {
+    return this._http.put<IPlan[]>(environment.apiUrl+'plan/edit/',dada,{ observe: 'response' });
+  }
+  public deletePlan(deleteBy:any,data:any):  Observable<HttpResponse<IPlan[]>>{
+    return this._http.delete<IPlan[]>(environment.apiUrl+'plan/delete?deleteBy='+deleteBy+'&data='+data, { observe: 'response' });
   }
 }
