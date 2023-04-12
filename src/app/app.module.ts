@@ -18,6 +18,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { AuthModule } from '@auth0/auth0-angular';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AuthServiceService } from './services/auth-service.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
       },
     }),
   ],
-  providers: [ProductDataService],
+  providers: [ProductDataService, AuthServiceService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

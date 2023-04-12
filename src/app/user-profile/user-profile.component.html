@@ -14,8 +14,9 @@
                 </button>
               </div>
               <div class="ms-3" style="margin-top: 130px;">
-                <h5>{{user.given_name}} {{user.family_name}}</h5>
+                <h5>{{user.given_name != undefined ? user.given_name : userData?.name}} {{user.family_name}}</h5>
                 <p>{{user.email}}</p>
+                <p>{{userData}}</p>
               </div>
             </div>
             <div class="p-4 text-black" style="background-color: #f8f9fa;">

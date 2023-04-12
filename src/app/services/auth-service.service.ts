@@ -17,10 +17,6 @@ export class AuthServiceService {
   }
 
   logout() {
-    this.auth.logout({
-      logoutParams: {
-        returnTo: this.document.location.origin,
-      },
-    });
+    this.auth.logout();
   }
 }
