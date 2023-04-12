@@ -19,6 +19,8 @@ import { HomeComponent } from './home/home.component';
 import { AuthModule } from '@auth0/auth0-angular';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AuthServiceService } from './services/auth-service.service';
+import { ProductPageComponent } from './product-page/product-page.component';
+
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { AuthServiceService } from './services/auth-service.service';
     FooterComponent,
     HomeComponent,
     UserProfileComponent,
+    ProductPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,7 @@ import { AuthServiceService } from './services/auth-service.service';
       },
     }),
   ],
-  providers: [ProductDataService, AuthServiceService],
+  providers: [ProductDataService, AuthServiceService, NavBarComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

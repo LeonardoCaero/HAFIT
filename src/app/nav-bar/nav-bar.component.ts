@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { AuthServiceService } from '../services/auth-service.service';
 import { Router } from '@angular/router';
+import { NavbarService } from '../services/navbar.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -12,11 +13,13 @@ import { Router } from '@angular/router';
 export class NavBarComponent implements OnInit {
   public isAuthenticated: boolean = false;
   public userProfile: any;
+  public cartItems: number = 0;
 
   constructor(
     private auth: AuthService,
     private authService: AuthServiceService,
-    private router: Router
+    private router: Router,
+    private navbarService: NavbarService
   ) {}
 
   ngOnInit() {
@@ -37,6 +40,11 @@ export class NavBarComponent implements OnInit {
         this.userProfile = null;
       }
     );
+    this.cartItems = this.navbarService.getCartItems();
+
+    this.navbarService.cartItems$.subscribe((newCartItems: number) => {
+      this.cartItems = newCartItems;
+    });
   }
 
   login() {

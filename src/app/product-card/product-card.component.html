@@ -1,6 +1,6 @@
 <div class="row my-2">
     <div class="col-lg-4 col-md-6 col-sm-6 w-100">
-        <mat-card class="rounded overflow-hidden" style="border: none;">
+        <mat-card class="rounded overflow-hidden" style="border: none;" [routerLink]="['/', product.type.toLowerCase() ,urlProduct]">
             <div class="topPart" style="position: relative;">
                 <div class="inside">
                     <div class="icon"><mat-icon>info_outline</mat-icon></div>
@@ -10,19 +10,19 @@
                                 <th>Description</th>
                             </tr>
                             <tr>
-                                <td>{{product.description}}</td>
+                                <td>{{ product.description }}</td>
                             </tr>
                         </table>
                     </div>
                 </div>
-                <img [src]="productImage" class="w-100">
+                <img [src]="productImage" class="w-100 h-85">
             </div>
             <mat-card-content class="bottom">
                 <div class="left">
                     <div class="details">
-                        <h3>{{product.name}}</h3>
-                        <p>{{product.price.$numberDecimal}}€</p>
-                        
+                        <h3>{{ product.name }}</h3>
+                        <p>{{ product.price.$numberDecimal }}€</p>
+
                     </div>
                     <div class="buy">
                         <mat-icon>add_shopping_cart</mat-icon>
@@ -31,7 +31,7 @@
                 <div class="right">
                     <div class="done"><mat-icon>done</mat-icon></div>
                     <div class="details">
-                        <h3>{{product.name}}</h3>
+                        <h3>{{ product.name }}</h3>
                         <p>Added to your cart</p>
                     </div>
                     <div class="remove"><mat-icon>clear</mat-icon></div>
