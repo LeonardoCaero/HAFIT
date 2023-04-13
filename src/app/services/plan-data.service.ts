@@ -15,13 +15,18 @@ export class PlanDataService {
   public getPlans(): Observable<HttpResponse<any>>{
     return this._http.get(environment.apiUrl+'plan/all', { observe: 'response' });
   }
-  public getPlan(data:any): Observable<HttpResponse<IPlan[]>>{
-    return this._http.get<IPlan[]>(environment.apiUrl+'plan/'+data, { observe: 'response' });
+  public getPlan(searchBy: string, data: any): Observable<HttpResponse<any>> {
+    const url = `${environment.apiUrl}plan/search?search=${searchBy}&data=${data}`;
+    return this._http.get(url, { observe: 'response' });
   }
-  public updatePlans(dada:any): Observable<HttpResponse<IPlan[]>> {
-    return this._http.put<IPlan[]>(environment.apiUrl+'plan/edit/',dada,{ observe: 'response' });
+  public updatePlans(id:any,dada:any): Observable<HttpResponse<IPlan[]>> {
+    return this._http.put<IPlan[]>(environment.apiUrl+'plan/edit?name='+dada.get('name')+'&planId='+id+'&description='+dada.get('description'),dada,{ observe: 'response' });
   }
-  public deletePlan(deleteBy:any,data:any):  Observable<HttpResponse<IPlan[]>>{
-    return this._http.delete<IPlan[]>(environment.apiUrl+'plan/delete?deleteBy='+deleteBy+'&data='+data, { observe: 'response' });
+  public deletePlan(deleteBy: String, data: any): Observable<HttpResponse<any>>{
+    const url = `${environment.apiUrl}plan/delete?deleteBy=${deleteBy}&data=${data}`;
+    return this._http.delete(url, { observe: 'response' });
+  }
+  public addPlan(data:any): Observable<HttpResponse<any>>{
+    return this._http.post<any>(environment.apiUrl+'plan/add?name='+data.get('name')+'&description='+data.get('description'),{observe: 'response'});
   }
 }

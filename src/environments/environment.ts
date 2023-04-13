@@ -10,5 +10,7 @@ export const environment = {
       product: 'Product',
       user: 'User',
     },
-    defaultImage: "https://sesamobakery.com/wp-content/uploads/2020/12/product-default-list-350.jpg"
+    defaultImage: "https://sesamobakery.com/wp-content/uploads/2020/12/product-default-list-350.jpg",
+    apiTiny: "t2j4xztrfvczi9wm2i8z8li2hses0j1jn2sv80yq0zw8wjam"
+
   };

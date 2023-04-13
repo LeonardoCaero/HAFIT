@@ -21,6 +21,13 @@ import { AuthButtonLogoutComponent } from './auth-button-logout/auth-button-logo
 import { PlansComponent } from './plans/plans.component';
 import { PlansFormComponent } from './plans-form/plans-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { EditorModule } from '@tinymce/tinymce-angular';
+import { PlansViewComponent } from './plans-view/plans-view.component';
+import { PlansAddFormComponent } from './plans-add-form/plans-add-form.component';
+
+
+
 
 
 @NgModule({
@@ -35,7 +42,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     UserProfileComponent,
     AuthButtonLogoutComponent,
     PlansComponent,
-    PlansFormComponent
+    PlansFormComponent,
+    PlansViewComponent,
+    PlansAddFormComponent,
 
   ],
   imports: [
@@ -54,6 +63,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     }),
     FormsModule,
     ReactiveFormsModule,
+    AngularEditorModule,
+    EditorModule,
   ],
 
   providers: [ProductDataService],

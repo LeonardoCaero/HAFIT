@@ -5,6 +5,4 @@ export interface IPlan {
       name: string;
       planId: BigInteger;
       description: string;
-      time: BigInteger;
-    
 }
