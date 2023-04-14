@@ -20,6 +20,7 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AuthServiceService } from './services/auth-service.service';
 import { ProductPageComponent } from './product-page/product-page.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { ProductPageComponent } from './product-page/product-page.component';
     HomeComponent,
     UserProfileComponent,
     ProductPageComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

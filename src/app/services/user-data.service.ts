@@ -2,6 +2,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IUser } from '../interfaces/iuser';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -28,4 +29,9 @@ export class UserDataService {
     return this._http.put(`http://localhost:8000/api/user/edit?userId=${user.userId}`, user, { observe: 'response' });
   }
   
+  public updateCart(userId: any, productId: any, action: string): Observable<HttpResponse<any>> {
+    const body = { userId, productId, action };
+    return this._http.put(`${environment.apiUrl}/cart`, body, { observe: 'response' });
+  }
+ 
 }

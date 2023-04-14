@@ -16,16 +16,22 @@ export class ProductPageComponent implements OnInit {
 
   ngOnInit(): void {
     const planName = this.route.snapshot.paramMap.get('productName');
-    const decodedPlanName = decodeURIComponent(planName);
-    const planFormat = decodedPlanName?.replace(/-/g, ' ').toLowerCase();
+    if (planName !== null) {
+      const decodedPlanName = decodeURIComponent(planName);
+      const planFormat = decodedPlanName.replace(/-/g, ' ').toLowerCase();
+      this.productService.getProduct('name', planFormat).subscribe((resp) => {
+        if (resp.body != null) {
+          console.log(resp.body);
+          this.product = resp.body;
+        }
+      });
+    } else {
 
-    this.productService.getProduct('name', planFormat).subscribe((resp) => {
-      if (resp.body != null) {
-        console.log(resp.body);
-        this.product = resp.body;
-      }
-    });
+    }
+
+    
   }
 
   product!: IProduct;
 }
+

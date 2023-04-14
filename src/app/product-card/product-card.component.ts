@@ -1,8 +1,10 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { IProduct } from '../interfaces/iproduct';
 import { NavbarService } from '../services/navbar.service';
+import { UserDataService } from '../services/user-data.service';
 
 @Component({
   selector: 'app-product-card',
@@ -14,7 +16,9 @@ export class ProductCardComponent implements OnInit {
   constructor(
     private sanitizer: DomSanitizer,
     private elementRef: ElementRef,
-    private navbarService: NavbarService
+    private navbarService: NavbarService,
+    private route: ActivatedRoute,
+    private userService: UserDataService
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +38,8 @@ export class ProductCardComponent implements OnInit {
       const cartItems = this.navbarService.getCartItems();
       this.navbarService.setCartItems(cartItems + 1);
       bottomDiv?.classList.add('clicked');
+      this.authService.checkUser();
+      // this.userService.updateCart(this.user.userId, this.product.productId, 'add');
     });
 
     removeButton?.addEventListener('click', () => {
