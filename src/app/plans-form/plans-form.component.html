@@ -1,19 +1,23 @@
-<h3 class="fill-remaining-space">Edit plan</h3>
-<div class="container">
-  <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
+<div class="container d-flex justify-content-center mt-lg-5 mt-5">
+<h2 class="fill-remaining-space">Edit plan</h2>
+  <form class="mt-lg-5 w-75 " [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
     <div class="form-element">
-      <input placeholder="Name" formControlName="name">
+      <h5 class="form-label">Name</h5>
+      <input placeholder="Name" formControlName="name" class="form-control w-75">
     </div>
-    <div class="form-element">
+    <div class="form-element" class="pt-2">
+      <h5>Description</h5>
       <editor apiKey="t2j4xztrfvczi9wm2i8z8li2hses0j1jn2sv80yq0zw8wjam"
-  [init]="{ plugins: 'lists link table code wordcount quickbars image media' }" formControlName="description"></editor><!--buscar como hacer para selecionar imagenes locales-->
+  [init]="{ plugins: 'lists link table code wordcount quickbars image media'}" 
+  formControlName="description" class="w-75"/><!--buscar como hacer para selecionar imagenes locales-->
     </div>
-    <div class="form-element">
-      <button  color="primary" type="submit" class="button">Submit</button>
-      <a href=""(click)="deletePlan()">Delete</a>
+    <div class="form-element pt-4">
+      <button type="submit" class="btn btn-success btn-send  pt-2 btn-block">Update</button>
+      <button class="btn btn-danger btn-send ms-2 pt-2 btn-block delete"><a (click)="deletePlan()">Delete</a></button> 
+    </div>
+    <div class="alert alert-danger w-75 mt-4" *ngIf="errorMessage">
+      {{errorMessage}}
     </div>
   </form>
-</div>
-<div class="alert alert-danger" *ngIf="errorMessage">
-  {{errorMessage}}
+  
 </div>

@@ -34,8 +34,8 @@ onSubmit(plan:any):void{
   let formData = new FormData();
   var name = this.myForm.get('name'); //Obtener valores del formulario
   var description = this.myForm.get('description');
- 
-  if (name) {formData.append("name", name.value)} ;// Si name tiene valor añadirlo al formudata
+  
+  if (name) {formData.append("name", name.value)} ;// Si name tiene valor añadirlo al formdata
   if (description) {formData.append("description", description.value)};
 
   this.planServices.addPlan(formData).subscribe({//Crear el plan con los datos de formdata

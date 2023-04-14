@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { IPlan } from '../interfaces/iplan';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -13,20 +13,20 @@ export class PlanDataService {
   plans:  IPlan[] = [];
 
   public getPlans(): Observable<HttpResponse<any>>{
-    return this._http.get(environment.apiUrl+'plan/all', { observe: 'response' });
+    return this._http.get(environment.apiUrl+'/plan/all', { observe: 'response' });
   }
   public getPlan(searchBy: string, data: any): Observable<HttpResponse<any>> {
-    const url = `${environment.apiUrl}plan/search?search=${searchBy}&data=${data}`;
+    const url = `${environment.apiUrl}/plan/search?search=${searchBy}&data=${data}`;
     return this._http.get(url, { observe: 'response' });
   }
   public updatePlans(id:any,dada:any): Observable<HttpResponse<IPlan[]>> {
-    return this._http.put<IPlan[]>(environment.apiUrl+'plan/edit?name='+dada.get('name')+'&planId='+id+'&description='+dada.get('description'),dada,{ observe: 'response' });
+    return this._http.put<IPlan[]>(environment.apiUrl+'/plan/edit?name='+dada.get('name')+'&planId='+id+'&description='+dada.get('description'),dada,{ observe: 'response' });
   }
-  public deletePlan(deleteBy: String, data: any): Observable<HttpResponse<any>>{
-    const url = `${environment.apiUrl}plan/delete?deleteBy=${deleteBy}&data=${data}`;
+  public deletePlan(deleteBy: any, data: any): Observable<HttpResponse<any>>{
+    const url = `${environment.apiUrl}/plan/delete?deleteBy=${deleteBy}&data=${data}`;
     return this._http.delete(url, { observe: 'response' });
   }
   public addPlan(data:any): Observable<HttpResponse<any>>{
-    return this._http.post<any>(environment.apiUrl+'plan/add?name='+data.get('name')+'&description='+data.get('description'),{observe: 'response'});
+    return this._http.post<any>(environment.apiUrl+'/plan/add?name='+data.get('name')+'&description='+data.get('description'),{observe: 'response'});
   }
 }

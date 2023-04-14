@@ -25,6 +25,10 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { PlansViewComponent } from './plans-view/plans-view.component';
 import { PlansAddFormComponent } from './plans-add-form/plans-add-form.component';
+import { ExercicesComponent } from './exercices/exercices.component';
+import { ExercicesEditFormComponent } from './exercices/exercices-edit-form/exercices-edit-form.component';
+import { ExercicesAddFormComponent } from './exercices/exercices-add-form/exercices-add-form.component';
+import { ExercicesViewComponent } from './exercices/exercices-view/exercices-view.component';
 
 
 
@@ -45,6 +49,10 @@ import { PlansAddFormComponent } from './plans-add-form/plans-add-form.component
     PlansFormComponent,
     PlansViewComponent,
     PlansAddFormComponent,
+    ExercicesComponent,
+    ExercicesEditFormComponent,
+    ExercicesAddFormComponent,
+    ExercicesViewComponent,
 
   ],
   imports: [
