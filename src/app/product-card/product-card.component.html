@@ -1,6 +1,6 @@
 <div class="row my-2">
     <div class="col-lg-4 col-md-6 col-sm-6 w-100">
-        <mat-card class="rounded overflow-hidden" style="border: none;" [routerLink]="['/', product.type.toLowerCase() ,urlProduct]">
+        <mat-card class="rounded overflow-hidden" style="border: none;" >
             <div class="topPart" style="position: relative;">
                 <div class="inside">
                     <div class="icon"><mat-icon>info_outline</mat-icon></div>
@@ -15,7 +15,7 @@
                         </table>
                     </div>
                 </div>
-                <img [src]="productImage" class="w-100 h-85">
+                <img [src]="productImage" class="w-100 h-85" [routerLink]="['/', product.type.toLowerCase() ,urlProduct]">
             </div>
             <mat-card-content class="bottom">
                 <div class="left">

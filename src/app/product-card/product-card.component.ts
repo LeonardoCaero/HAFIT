@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { IProduct } from '../interfaces/iproduct';
+import { AuthServiceService } from '../services/auth-service.service';
 import { NavbarService } from '../services/navbar.service';
 import { UserDataService } from '../services/user-data.service';
 
@@ -18,7 +19,8 @@ export class ProductCardComponent implements OnInit {
     private elementRef: ElementRef,
     private navbarService: NavbarService,
     private route: ActivatedRoute,
-    private userService: UserDataService
+    private userService: UserDataService,
+    private authService: AuthServiceService
   ) {}
 
   ngOnInit(): void {
@@ -38,14 +40,36 @@ export class ProductCardComponent implements OnInit {
       const cartItems = this.navbarService.getCartItems();
       this.navbarService.setCartItems(cartItems + 1);
       bottomDiv?.classList.add('clicked');
-      this.authService.checkUser();
-      // this.userService.updateCart(this.user.userId, this.product.productId, 'add');
+      this.authService.checkUser().subscribe(
+        (userId) => {
+          this.userService.updateCart(userId, this.product.productId, 'add').subscribe({
+            next: (data) => {
+              console.log(data);
+            }
+          });
+        },
+        (error) => {
+          console.log('Error obteniendo userId');
+        }
+      );
     });
 
     removeButton?.addEventListener('click', () => {
       const cartItems = this.navbarService.getCartItems();
       this.navbarService.setCartItems(cartItems - 1);
       bottomDiv?.classList.remove('clicked');
+      this.authService.checkUser().subscribe(
+        (userId) => {
+          this.userService.updateCart(userId, this.product.productId, 'remove').subscribe({
+            next: (data) => {
+              console.log(data);
+            }
+          });
+        },
+        (error) => {
+          console.log('Error obteniendo userId');
+        }
+      );
     });
 
     this.urlProduct = this.product.name.replace(/\s+/g, '-').toLowerCase();

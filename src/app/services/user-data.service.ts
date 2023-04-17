@@ -14,24 +14,25 @@ export class UserDataService {
   users: IUser[] = [];
 
   public getUsers(): Observable<HttpResponse<any>> {
-    return this._http.get('http://localhost:8000/api/user/all', { observe: 'response' });
+    return this._http.get(`${environment.apiUrl}user/all`, { observe: 'response' });
   }
 
   public getUser(searchValue: any, value: any): Observable<HttpResponse<any>> {
-    return this._http.get(`http://localhost:8000/api/user/search?search=${searchValue}&data=${value}`, { observe: 'response' });
+    return this._http.get(`${environment.apiUrl}user/search?search=${searchValue}&data=${value}`, { observe: 'response' });
   }
 
   public addUser(user: IUser): Observable<HttpResponse<any>> {
-    return this._http.post('http://localhost:8000/api/user/add', user, { observe: 'response' });
+    return this._http.post('${environment.apiUrl}user/add', user, { observe: 'response' });
   }
 
   public updateUser(user: IUser): Observable<HttpResponse<any>> {
-    return this._http.put(`http://localhost:8000/api/user/edit?userId=${user.userId}`, user, { observe: 'response' });
+    return this._http.put(`h${environment.apiUrl}user/edit?userId=${user.userId}`, user, { observe: 'response' });
   }
   
   public updateCart(userId: any, productId: any, action: string): Observable<HttpResponse<any>> {
-    const body = { userId, productId, action };
-    return this._http.put(`${environment.apiUrl}/cart`, body, { observe: 'response' });
+    const body = { userId: userId, productId: productId, action: action };
+    return this._http.put(`${environment.apiUrl}user/cart`, body, { observe: 'response' });
   }
+
  
 }
