@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'user-profile', component: UserProfileComponent },
   { path: 'test-product', component: ProductPageComponent},
   { path: ':type/:productName', component: ProductPageComponent},
-  { path: '**', component: NotFoundComponent },
+  // { path: '**', component: NotFoundComponent },
   { path: '', component: HomeComponent },
 ];
 
