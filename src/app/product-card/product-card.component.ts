@@ -37,16 +37,19 @@ export class ProductCardComponent implements OnInit {
     const bottomDiv = this.elementRef.nativeElement.querySelector('.bottom');
 
     buyButton?.addEventListener('click', () => {
-      const cartItems = this.navbarService.getCartItems();
-      this.navbarService.setCartItems(cartItems + 1);
+      
       bottomDiv?.classList.add('clicked');
       this.authService.checkUser().subscribe(
         (userId) => {
-          this.userService.updateCart(userId, this.product.productId, 'add').subscribe({
-            next: (data) => {
-              console.log(data);
-            }
-          });
+          const cartItems = this.navbarService.getCartItems(userId);
+      this.navbarService.setCartItems(cartItems + 1);
+          this.userService
+            .updateCart(userId, this.product.productId, 'add')
+            .subscribe({
+              next: (data) => {
+                console.log(data);
+              },
+            });
         },
         (error) => {
           console.log('Error obteniendo userId');
@@ -55,16 +58,18 @@ export class ProductCardComponent implements OnInit {
     });
 
     removeButton?.addEventListener('click', () => {
-      const cartItems = this.navbarService.getCartItems();
-      this.navbarService.setCartItems(cartItems - 1);
       bottomDiv?.classList.remove('clicked');
       this.authService.checkUser().subscribe(
         (userId) => {
-          this.userService.updateCart(userId, this.product.productId, 'remove').subscribe({
-            next: (data) => {
-              console.log(data);
-            }
-          });
+          const cartItems = this.navbarService.getCartItems(userId);
+          this.navbarService.setCartItems(cartItems - 1);
+          this.userService
+            .updateCart(userId, this.product.productId, 'remove')
+            .subscribe({
+              next: (data) => {
+                console.log(data);
+              },
+            });
         },
         (error) => {
           console.log('Error obteniendo userId');
