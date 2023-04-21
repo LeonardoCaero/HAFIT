@@ -42,10 +42,10 @@ export class NavBarComponent implements OnInit {
       }
     );
     
-    // this.cartItems = this.navbarService.getCartItems(this.userProfile.userId);
-    // this.navbarService.cartItems$.subscribe((newCartItems: number) => {
-    //   this.cartItems = newCartItems;
-    // });
+    this.cartItems = this.navbarService.getCartItems();
+    this.navbarService.cartItems$.subscribe((newCartItems: number) => {
+      this.cartItems = newCartItems;
+    });
   }
 
   login() {

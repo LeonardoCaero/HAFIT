@@ -34,13 +34,12 @@ export class ProductPageComponent implements OnInit {
           this.product = resp.body;
 
           cartButton?.addEventListener('click', () => {
-            // bottomDiv?.classList.add('clicked');
             this.authService.checkUser().subscribe(
-              (userId) => {
-                const cartItems = this.navbarService.getCartItems(userId);
-                this.navbarService.setCartItems(cartItems + 1);
+              (response) => {
+                const cartItems = this.navbarService.getCartItems();
+                console.log(cartItems);
                 this.userService
-                  .updateCart(userId, this.product.productId, 'add')
+                  .updateCart(response.userId, this.product.productId, 'add')
                   .subscribe({
                     next: (data) => {
                       console.log(data);

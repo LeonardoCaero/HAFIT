@@ -11,4 +11,5 @@ export interface IProduct {
   type: string;
   stock: string;
   image: string;
+  quantity: number;
 }

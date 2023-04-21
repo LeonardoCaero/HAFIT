@@ -21,6 +21,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AuthServiceService } from './services/auth-service.service';
 import { ProductPageComponent } from './product-page/product-page.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { CartItemComponent } from './cart-item/cart-item.component';
+import { CartPageComponent } from './cart-page/cart-page.component';
 
 
 @NgModule({
@@ -36,6 +38,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     UserProfileComponent,
     ProductPageComponent,
     NotFoundComponent,
+    CartItemComponent,
+    CartPageComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { UserDataService } from './user-data.service';
+import { AuthServiceService } from './auth-service.service';
 
 @Injectable({
   providedIn: 'root',
@@ -9,14 +9,16 @@ export class NavbarService {
   private cartItemsSource = new BehaviorSubject<number>(0);
   cartItems$ = this.cartItemsSource.asObservable();
 
-  constructor(private userService: UserDataService) {}
+  constructor(private authService: AuthServiceService) {}
 
-  getCartItems(userId: string) {
-    this.userService.getUser('userId', userId).subscribe((response) => {
-      const currentUser = response.body[0];
-      const cartItems = currentUser.cart.length;
-      this.cartItemsSource.next(cartItems);
-    });
+  getCartItems() {
+    this.authService.checkUser().subscribe(
+      (response) => {      
+        const cartItems = response.cartItems.length;
+        this.setCartItems(cartItems);
+        return this.setCartItems(cartItems);
+      }
+    );
     return this.cartItemsSource.getValue();
   }
 

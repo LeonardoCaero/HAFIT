@@ -4,6 +4,7 @@ import { DOCUMENT } from '@angular/common';
 import { Inject } from '@angular/core';
 import { UserDataService } from './user-data.service';
 import { Observable, from, take, switchMap, map } from 'rxjs';
+import { NavbarService } from './navbar.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,10 +14,9 @@ export class AuthServiceService {
   constructor(
     private auth: AuthService,
     @Inject(DOCUMENT) private document: Document,
-    private userService: UserDataService
+    private userService: UserDataService,
   ) {}
 
-  private currentUserId: Number | undefined = 0;
 
   login() {
     this.auth.loginWithRedirect();
@@ -24,18 +24,17 @@ export class AuthServiceService {
 
   logout() {
     this.auth.logout();
-    this.currentUserId = 0;
   }
 
-  checkUser(): Observable<string> {
+  checkUser(): Observable<any> {
     return this.auth.user$.pipe(
       take(1),
       switchMap((user) => {
         if (user) {
           return this.userService.getUser('email', user.email).pipe(
             map((resp) => {
-              if (resp.status === 200) {
-                return resp.body.userId.toString();
+              if (resp.status === 200) {                            
+                return resp.body;
               } else {
                 throw new Error('Error obteniendo userId');
               }
