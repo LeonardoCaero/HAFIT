@@ -4,7 +4,7 @@
 </div>
   <a [routerLink]="['/plans/add']">New plan</a>
   <div  *ngFor= 'let plan of plans' class=" col mt-4 mb-4 ">
-    <a [routerLink]="['/plans/plan',plan.planId]"><mat-card class="example-card card h-200  " style="background-image: url('https://material.angular.io/assets/img/examples/shiba2.jpg');">
+    <a [routerLink]="['/plans/plan',plan.planId]"><mat-card class="example-card card h-200  " style="background-image: url({{plan.featuredImg}});">
         <mat-card-content class="card-body position-absolute bottom-0 start-0">
           <p class="card-title"><a [routerLink]="['/plans/plan',plan.planId]">{{plan.name}}</a></p>
           <p class="card-text">{{plan.planId}} <a [routerLink]="['/plans/edit',plan.planId]">Edit</a></p>
@@ -12,3 +12,62 @@
       </mat-card></a>
   </div> 
   
+  <!-- <div class="panel panel-primary">
+    <div class="panel-heading">
+        PRODUCTS
+    </div> 
+    <div *ngIf="plans.length==0">
+        <h4>No products found</h4>
+    </div>
+    <div *ngIf="plans.length>0" class="d-flex justify-content-center align-items-center">
+        <div class="container text-center w-75 d-flex p-3">
+            <div class="row row-cols-5 g-3">
+                <div *ngFor="let plan of plans" class="col mb-3">
+                    
+<div class="row my-2">
+  <div class="col-lg-4 col-md-6 col-sm-6 w-100">
+      <mat-card class="rounded overflow-hidden" style="border: none;"style="background-image: url('https://material.angular.io/assets/img/examples/shiba2.jpg'" >
+          <div class="topPart" style="position: relative;">
+              <div class="inside">
+                  <div class="icon"><mat-icon>info_outline</mat-icon></div>
+                  <div class="contents">
+                      <table>
+                          <tr>
+                              <th>Description</th>
+                          </tr>
+                          <tr>
+                              <td>{{ plan.description }}</td>
+                          </tr>
+                      </table>
+                  </div>
+              </div>
+              <img [src]="" class="w-100 h-85">
+          </div>
+          <mat-card-content class="bottom">
+              <div class="left">
+                  <div class="details">
+                      <h3>{{ plan.name }}</h3>
+                      <p>{{ plan.planId }}</p>
+
+                  </div>
+                  <div class="buy">
+                      <mat-icon>add_shopping_cart</mat-icon>
+                  </div>
+              </div>
+              <div class="right">
+                  <div class="done"><mat-icon>done</mat-icon></div>
+                  <div class="details">
+                      <h3>{{ plan.name }}</h3>
+                      <p>Added to your cart</p>
+                  </div>
+                  <div class="remove"><mat-icon>clear</mat-icon></div>
+              </div>
+          </mat-card-content>
+      </mat-card>
+  </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

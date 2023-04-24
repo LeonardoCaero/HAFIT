@@ -23,3 +23,19 @@ h5{
 .form-element:focus{
     color: $color-terciario;
 }
+.form{
+    margin-left: 15rem !important;
+}
+.from-title{
+    margin-left: 15rem !important;
+}
+@media screen and (max-width: 600px) {
+    .form{
+        margin-top: 5rem !important;
+        min-width: 75% !important;
+        width: 80% !important;
+    }
+    .form-title{
+        width: 100% !important;
+    }
+}

@@ -29,6 +29,10 @@ import { ExercicesComponent } from './exercices/exercices.component';
 import { ExercicesEditFormComponent } from './exercices/exercices-edit-form/exercices-edit-form.component';
 import { ExercicesAddFormComponent } from './exercices/exercices-add-form/exercices-add-form.component';
 import { ExercicesViewComponent } from './exercices/exercices-view/exercices-view.component';
+import { CloudinaryModule } from '@cloudinary/ng';
+import {MatDialogModule} from '@angular/material/dialog';
+
+
 
 
 
@@ -73,6 +77,8 @@ import { ExercicesViewComponent } from './exercices/exercices-view/exercices-vie
     ReactiveFormsModule,
     AngularEditorModule,
     EditorModule,
+    CloudinaryModule,
+    MatDialogModule,
   ],
 
   providers: [ProductDataService],

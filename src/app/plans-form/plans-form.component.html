@@ -1,6 +1,7 @@
-<div class="container d-flex justify-content-center mt-lg-5 mt-5">
-<h2 class="fill-remaining-space">Edit plan</h2>
-  <form class="mt-lg-5 w-75 " [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
+<div class="container">
+<h2 class="form-title mt-4 ms-5">Edit plan</h2>
+<div class="container d-flex justify-content-center mt-lg-3 mt-3   ">
+  <form class="mt-lg-5 w-75 form" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
     <div class="form-element">
       <h5 class="form-label">Name</h5>
       <input placeholder="Name" formControlName="name" class="form-control w-75">
@@ -8,7 +9,7 @@
     <div class="form-element" class="pt-2">
       <h5>Description</h5>
       <editor apiKey="t2j4xztrfvczi9wm2i8z8li2hses0j1jn2sv80yq0zw8wjam"
-  [init]="{ plugins: 'lists link table code wordcount quickbars image media'}" 
+  [init]="{ plugins: 'lists link table code wordcount quickbars image media', images_upload_url: 'http://localhost:8000/api/plan/uploadImages'}" 
   formControlName="description" class="w-75"/><!--buscar como hacer para selecionar imagenes locales-->
     </div>
     <div class="form-element pt-4">
@@ -19,5 +20,6 @@
       {{errorMessage}}
     </div>
   </form>
-  
-</div>
+  </div>
+  </div>
+

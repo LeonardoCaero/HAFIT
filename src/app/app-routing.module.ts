@@ -21,7 +21,7 @@ const routes: Routes = [
   {path: 'exercices', component: ExercicesComponent},
   {path: 'exercices/edit/:exerciceId',component: ExercicesEditFormComponent},
   {path: 'exercices/add',component: ExercicesAddFormComponent},
-  {path: 'plans/exercice/:exerciceId',component: ExercicesViewComponent},
+  {path: 'exercices/exercice/:exerciceId',component: ExercicesViewComponent},
   {path:'', redirectTo:'home', pathMatch: 'full'},
 ];
 
