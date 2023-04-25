@@ -12,6 +12,10 @@
   [init]="{ plugins: 'lists link table code wordcount quickbars image media', images_upload_url: 'http://localhost:8000/api/plan/uploadImages'}" 
   formControlName="description" class="w-75"/><!--buscar como hacer para selecionar imagenes locales-->
     </div>
+    <div class="form-element pt-2">
+      <h5 class="form-label">Featured image</h5>
+      <input placeholder="Featured image" formControlName="featuredImage" class="form-control w-75" type="file">
+    </div>
     <div class="form-element pt-4">
       <button type="submit" class="btn btn-success btn-send  pt-2 btn-block">Update</button>
       <button class="btn btn-danger btn-send ms-2 pt-2 btn-block delete"><a (click)="deletePlan()">Delete</a></button> 

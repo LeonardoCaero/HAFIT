@@ -22,7 +22,7 @@ export class PlansAddFormComponent {
   featuredImg!: CloudinaryImage;
   myWidget:any;
   // public uploader: FileUploader = new FileUploader({ url: URL, itemAlias: 'photo' });
-  constructor( private planServices: PlanDataService,private router:Router,  private route: ActivatedRoute,private formBuilder:FormBuilder,private cloudinary: Cloudinary){
+  constructor( private planServices: PlanDataService,private router:Router,  private route: ActivatedRoute,private formBuilder:FormBuilder){
     this.myForm = new FormGroup({
 
     });
@@ -36,7 +36,7 @@ ngOnInit(): void {
   this.myForm = this.formBuilder.group({
     name: '',
     description: '',
-    featuredImg: ''
+    featuredImage: ''
   });
 
 // let cloud = new Cloudinary({
@@ -57,17 +57,27 @@ onSubmit(plan:any):void{
   let formData = new FormData();
   var name = this.myForm.get('name'); //Obtener valores del formulario
   var description = this.myForm.get('description');
-  var featuredImg = this.myForm.get('featuredImg');
+  var featuredImage = this.myForm.get('featuredImage');
 
-  // const file = this.uploader.queue[0]._file;;
-  // formData.append('file', file);
-  // this.cloudinary.uploader.upload(formData).subscribe((result) => {
-  //   console.log(result);
-  // });
+  let url = this.planServices.uploadImage(featuredImage?.value).subscribe({
+    next: (data) => {
+      this.plan.featuredImage = data.url
+      console.log(data.body)
+    },
+      error: (error) => {
+        if (error.status >= 500) {
+          console.error('An error occurred:', error.error);
+          this.errorMessage = error.error;
+        } else {
+          console.log(`Backend returned code ${error.status}, body was: `, error.error);
+        }
+  
+      }
+  })
 
   if (name) {formData.append("name", name.value)} ;// Si name tiene valor añadirlo al formdata
   if (description) {formData.append("description", description.value)};
-  if (featuredImg) {formData.append('featuredImg',featuredImg.value)}
+  if (featuredImage) {formData.append('featuredImg',url.toString())}
 
   this.planServices.addPlan(formData).subscribe({//Crear el plan con los datos de formdata
     next: (data) => {// si es ok vuelve a plans

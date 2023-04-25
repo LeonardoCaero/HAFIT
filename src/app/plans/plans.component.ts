@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PlanDataService } from '../services/plan-data.service';
 import { IPlan } from '../interfaces/iplan';
+import { environment } from 'src/environments/environment';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -10,15 +12,18 @@ import { IPlan } from '../interfaces/iplan';
 })
 export class PlansComponent implements OnInit{
 
-  constructor(private planSerivce: PlanDataService){}
+
+  constructor(private planSerivce: PlanDataService,private sanitizer: DomSanitizer,){}
+
   ngOnInit(): void {
    this.planSerivce.getPlans().subscribe(resp=>{
     if (resp.body != null) {
       console.log(resp.body);
       this.plans = resp.body;
+      
     }
    })
   }
- 
-plans: IPlan[] = [];
+  plans: IPlan[] = [];
+
 }

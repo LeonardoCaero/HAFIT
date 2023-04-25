@@ -4,7 +4,7 @@
 </div>
   <a [routerLink]="['/plans/add']">New plan</a>
   <div  *ngFor= 'let plan of plans' class=" col mt-4 mb-4 ">
-    <a [routerLink]="['/plans/plan',plan.planId]"><mat-card class="example-card card h-200  " style="background-image: url({{plan.featuredImg}});">
+    <a [routerLink]="['/plans/plan',plan.planId]"><mat-card class="example-card card h-200  " style="background-image: url({{plan.featuredImage}});">
         <mat-card-content class="card-body position-absolute bottom-0 start-0">
           <p class="card-title"><a [routerLink]="['/plans/plan',plan.planId]">{{plan.name}}</a></p>
           <p class="card-text">{{plan.planId}} <a [routerLink]="['/plans/edit',plan.planId]">Edit</a></p>

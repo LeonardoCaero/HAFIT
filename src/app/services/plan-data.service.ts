@@ -29,4 +29,7 @@ export class PlanDataService {
   public addPlan(data:any): Observable<HttpResponse<any>>{
     return this._http.post<any>(environment.apiUrl+'/plan/add?name='+data.get('name')+'&description='+data.get('description'),{observe: 'response'});
   }
+  public uploadImage(data:any): Observable<HttpResponse<any>>{
+    return this._http.post<any>(environment.apiUrl+'/plan/uploadImages?file='+data,{observe: 'response'});
+  }
 }
