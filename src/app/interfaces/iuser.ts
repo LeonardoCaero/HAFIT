@@ -8,5 +8,6 @@ export interface IUser {
   name?: string;
   email?: string;
   type: 'client' | 'admin' | 'soci' | 'treballador';
-  products?: IProduct[];
+  products?: (IProduct & { quantity: number })[];
 }
+  
