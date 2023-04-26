@@ -30,6 +30,6 @@ export class PlanDataService {
     return this._http.post<any>(environment.apiUrl+'/plan/add?name='+data.get('name')+'&description='+data.get('description'),{observe: 'response'});
   }
   public uploadImage(data:any): Observable<HttpResponse<any>>{
-    return this._http.post<any>(environment.apiUrl+'/plan/uploadImages?file='+data,{observe: 'response'});
+    return this._http.post<any>(environment.apiUrl+'/plan/uploadImages?featuredImg='+data,{observe: 'response'});
   }
 }

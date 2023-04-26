@@ -22,15 +22,11 @@ export class PlansFormComponent implements OnInit {
   }
   plans :IPlan [] = [];
   plan: any = {};
- 
+  fileName = '';
 
-  // deletePlan(): void {
-  //   const planId = this.route.snapshot.paramMap.get('planId');
-  //   this.planServices.deletePlan('planId', planId).subscribe(
-  //     () => console.log(`Eliminado correctamente`),
-  //     error => console.error(error)
-  //   );
-  // }
+  
+
+
 
 deletePlan(): void {
   if (confirm('Are you sure?')) {
@@ -63,6 +59,16 @@ deletePlan(): void {
   
   myForm:FormGroup;
   errorMessage:String = '';
+ 
+  onFileSelected(event: Event) {
+    const fileInput = event.target as HTMLInputElement;
+    const file: File = (fileInput.files as FileList)[0];
+
+    if (file) {
+        this.fileName = file.name;
+        console.log(file.name)
+    }
+}
 
   onSubmit(plan:any):void{
     let formData = new FormData();
