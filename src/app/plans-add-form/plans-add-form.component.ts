@@ -61,8 +61,8 @@ onSubmit(plan:any):void{
 
   let url = this.planServices.uploadImage(featuredImage?.value).subscribe({
     next: (data) => {
-      this.plan.featuredImage = data.url
-      console.log(data.body)
+      this.plan.featuredImage = data
+      console.log(data)
     },
       error: (error) => {
         if (error.status >= 500) {

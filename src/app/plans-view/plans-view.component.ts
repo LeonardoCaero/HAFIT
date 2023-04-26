@@ -16,8 +16,6 @@ export class PlansViewComponent {
   constructor( private planServices: PlanDataService, private route: ActivatedRoute){
 
   }
-
-  
  
   ngOnInit(): void {
     const planId = this.route.snapshot.paramMap.get('planId');

@@ -5,5 +5,5 @@ export interface IPlan {
       name: string,
       planId: BigInteger,
       description: string,
-      featuredImage: string
+      featuredImg: string
 }

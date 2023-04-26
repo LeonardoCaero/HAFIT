@@ -20,7 +20,6 @@ export class PlansComponent implements OnInit{
     if (resp.body != null) {
       console.log(resp.body);
       this.plans = resp.body;
-      
     }
    })
   }

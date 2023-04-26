@@ -76,10 +76,8 @@ deletePlan(): void {
     if (description) {formData.append("description", description.value)};
     if (featuredImage) {this.planServices.uploadImage(featuredImage.value).subscribe({//FIRST UPLOAD THE FEATURED IMAGE TO CLOUDINARY
       next: (data) => {
-        console.log('Data: '+data)
-          this.plan.featuredImage = data
-          console.log(this.plan.featuredImage)
-          formData.append("featuredImage",this.plan.featuredImage)
+          this.plan.featuredImg = data.url
+          formData.append("featuredImg",this.plan.featuredImg)
 
           this.planServices.updatePlans(planId,formData).subscribe({//IF IT'S ALL OK UPDATE PLAN
             next: (data) => {
@@ -89,7 +87,7 @@ deletePlan(): void {
                 if (error.status >= 500) {
                   console.error('An error occurred:', error.error);
                   this.errorMessage = error.error;
-                } else {
+                }else {
                   console.log(
                     `Backend returned code ${error.status}, body was: `, error.error);
                 }
@@ -101,7 +99,7 @@ deletePlan(): void {
           if (error.status >= 500) {
             console.error('An error occurred:', error.error);
             this.errorMessage = error.error;
-          } else {
+          }else {
             console.log(`Backend returned code ${error.status}, body was: `, error.error);
           }
     
@@ -124,10 +122,7 @@ deletePlan(): void {
           }
       });
     }
-    
-    console.log(this.plan.featuredImage)
   
-    
 
 }
 
