@@ -13,7 +13,7 @@ $color-letra-hover: rgb(163, 159, 159);
         color: $color-letra;
     }
     a:hover{
-        color: $color-terciario;
+        color: $main-color;
     }
 }
 $transition-time: 0.5s;
@@ -22,10 +22,10 @@ $transition-time: 0.5s;
     background-color: $secondary-color !important;
 }
 .search-icon{
-    color: $color-terciario;
+    color: $main-color;
 }
 .custom-toggler{
-  color: $color-terciario !important;
+  color: $main-color !important;
 }
 
 .search-container {
