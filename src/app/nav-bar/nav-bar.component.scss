@@ -1,10 +1,10 @@
-$bg-color: #222831;
 $color-primario: #007bff;
 $color-secundario: #393E46;
 $color-terciario: #28a745;
 <<<<<<< HEAD
-$color-letra: white;
-$color-letra-hover: rgb(163, 159, 159);
+$dark-grey: #222831;
+
+
 =======
 $dark-grey: #222831;
 $dark-grey: #222831;
@@ -14,24 +14,13 @@ $dark-grey: #222831;
 >>>>>>> b201635 (Navbar fixed)
 
 .navbar {
-    background-color: $bg-color !important;
-    a{
-        color: $color-letra;
-    }
-    a:hover{
-        color: $color-terciario;
-    }
-   
+    background-color: $color-secundario !important;
+    
 }
-.search-icon{
-    color: $color-terciario;
-}
-.custom-toggler{
-  color: $color-terciario !important;
-}
-
 .search-container {
-    margin-left: 11rem !important ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100%;
 <<<<<<< HEAD
 }
