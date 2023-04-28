@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,  ElementRef,  OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IPlan } from '../interfaces/iplan';
 import { PlanDataService } from '../services/plan-data.service';  
+
 
 @Component({
   selector: 'app-plans-form',
@@ -14,15 +15,15 @@ export class PlansFormComponent implements OnInit {
 
   constructor( private planServices: PlanDataService,private router:Router,  private route: ActivatedRoute,private formBuilder:FormBuilder){
     this.myForm = this.formBuilder.group({//Inicializar formulario vacio para que no de error
-      name: '',
-      description: '',
-      featuredImage:''
+      name:'',
+      description:'',
+      featuredImg:''
     });
-    
+    this.onFileSelect = this.onFileSelect.bind(this);
   }
   plans :IPlan [] = [];
   plan: any = {};
-  fileName = '';
+
 
   
 
@@ -37,7 +38,6 @@ deletePlan(): void {
   );
   }
 }
-
     
   ngOnInit(): void {
     const planId = this.route.snapshot.paramMap.get('planId');
@@ -47,7 +47,7 @@ deletePlan(): void {
         this.myForm = this.formBuilder.group({//Poner los datos del plan en el formulario
           name: [this.plan.name],
           description: [this.plan.description], 
-          featuredImage:[this.plan.featuredImage]
+          featuredImg:[this.plan.featuredImage]
         });
       },
       (error) => {
@@ -60,29 +60,23 @@ deletePlan(): void {
   myForm:FormGroup;
   errorMessage:String = '';
  
-  onFileSelected(event: Event) {
-    const fileInput = event.target as HTMLInputElement;
-    const file: File = (fileInput.files as FileList)[0];
 
-    if (file) {
-        this.fileName = file.name;
-        console.log(file.name)
-    }
-}
+    
 
   onSubmit(plan:any):void{
     let formData = new FormData();
     var name = this.myForm.get('name'); //GET VALUES
     var description = this.myForm.get('description');
-    var featuredImage = this.myForm.get('featuredImage');
+    var featuredImage = this.myForm.get('featuredImg');
     const planId = this.route.snapshot.paramMap.get('planId');
 
 
     if (name) {formData.append("name", name.value)} ;
     if (description) {formData.append("description", description.value)};
-    if (featuredImage) {this.planServices.uploadImage(featuredImage.value).subscribe({//FIRST UPLOAD THE FEATURED IMAGE TO CLOUDINARY
+    if (featuredImage) {
+      this.planServices.uploadImage(featuredImage.value).subscribe({//FIRST UPLOAD THE FEATURED IMAGE TO CLOUDINARY
       next: (data) => {
-          this.plan.featuredImg = data.url
+          this.plan.featuredImg = data
           formData.append("featuredImg",this.plan.featuredImg)
 
           this.planServices.updatePlans(planId,formData).subscribe({//IF IT'S ALL OK UPDATE PLAN
@@ -111,7 +105,7 @@ deletePlan(): void {
     
         }
         
-    })}else{//IF THERE ISN'T FEATURED IMAGE UPLOAD THE PLAN
+    })}//IF THERE ISN'T FEATURED IMAGE UPLOAD THE PLAN
       this.planServices.updatePlans(planId,formData).subscribe({
         next: (data) => {
           this.router.navigate(['plans']);
@@ -127,9 +121,23 @@ deletePlan(): void {
   
           }
       });
-    }
+    
   
 
 }
+
+onFileSelect(event:any) {
+  if (event.target.files.length > 0) {
+    var file = event.target.files[0];
+    console.log(file)
+    var featuredImg = this.myForm.get('featuredImg');
+    if(featuredImg){
+      featuredImg.setValue(file);
+      console.log(featuredImg)
+    }
+  }
+}
+
+
 
 }

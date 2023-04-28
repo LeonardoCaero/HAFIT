@@ -6,7 +6,7 @@ import { Cloudinary } from '@cloudinary/angular-5.x';
 
 import { IPlan } from '../interfaces/iplan';
 import { PlanDataService } from '../services/plan-data.service';
-import { FileUploader } from 'ng2-file-upload';
+
 
 
 

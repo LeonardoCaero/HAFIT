@@ -37,7 +37,6 @@ import {MatDialogModule} from '@angular/material/dialog';
 
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,7 +77,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     AngularEditorModule,
     EditorModule,
     CloudinaryModule,
-    MatDialogModule,
+    MatDialogModule
   ],
 
   providers: [ProductDataService],
