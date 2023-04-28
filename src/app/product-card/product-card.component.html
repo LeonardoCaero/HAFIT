@@ -1,0 +1,63 @@
+<div class="row my-2">
+    <div class="col-lg-4 col-md-6 col-sm-6 w-100">
+        <div class="bg-image hover-zoom ripple shadow-1-strong">
+            <img src="{{product.image}}" alt="Product Image" class="w-100" >
+            <a [routerLink]="['/', product.type.toLowerCase() ,urlProduct]">
+                <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
+                    <div class="d-flex justify-content-end align-items-end h-100 me-2">
+                        <h5><span class="text-light pt-2 ms-3 mt-3">{{product.price.$numberDecimal}}€</span></h5>
+                    </div>
+
+                </div>
+                <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
+                    <div class="d-flex justify-content-start align-items-end h-100">
+                        <h5><span class="text-light pt-2 ms-3 mt-3">{{product.name.toUpperCase()}}</span></h5>
+                    </div>
+                </div>
+
+                <div class="hover-overlay">
+                    <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                </div>
+            </a>
+        </div>
+
+        <!-- <mat-card class="rounded overflow-hidden" style="border: none;" >
+            <div class="topPart" style="position: relative;">
+                <div class="inside">
+                    <div class="icon"><mat-icon>info_outline</mat-icon></div>
+                    <div class="contents">
+                        <table>
+                            <tr>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>{{ product.description }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <img [src]="productImage" class="w-100 h-85" [routerLink]="['/', product.type.toLowerCase() ,urlProduct]">
+            </div>
+            <mat-card-content class="bottom">
+                <div class="left">
+                    <div class="details">
+                        <h3>{{ product.name }}</h3>
+                        <p>{{ product.price.$numberDecimal }}€</p>
+
+                    </div>
+                    <div class="buy">
+                        <mat-icon>add_shopping_cart</mat-icon>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="done"><mat-icon>done</mat-icon></div>
+                    <div class="details">
+                        <h3>{{ product.name }}</h3>
+                        <p>Added to your cart</p>
+                    </div>
+                    <div class="remove"><mat-icon>clear</mat-icon></div>
+                </div>
+            </mat-card-content>
+        </mat-card> -->
+    </div>
+</div>

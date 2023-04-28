@@ -1,4 +1,11 @@
-<!--NAVBAR-->
-<app-nav-bar></app-nav-bar>
+<div class="container-fluid">
+    <app-nav-bar></app-nav-bar>
 
-<router-outlet></router-outlet>
+    <div class="row h-100">
+        <div class="col-md-12 my-3">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+    <app-footer></app-footer>
+</div>

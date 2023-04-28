@@ -1,0 +1,8 @@
+{
+    "/api": {
+      "target": "https://eu-central-1.aws.data.mongodb-api.com",
+      "secure": true,
+      "changeOrigin": true
+    }
+  }
+  

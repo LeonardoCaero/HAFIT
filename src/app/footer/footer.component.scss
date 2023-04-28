@@ -4,14 +4,11 @@ $color-secundario: #393E46;
 $color-terciario: #28a745;
 $color-letra: white;
 $color-letra-hover: rgb(163, 159, 159);
-.container{
-    max-width: 100%;
-    bottom: 0;
+
+footer {
+    margin-top: 5rem;
+    background-color: $bg-color !important;
+    position: absolute;
     width: 100%;
-}
-.footer-bg{
-    background-color: $bg-color;
-}
-.footer-color{
-    color: $color-letra;
+    height: 5rem;
 }
