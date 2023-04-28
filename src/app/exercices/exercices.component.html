@@ -1,0 +1,14 @@
+
+<div *ngIf="exercices.length==0">
+    <h4>No exercices found</h4>
+  </div>
+    <a [routerLink]="['/exercices/add']">New Exercice</a>
+    <div  *ngFor= 'let exercice of exercices' class=" col mt-4 mb-4 ">
+      <a [routerLink]="['/exercices/exercice',exercice.exerciceId]"><mat-card class="example-card card h-200  " style="background-image: url('https://material.angular.io/assets/img/examples/shiba2.jpg');">
+          <mat-card-content class="card-body position-absolute bottom-0 start-0">
+            <p class="card-title"><a [routerLink]="['/exercices/exercice',exercice.exerciceId]">{{exercice.name}}</a></p>
+            <p class="card-text">{{exercice.exerciceId}} <a [routerLink]="['/exercices/edit',exercice.exerciceId]">Edit</a></p>
+          </mat-card-content>
+        </mat-card></a>
+    </div> 
+    

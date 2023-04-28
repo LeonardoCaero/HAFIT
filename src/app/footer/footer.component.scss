@@ -1,0 +1,17 @@
+$bg-color: #222831;
+$color-primario: #007bff;
+$color-secundario: #393E46;
+$color-terciario: #28a745;
+$color-letra: white;
+$color-letra-hover: rgb(163, 159, 159);
+.container{
+    max-width: 100%;
+    bottom: 0;
+    width: 100%;
+}
+.footer-bg{
+    background-color: $bg-color;
+}
+.footer-color{
+    color: $color-letra;
+}

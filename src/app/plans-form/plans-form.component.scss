@@ -1,0 +1,41 @@
+$color-letra: rgb(163, 159, 159);
+$color-terciario: #28a745;
+h2{
+    font-family: hafit-font;
+    color: white;
+}
+h5{
+    color: $color-letra;
+}
+.delete{
+    a{
+        text-decoration: none;
+        color: white;
+    }
+}
+.input{
+    border-radius: 0.3rem !important;
+    height: 2.5rem !important;
+}
+.alert{
+    background-color: white;
+}
+.form-element:focus{
+    color: $color-terciario;
+}
+.form{
+    margin-left: 15rem !important;
+}
+.from-title{
+    margin-left: 15rem !important;
+}
+@media screen and (max-width: 600px) {
+    .form{
+        margin-top: 5rem !important;
+        min-width: 75% !important;
+        width: 80% !important;
+    }
+    .form-title{
+        width: 100% !important;
+    }
+}

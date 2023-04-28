@@ -1,0 +1,22 @@
+<h3 class="fill-remaining-space">New plan</h3>
+<div class="container">
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
+    <div class="form-element">
+      <input placeholder="Name" formControlName="name">
+    </div>
+    <div class="form-element">
+      <editor apiKey="t2j4xztrfvczi9wm2i8z8li2hses0j1jn2sv80yq0zw8wjam"
+  [init]="{ plugins: 'lists link table code wordcount quickbars image media' }" formControlName="description"></editor><!--buscar como hacer para selecionar imagenes locales-->
+    </div>
+    <div class="form-element pt-2">
+      <h5 class="form-label">Featured image</h5>
+      <input placeholder="Featured image" formControlName="featuredImage" class="form-control w-75" type="file">
+    </div>
+    <div class="form-element">
+      <button  color="primary" type="submit" class="button">Submit</button>
+    </div>
+  </form>
+</div>
+<div class="alert alert-danger" *ngIf="errorMessage">
+  {{errorMessage}}
+</div>

@@ -1,0 +1,25 @@
+$color-letra: rgb(163, 159, 159);
+$color-terciario: #28a745;
+h2{
+    font-family: hafit-font;
+    color: white;
+}
+h5{
+    color: $color-letra;
+}
+.delete{
+    a{
+        text-decoration: none;
+        color: white;
+    }
+}
+.input{
+    border-radius: 0.3rem !important;
+    height: 2.5rem !important;
+}
+.alert{
+    background-color: white;
+}
+.form-element:focus{
+    color: $color-terciario;
+}
