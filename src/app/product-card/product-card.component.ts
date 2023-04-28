@@ -15,15 +15,15 @@ export class ProductCardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.product.image != null && this.product.image != '') {
-      this.productImage = this.sanitizer.bypassSecurityTrustResourceUrl(
-        `${this.product.image}`
-      );
-    } else {
-      this.productImage = environment.defaultImage;
-    }    
+    // if (this.product.image != null && this.product.image != '') {
+    //   this.productImage = this.sanitizer.bypassSecurityTrustResourceUrl(
+    //     `${this.product.image}`
+    //   );
+    // } else {
+    //   this.productImage = environment.defaultImage;
+    // }    
 
-    this.urlProduct = this.product.name.replace(/\s+/g, '-').toLowerCase();
+    this.urlProduct = this.product.name.replace(/\s+/g, '-');
     if (
       this.product.type == null ||
       this.product.type == '' ||
