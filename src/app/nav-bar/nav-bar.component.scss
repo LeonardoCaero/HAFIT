@@ -7,6 +7,8 @@ $color-letra: white;
 $color-letra-hover: rgb(163, 159, 159);
 =======
 $dark-grey: #222831;
+$dark-grey: #222831;
+
 
 
 >>>>>>> b201635 (Navbar fixed)
@@ -32,7 +34,8 @@ $dark-grey: #222831;
     margin-left: 11rem !important ;
     height: 100%;
 <<<<<<< HEAD
-}       
+}
+
 @media (max-width:1024px){
     #search-box{
         display: none;
@@ -48,3 +51,11 @@ $dark-grey: #222831;
     display: block !important;
 }
 >>>>>>> b201635 (Navbar fixed)
+
+.navbar:nth-of-type(2){
+    background-color: $dark-grey !important;
+}
+
+.d-flex {
+    display: block !important;
+}
