@@ -20,6 +20,11 @@ export class PlansComponent implements OnInit{
     if (resp.body != null) {
       console.log(resp.body);
       this.plans = resp.body;
+      this.plans.forEach(plan => {
+        if (plan.featuredImg == '' || plan.featuredImg == null || !plan.featuredImg) {
+          plan.featuredImg = environment.defaultImage;
+        }
+      });
     }
    })
   }
