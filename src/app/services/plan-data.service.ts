@@ -26,8 +26,9 @@ export class PlanDataService {
     const url = `${environment.apiUrl}/plan/delete?deleteBy=${deleteBy}&data=${data}`;
     return this._http.delete(url, { observe: 'response' });
   }
-  public addPlan(data:any): Observable<HttpResponse<any>>{
-    return this._http.post<any>(environment.apiUrl+'/plan/add?name='+data.get('name')+'&description='+data.get('description'),{observe: 'response'});
+  public addPlan(name:any,description:any,featuredImg:any): Observable<HttpResponse<any>>{
+    const body = { name: name, description: description, featuredImg: featuredImg };
+    return this._http.post<any>(environment.apiUrl+'/plan/add',body,{observe: 'response'});
   }
   public uploadImage(data:any): Observable<HttpResponse<any>>{
     return this._http.post<any>(environment.apiUrl+'/plan/uploadImages?featuredImg='+data,{observe: 'response'});

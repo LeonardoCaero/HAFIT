@@ -34,5 +34,10 @@ export class UserDataService {
     return this._http.put(`${environment.apiUrl}/user/cart`, body, { observe: 'response' });
   }
 
+  public updatePlan(userId: any, planId: any): Observable<HttpResponse<any>> {
+    const body = { userId: userId, planId: planId};
+    return this._http.put(`${environment.apiUrl}/user/plans`, body, { observe: 'response' });
+  }
+
  
 }
