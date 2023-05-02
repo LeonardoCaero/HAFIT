@@ -10,6 +10,7 @@ import { PlansAddFormComponent } from './plans-add-form/plans-add-form.component
 import { PlansFormComponent } from './plans-form/plans-form.component';
 import { PlansViewComponent } from './plans-view/plans-view.component';
 import { PlansComponent } from './plans/plans.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
   {path:'', component: HomeProductsComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: 'exercices/edit/:exerciceId',component: ExercicesEditFormComponent},
   {path: 'exercices/add',component: ExercicesAddFormComponent},
   {path: 'exercices/exercice/:exerciceId',component: ExercicesViewComponent},
+  { path: 'user-profile', component: UserProfileComponent },
   {path:'', redirectTo:'home', pathMatch: 'full'},
 ];
 
