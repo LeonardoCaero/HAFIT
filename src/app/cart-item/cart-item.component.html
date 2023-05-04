@@ -7,21 +7,23 @@
         <h6 class="product-name text-black mb-0">{{product.name}}</h6>
     </div>
     <div class="product-quantity col-md-3 col-lg-3 col-xl-2 d-flex">
-        <button class="btn btn-link px-2 minus-btn remCart" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+        <button class="btn btn-link px-2 minus-btn remButton" #remButton
+            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
             <i class="fas fa-minus"></i>
         </button>
 
-        <input id="form1" min="0" name="quantity" [value]="product.quantity" type="number"
-            class="form-control form-control-sm quantity-input" />
+        <input id="form1" min="1" name="quantity" [value]="product.quantity" type="number"
+            class="form-control form-control-sm quantity-input qttValue" />
 
-        <button class="btn btn-link px-2 plus-btn addCart" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+        <button class="btn btn-link px-2 plus-btn addButton" #addButton
+            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
             <i class="fas fa-plus"></i>
         </button>
     </div>
     <div class="product-price col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-        <h6 class="price mb-0">{{productPrice}}€</h6>
+        <h6 class="price mb-0 qttValue" #qttValue>{{productPrice}}€</h6>
     </div>
     <div class="product-remove col-md-1 col-lg-1 col-xl-1 text-end">
-        <a href="#!" class="remove-btn text-muted"><i class="fas fa-times"></i></a>
+        <a class="remove-btn text-muted deleteBtn"><i class="fas fa-times close-icon"></i></a>
     </div>
 </div>

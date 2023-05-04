@@ -23,7 +23,9 @@ import { ProductPageComponent } from './product-page/product-page.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CartItemComponent } from './cart-item/cart-item.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
-
+import {
+  MatSnackBarModule
+} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import { CartPageComponent } from './cart-page/cart-page.component';
     BrowserAnimationsModule,
     MatCardModule,
     MatGridListModule,
+    MatSnackBarModule,
     MatIconModule,
     AuthModule.forRoot({
       domain: 'dev-jwr2u354q8g4qn7i.us.auth0.com',
@@ -57,7 +60,11 @@ import { CartPageComponent } from './cart-page/cart-page.component';
       },
     }),
   ],
-  providers: [ProductDataService, AuthServiceService, NavBarComponent],
+  providers: [
+    ProductDataService,
+    AuthServiceService,
+    NavBarComponent,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

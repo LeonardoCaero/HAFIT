@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { AuthServiceService } from './auth-service.service';
 
@@ -6,6 +6,8 @@ import { AuthServiceService } from './auth-service.service';
   providedIn: 'root',
 })
 export class NavbarService {
+
+  cartItemsUpdated: EventEmitter<any> = new EventEmitter();
   private cartItemsSource = new BehaviorSubject<number>(0);
   cartItems$ = this.cartItemsSource.asObservable();
 
@@ -16,6 +18,7 @@ export class NavbarService {
       (response) => {      
         const cartItems = response.cartItems.length;
         this.setCartItems(cartItems);
+        this.cartItemsUpdated.emit();
         return this.setCartItems(cartItems);
       }
     );

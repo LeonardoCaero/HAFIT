@@ -35,9 +35,22 @@ $HAFIT-theme: mat.define-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 $color-secundario: #393E46;
+$primary-color: #007bff;
+$secondary-color: #393E46;
+$main-color: #28a745;
+$dark-grey: #222831;
 
 body{
     background-color: $color-secundario;
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.my-snackbar {
+  color: white;
+  
+  button{
+    color: $main-color !important;
+  }
+}

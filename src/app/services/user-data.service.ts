@@ -22,17 +22,16 @@ export class UserDataService {
   }
 
   public addUser(user: IUser): Observable<HttpResponse<any>> {
-    return this._http.post('${environment.apiUrl}user/add', user, { observe: 'response' });
+    return this._http.post(`${environment.apiUrl}user/add`, user, { observe: 'response' });
   }
 
   public updateUser(user: IUser): Observable<HttpResponse<any>> {
-    return this._http.put(`h${environment.apiUrl}user/edit?userId=${user.userId}`, user, { observe: 'response' });
+    return this._http.put(`${environment.apiUrl}user/edit?userId=${user.userId}`, user, { observe: 'response' });
   }
   
-  public updateCart(userId: any, productId: any, action: string): Observable<HttpResponse<any>> {
-    const body = { userId: userId, productId: productId, action: action };
+  public updateCart(userId: any, productId: number, quantity: number, operation: string): Observable<HttpResponse<any>> {
+    const body = { userId: userId, productId: productId, quantity: quantity, operation: operation };
     return this._http.put(`${environment.apiUrl}user/cart`, body, { observe: 'response' });
   }
-
  
 }

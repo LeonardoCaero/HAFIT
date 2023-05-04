@@ -9,8 +9,8 @@
         <h2 class="fw-bold text-light">{{product.price.$numberDecimal}}€</h2>
         <div class="form-group">
           <label for="cantidad">Quantity:</label>
-          <input type="number" id="cantidad" name="cantidad" class="form-control" min="1" max="10" value="1" />
-        </div>
+          <input type="number" id="cantidad" name="cantidad" class="form-control qttValue" value="1" min="1" (change)="checkQuantity($event)"/>
+        </div>        
         <button class="btn cart-color mt-3 addcart">Add to cart</button>
       </div>
     </div>

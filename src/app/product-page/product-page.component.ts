@@ -5,6 +5,8 @@ import { AuthServiceService } from '../services/auth-service.service';
 import { NavbarService } from '../services/navbar.service';
 import { ProductDataService } from '../services/product-data.service';
 import { UserDataService } from '../services/user-data.service';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-product-page',
@@ -12,18 +14,23 @@ import { UserDataService } from '../services/user-data.service';
   styleUrls: ['./product-page.component.scss'],
 })
 export class ProductPageComponent implements OnInit {
+  qttValue: number = 0;
+  errorMsg: string = '';
   constructor(
     private productService: ProductDataService,
     private route: ActivatedRoute,
     private elementRef: ElementRef,
     private navbarService: NavbarService,
     private authService: AuthServiceService,
-    private userService: UserDataService
+    private userService: UserDataService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
     const cartButton = this.elementRef.nativeElement.querySelector('.addcart');
+    const quantityValue = this.elementRef.nativeElement.querySelector('.qttValue');
     const planName = this.route.snapshot.paramMap.get('productName');
+
 
     if (planName !== null) {
       const decodedPlanName = decodeURIComponent(planName);
@@ -36,13 +43,13 @@ export class ProductPageComponent implements OnInit {
           cartButton?.addEventListener('click', () => {
             this.authService.checkUser().subscribe(
               (response) => {
-                const cartItems = this.navbarService.getCartItems();
-                console.log(cartItems);
+                this.navbarService.setCartItems(0);
+                this.openSnackBar();
                 this.userService
-                  .updateCart(response.userId, this.product.productId, 'add')
+                  .updateCart(response.userId, this.product.productId, quantityValue.value, "add")
                   .subscribe({
                     next: (data) => {
-                      console.log(data);
+                      this.navbarService.setCartItems(data.body.cartItems.length);
                     },
                   });
               },
@@ -56,5 +63,23 @@ export class ProductPageComponent implements OnInit {
     }
   }
 
+  checkQuantity(event: any) {
+    const input = event.target;
+    const value = parseFloat(input.value);
+
+    if (isNaN(value) || value <= 0) {
+      input.value = 1;
+    }
+  }
+  openSnackBar() {
+    const config = new MatSnackBarConfig();
+    config.panelClass = ['my-snackbar'];
+    config.duration = 1500;
+    this.snackBar.open('Product added succesfully', 'Close', config);
+  } 
+
+  
+
   product!: IProduct;
+  
 }
