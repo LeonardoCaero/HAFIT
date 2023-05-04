@@ -30,6 +30,7 @@ import { ExercicesEditFormComponent } from './exercices/exercices-edit-form/exer
 import { ExercicesAddFormComponent } from './exercices/exercices-add-form/exercices-add-form.component';
 import { ExercicesViewComponent } from './exercices/exercices-view/exercices-view.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { SociSubscribeComponent } from './soci-subscribe/soci-subscribe.component';
 
 
 
@@ -55,6 +56,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     ExercicesEditFormComponent,
     ExercicesAddFormComponent,
     ExercicesViewComponent,
+    SociSubscribeComponent,
 
   ],
   imports: [

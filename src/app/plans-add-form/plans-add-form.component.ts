@@ -10,9 +10,6 @@ import { AuthServiceService } from '../services/auth-service.service';
 import { UserDataService } from '../services/user-data.service';
 
 
-
-
-
 @Component({
   selector: 'app-plans-add-form',
   templateUrl: './plans-add-form.component.html',
@@ -21,10 +18,10 @@ import { UserDataService } from '../services/user-data.service';
 export class PlansAddFormComponent {
   myForm: FormGroup;
   errorMessage: String = '';
-  featuredImg!: CloudinaryImage;
-  myWidget: any;
+
   // public uploader: FileUploader = new FileUploader({ url: URL, itemAlias: 'photo' });
-  constructor(private planServices: PlanDataService,
+  constructor(
+    private planServices: PlanDataService,
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
@@ -40,19 +37,20 @@ export class PlansAddFormComponent {
   plan: any = {};
 
   ngOnInit(): void {
+    this.authService.checkUser().subscribe(
+      (response)=>{
+        if (response.type != 'soci') {
+          this.router.navigate(['subscibe-to-soci'])
+        }
+      },(error)=>{
+        this.router.navigate(['subscibe-to-soci'])
+      }
+    )
     this.myForm = this.formBuilder.group({
       name: '',
       description: '',
       featuredImage: ''
     });
-
-    // let cloud = new Cloudinary({
-    //   cloud: {
-    //     cloudName: 'dlomgjt1k',
-    //   }
-    // });
-
-    // this.featuredImg = cloud.image('plans');
   }
 
   onSubmit(plan: any): void {
@@ -61,20 +59,29 @@ export class PlansAddFormComponent {
     var name = this.myForm.get('name')?.value; //Obtener valores del formulario
     var description = this.myForm.get('description')?.value;
     var featuredImage = this.myForm.get('featuredImage');
-
+    console.log(featuredImage)
 
     // if (name) { formData.append("name", name.value) };// Si name tiene valor añadirlo al formdata
     // if (description) { formData.append("description", description.value) };
-    if (featuredImage) {
+    if (featuredImage?.value) {
       this.planServices.uploadImage(featuredImage.value).subscribe({
         next: (data) => {
+          console.log('UPLOADING IMAGES....')
           this.plan.featuredImg = data
-          formData.append("featuredImg", this.plan.featuredImg)
           this.authService.checkUser().subscribe(
             (response) => {
-              const userId = response.userId
-              this.planServices.addPlan(name, description,this.featuredImg).subscribe(
+              const userId = response.userId;//ID AUTOINCREMENT
+              const user_id = response._id//ID DEFAULT DE MONGO
+              this.planServices.addPlan(name, description, this.plan.featuredImg.value).subscribe(
                 (response) => {
+                  this.planServices.updateUser(user_id, response.body.planId).subscribe(
+                    (response) => {
+                      console.log('AÑADIDO')
+
+                    }, (error) => {
+                      console.log(`Error en update user: ${error.error}`)
+                    }
+                  )
                   this.userService.updatePlan(userId, response.body.planId).subscribe(
                     (reponse) => {
                       this.router.navigate(['plans']);
@@ -102,29 +109,37 @@ export class PlansAddFormComponent {
 
     this.authService.checkUser().subscribe(
       (response) => {
-        const userId = response.userId;
+        const userId = response.userId;//ID AUTOINCREMENT
+        const user_id = response._id//ID DEFAULT DE MONGO
         console.log(userId)
         if (response.type === "soci") {
-        this.planServices.addPlan(name, description,'default').subscribe(
-          (response) => {
-            this.userService.updatePlan(userId, response.body.planId).subscribe(
-              (response) => {
-                console.log('UserId: ',userId + 'PlanId: ',response.body.planId)
-                this.router.navigate(['plans']);
-              }, (error) => {
-                console.log('Error updatePlan service')
-              }
-            )
-          }, (error) => {
-            console.error('Error addplan no img:', error.error + ' '+name+' '+description);
-          }
-        )
-      }else{
-        console.log('No eres un soci')
-      }
-    },
+              this.planServices.addPlan(name, description, 'default').subscribe(//AFEGIR NOU PLAN
+                (response) => {
+                  this.planServices.updateUser(user_id, response.body.planId).subscribe(//AÑADIR _ID DEL USER AL PLAN
+                    (response) => {
+                      console.log('NO IMAGEN UPDATED')
+                    }, (error) => {
+                      console.log(`Error en update user: ${error.errorMessage}`)
+                    }
+                  )
+                  this.userService.updatePlan(userId, response.body.planId).subscribe(//AÑADIR PLAN AL USUARIO LOGEADO
+                    (response) => {
+                      console.log('UserId: ', userId + 'PlanId: ', response.body.planId)
+                      this.router.navigate(['plans']);
+                    }, (error) => {
+                      console.log(`Error updatePlan service: ${error.errorMessage}`)
+                    }
+                  )
+                }, (error) => {
+                  console.error('Error addplan no img:', error.errorMessage + ' ' + name + ' ' + description );
+                }
+              ) 
+        } else {
+          console.log('No eres un soci')
+        }
+      },
       (error) => {
-        console.log('Error auth',error.error);
+        console.log('Error auth', error.error);
       }
     );
   }

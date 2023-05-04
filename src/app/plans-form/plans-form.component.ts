@@ -1,8 +1,10 @@
-import { Component,  ElementRef,  OnInit, ViewChild } from '@angular/core';
+import { Component,  ElementRef,  EventEmitter,  OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IPlan } from '../interfaces/iplan';
 import { PlanDataService } from '../services/plan-data.service';  
+import { AuthServiceService } from '../services/auth-service.service';
+import { UserDataService } from '../services/user-data.service';
 
 
 @Component({
@@ -13,7 +15,13 @@ import { PlanDataService } from '../services/plan-data.service';
 
 export class PlansFormComponent implements OnInit {
 
-  constructor( private planServices: PlanDataService,private router:Router,  private route: ActivatedRoute,private formBuilder:FormBuilder){
+  constructor( private planServices: PlanDataService,
+    private router:Router,
+    private route: ActivatedRoute,
+    private formBuilder:FormBuilder, 
+    private authService: AuthServiceService,
+    private userService:UserDataService
+    ){
     this.myForm = this.formBuilder.group({//Inicializar formulario vacio para que no de error
       name:'',
       description:'',
@@ -32,14 +40,40 @@ export class PlansFormComponent implements OnInit {
 deletePlan(): void {
   if (confirm('Are you sure?')) {
   const planId = this.route.snapshot.paramMap.get('planId');
-  this.planServices.deletePlan('planId',planId).subscribe(
-    () => console.log(`Eliminado correctamente`),
-    error => console.log()
-  );
+      this.authService.checkUser().subscribe(//CHECK USER
+        (response)=>{
+          const userId = response.userId
+          this.userService.deletePlan(userId,planId).subscribe(//ELIMINAR PLAN DEL USER
+            (response) => {
+              this.planServices.deletePlan('planId',planId).subscribe(//ELIMINAR PLAN
+                (reponse)=>{
+                  this.deletePlanEmit.emit(this.plan);
+                  console.log('Eliminado correctamente el plan')
+                },(error)=>{
+                  console.log(`Error eliminado el pplan.plan ${error.errorMessage}`)
+                }
+              )
+              console.log('Eliminado correctamente')
+            }
+            , (error) =>{console.log(`Error eliminado ${error.errorMessage}`)}
+          )
+        },(error) =>{console.log(`Error check user ${error.errorMessage}`)}
+      )
+      
+      console.log(`Eliminado correctamente`)
   }
 }
-    
+ 
   ngOnInit(): void {
+    this.authService.checkUser().subscribe(
+      (response)=>{
+        if (response.type != 'soci') {
+          this.router.navigate(['subscibe-to-soci'])
+        }
+      },(error)=>{
+        this.router.navigate(['subscibe-to-soci'])
+      }
+    )
     const planId = this.route.snapshot.paramMap.get('planId');
     this.planServices.getPlan("planId",planId).subscribe(
       (data) => {
@@ -138,6 +172,7 @@ onFileSelect(event:any) {
   }
 }
 
+@Output() deletePlanEmit = new EventEmitter<IPlan>();
 
 
 }

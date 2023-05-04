@@ -11,7 +11,7 @@ import { PlansFormComponent } from './plans-form/plans-form.component';
 import { PlansViewComponent } from './plans-view/plans-view.component';
 import { PlansComponent } from './plans/plans.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-
+import { SociSubscribeComponent } from './soci-subscribe/soci-subscribe.component';
 const routes: Routes = [
   {path:'', component: HomeProductsComponent},
   {path:'login', component: LoginComponent},
@@ -24,6 +24,7 @@ const routes: Routes = [
   {path: 'exercices/add',component: ExercicesAddFormComponent},
   {path: 'exercices/exercice/:exerciceId',component: ExercicesViewComponent},
   { path: 'user-profile', component: UserProfileComponent },
+  { path: 'subscibe-to-soci', component: SociSubscribeComponent },
   {path:'', redirectTo:'home', pathMatch: 'full'},
 ];
 
