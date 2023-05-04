@@ -27,10 +27,17 @@ export class PlanDataService {
     return this._http.delete(url, { observe: 'response' });
   }
   public addPlan(name:any,description:any,featuredImg:any): Observable<HttpResponse<any>>{
-    const body = { name: name, description: description, featuredImg: featuredImg };
+    const body = { name: name, description: description, featuredImg: featuredImg};
     return this._http.post<any>(environment.apiUrl+'/plan/add',body,{observe: 'response'});
   }
   public uploadImage(data:any): Observable<HttpResponse<any>>{
     return this._http.post<any>(environment.apiUrl+'/plan/uploadImages?featuredImg='+data,{observe: 'response'});
   }
+  
+  public updateUser(userId: any, planId: any): Observable<HttpResponse<any>> {
+    const body = { userId: userId, planId: planId};
+    return this._http.put(`${environment.apiUrl}/plan/users`, body, { observe: 'response' });
+  }
+ 
+
 }

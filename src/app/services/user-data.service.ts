@@ -28,6 +28,9 @@ export class UserDataService {
   public updateUser(user: IUser): Observable<HttpResponse<any>> {
     return this._http.put(`${environment.apiUrl}/user/edit?userId=${user.userId}`, user, { observe: 'response' });
   }
+  public updateUserType(user: IUser): Observable<HttpResponse<any>> {
+    return this._http.put(`${environment.apiUrl}/user/edit?userId=${user.userId}&type=${user.type}`, user, { observe: 'response' });
+  }
   
   public updateCart(userId: any, productId: any, action: string): Observable<HttpResponse<any>> {
     const body = { userId: userId, productId: productId, action: action };
@@ -39,5 +42,8 @@ export class UserDataService {
     return this._http.put(`${environment.apiUrl}/user/plans`, body, { observe: 'response' });
   }
 
- 
+  public deletePlan(userId: any, planId: any): Observable<HttpResponse<any>> {
+    const body = { userId: userId, planId: planId};
+    return this._http.put(`${environment.apiUrl}/user/deletePlans`, body, { observe: 'response' });
+  }
 }
