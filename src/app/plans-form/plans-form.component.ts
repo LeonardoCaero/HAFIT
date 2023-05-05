@@ -47,10 +47,9 @@ deletePlan(): void {
             (response) => {
               this.planServices.deletePlan('planId',planId).subscribe(//ELIMINAR PLAN
                 (reponse)=>{
-                  this.deletePlanEmit.emit(this.plan);
                   console.log('Eliminado correctamente el plan')
                 },(error)=>{
-                  console.log(`Error eliminado el pplan.plan ${error.errorMessage}`)
+                  console.log(`Error eliminado el plan.plan ${error.errorMessage}`)
                 }
               )
               console.log('Eliminado correctamente')
@@ -113,7 +112,7 @@ deletePlan(): void {
           this.plan.featuredImg = data
           formData.append("featuredImg",this.plan.featuredImg)
 
-          this.planServices.updatePlans(planId,formData).subscribe({//IF IT'S ALL OK UPDATE PLAN
+          this.planServices.updatePlans(planId,formData,featuredImage).subscribe({//IF IT'S ALL OK UPDATE PLAN
             next: (data) => {
               this.router.navigate(['plans']);
             },
@@ -140,7 +139,7 @@ deletePlan(): void {
         }
         
     })}//IF THERE ISN'T FEATURED IMAGE UPLOAD THE PLAN
-      this.planServices.updatePlans(planId,formData).subscribe({
+      this.planServices.updatePlans(planId,formData,'default').subscribe({
         next: (data) => {
           this.router.navigate(['plans']);
         },
@@ -172,7 +171,6 @@ onFileSelect(event:any) {
   }
 }
 
-@Output() deletePlanEmit = new EventEmitter<IPlan>();
 
 
 }

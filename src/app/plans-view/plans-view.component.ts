@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IPlan } from '../interfaces/iplan';
 import { PlanDataService } from '../services/plan-data.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-plans-view',
@@ -12,7 +13,7 @@ import { PlanDataService } from '../services/plan-data.service';
 export class PlansViewComponent {
   errorMessage: string = '';
   plan : IPlan | null = null;
-
+  defaultImage = environment.defaultImage
   constructor( private planServices: PlanDataService, private route: ActivatedRoute){
 
   }

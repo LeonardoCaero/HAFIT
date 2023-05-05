@@ -19,8 +19,8 @@ export class PlanDataService {
     const url = `${environment.apiUrl}/plan/search?search=${searchBy}&data=${data}`;
     return this._http.get(url, { observe: 'response' });
   }
-  public updatePlans(id:any,dada:any): Observable<HttpResponse<IPlan[]>> {
-    return this._http.put<IPlan[]>(environment.apiUrl+'/plan/edit?name='+dada.get('name')+'&planId='+id+'&description='+dada.get('description')+'&featuredImg='+dada.get('featuredImg'),dada,{ observe: 'response' });
+  public updatePlans(id:any,dada:any,featuredImage:any): Observable<HttpResponse<IPlan[]>> {
+    return this._http.put<IPlan[]>(environment.apiUrl+'/plan/edit?name='+dada.get('name')+'&planId='+id+'&description='+dada.get('description')+'&featuredImg='+featuredImage,dada,{ observe: 'response' });
   }
   public deletePlan(deleteBy: any, data: any): Observable<HttpResponse<any>>{
     const url = `${environment.apiUrl}/plan/delete?deleteBy=${deleteBy}&data=${data}`;

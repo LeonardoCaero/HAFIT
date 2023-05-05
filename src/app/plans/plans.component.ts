@@ -4,7 +4,7 @@ import { IPlan } from '../interfaces/iplan';
 import { environment } from 'src/environments/environment';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AuthServiceService } from '../services/auth-service.service';
-import { EventemiterServiceService } from '../services/eventemiter-service.service';
+
 
 
 @Component({
@@ -15,23 +15,25 @@ import { EventemiterServiceService } from '../services/eventemiter-service.servi
 export class PlansComponent implements OnInit{
 
 
-  constructor(private planSerivce: PlanDataService,private sanitizer: DomSanitizer, private authService : AuthServiceService,private eventService: EventemiterServiceService){
+
+  constructor(private planSerivce: PlanDataService,private sanitizer: DomSanitizer, private authService : AuthServiceService){
 
       
   }
 
   ngOnInit(): void {
-    this.eventService.myEvent.subscribe(data => {
-      this.onDeletePlan(data);
-      console.log('ONDELETE')
-    });
    this.planSerivce.getPlans().subscribe(resp=>{
     if (resp.body != null) {
       console.log(resp.body);
       this.plans = resp.body;
       this.plans.forEach(plan => {
-        if (plan.featuredImg == '' || plan.featuredImg == null || plan.featuredImg === 'default') {
+        if (plan.featuredImg === 'default') {
           plan.featuredImg = environment.defaultImage;
+        }else if(plan.featuredImg == 'null'){//SI FEATUREDIMG ES NULL LO ELIMINA DE LA BBDD
+          console.log(plan.planId)
+          this.planSerivce.deletePlan('planId',plan.planId).subscribe(
+            (response)=>{},error =>{}
+          )
         }
       });
     }
