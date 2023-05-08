@@ -4,6 +4,8 @@ import { IPlan } from '../interfaces/iplan';
 import { environment } from 'src/environments/environment';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AuthServiceService } from '../services/auth-service.service';
+import { UserDataService } from '../services/user-data.service';
+import { IUser } from '../interfaces/iuser';
 
 
 
@@ -16,7 +18,10 @@ export class PlansComponent implements OnInit{
 
 
 
-  constructor(private planSerivce: PlanDataService,private sanitizer: DomSanitizer, private authService : AuthServiceService){
+  constructor(private planSerivce: PlanDataService,
+    private sanitizer: DomSanitizer,
+    private authService : AuthServiceService,
+    private userService: UserDataService){
 
       
   }
@@ -26,6 +31,12 @@ export class PlansComponent implements OnInit{
     if (resp.body != null) {
       console.log(resp.body);
       this.plans = resp.body;
+      this.authService.checkUser().subscribe(//MIRA EL USER LOGGEADO 
+        resp=>{
+          console.log(resp._id)
+          this.user = resp._id
+        }
+      )
       this.plans.forEach(plan => {
         if (plan.featuredImg === 'default') {
           plan.featuredImg = environment.defaultImage;
@@ -38,6 +49,7 @@ export class PlansComponent implements OnInit{
       });
     }
    })
+
   }
   onDeletePlan(plan: IPlan): void {
     this.plans = this.plans.filter(
@@ -45,5 +57,6 @@ export class PlansComponent implements OnInit{
     );
   }
   plans: IPlan[] = [];
+  user: any = {};
 
 }

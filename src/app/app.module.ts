@@ -31,6 +31,7 @@ import { ExercicesAddFormComponent } from './exercices/exercices-add-form/exerci
 import { ExercicesViewComponent } from './exercices/exercices-view/exercices-view.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { SociSubscribeComponent } from './soci-subscribe/soci-subscribe.component';
+import { DeletedPlanComponent } from './deleted-plan/deleted-plan.component';
 
 
 
@@ -57,6 +58,7 @@ import { SociSubscribeComponent } from './soci-subscribe/soci-subscribe.componen
     ExercicesAddFormComponent,
     ExercicesViewComponent,
     SociSubscribeComponent,
+    DeletedPlanComponent,
 
   ],
   imports: [
@@ -77,7 +79,8 @@ import { SociSubscribeComponent } from './soci-subscribe/soci-subscribe.componen
     ReactiveFormsModule,
     AngularEditorModule,
     EditorModule,
-    MatDialogModule
+    MatDialogModule,
+    
   ],
 
   providers: [ProductDataService],

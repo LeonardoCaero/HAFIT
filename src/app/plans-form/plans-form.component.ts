@@ -33,8 +33,6 @@ export class PlansFormComponent implements OnInit {
   plan: any = {};
 
 
-  
-
 
 
 deletePlan(): void {
@@ -47,6 +45,7 @@ deletePlan(): void {
             (response) => {
               this.planServices.deletePlan('planId',planId).subscribe(//ELIMINAR PLAN
                 (reponse)=>{
+                  
                   console.log('Eliminado correctamente el plan')
                 },(error)=>{
                   console.log(`Error eliminado el plan.plan ${error.errorMessage}`)
@@ -58,7 +57,7 @@ deletePlan(): void {
           )
         },(error) =>{console.log(`Error check user ${error.errorMessage}`)}
       )
-      
+      this.router.navigate(['plans/deleted'])
       console.log(`Eliminado correctamente`)
   }
 }
@@ -102,44 +101,45 @@ deletePlan(): void {
     var description = this.myForm.get('description');
     var featuredImage = this.myForm.get('featuredImg');
     const planId = this.route.snapshot.paramMap.get('planId');
+    // description = encodeURI(description?.value)
 
 
     if (name) {formData.append("name", name.value)} ;
     if (description) {formData.append("description", description.value)};
-    if (featuredImage) {
-      this.planServices.uploadImage(featuredImage.value).subscribe({//FIRST UPLOAD THE FEATURED IMAGE TO CLOUDINARY
-      next: (data) => {
-          this.plan.featuredImg = data
-          formData.append("featuredImg",this.plan.featuredImg)
+    // if (featuredImage) {
+    //   this.planServices.uploadImage(featuredImage.value).subscribe({//FIRST UPLOAD THE FEATURED IMAGE TO CLOUDINARY
+    //   next: (data) => {
+    //       this.plan.featuredImg = data
+    //       formData.append("featuredImg",this.plan.featuredImg)
 
-          this.planServices.updatePlans(planId,formData,featuredImage).subscribe({//IF IT'S ALL OK UPDATE PLAN
-            next: (data) => {
-              this.router.navigate(['plans']);
-            },
-              error: (error) => {
-                if (error.status >= 500) {
-                  console.error('An error occurred:', error.error);
-                  this.errorMessage = error.error;
-                }else {
-                  console.log(
-                    `Backend returned code ${error.status}, body was: `, error.error);
-                }
+    //       this.planServices.updatePlans(planId,formData,featuredImage).subscribe({//IF IT'S ALL OK UPDATE PLAN
+    //         next: (data) => {
+    //           this.router.navigate(['plans']);
+    //         },
+    //           error: (error) => {
+    //             if (error.status >= 500) {
+    //               console.error('An error occurred:', error.error);
+    //               this.errorMessage = error.error;
+    //             }else {
+    //               console.log(
+    //                 `Backend returned code ${error.status}, body was: `, error.error);
+    //             }
       
-              }
-          });
-      },
-        error: (error) => {//MANAGE ERROR
-          if (error.status >= 500) {
-            console.error('An error occurred:', error.error);
-            this.errorMessage = error.error;
-          }else {
-            console.log(`Backend returned code ${error.status}, body was: `, error.error);
-          }
+    //           }
+    //       });
+    //   },
+    //     error: (error) => {//MANAGE ERROR
+    //       if (error.status >= 500) {
+    //         console.error('An error occurred:', error.error);
+    //         this.errorMessage = error.error;
+    //       }else {
+    //         console.log(`Backend returned code ${error.status}, body was: `, error.error);
+    //       }
     
-        }
+    //     }
         
-    })}//IF THERE ISN'T FEATURED IMAGE UPLOAD THE PLAN
-      this.planServices.updatePlans(planId,formData,'default').subscribe({
+    // })}//IF THERE ISN'T FEATURED IMAGE UPLOAD THE PLAN
+      this.planServices.updatePlans(planId,name?.value,description?.value,'default',formData).subscribe({
         next: (data) => {
           this.router.navigate(['plans']);
         },
