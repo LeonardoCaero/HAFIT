@@ -10,13 +10,33 @@
     </div>
     <div class="form-element pt-2">
       <h5 class="form-label">Featured image</h5>
-      <input placeholder="Featured image" formControlName="featuredImage" class="form-control w-75" type="file">
+      <input placeholder="Featured image" enctype="multipart/form-data" formControlName="featuredImg" name="featuredImg" class="form-control w-75" type="file" (change)="onFileSelected($event)">
+     
     </div>
     <div class="form-element">
       <button  color="primary" type="submit" class="button">Submit</button>
     </div>
   </form>
 </div>
+<button id="upload_widget" class="cloudinary-button">
+  Upload files
+</button>
 <div class="alert alert-danger" *ngIf="errorMessage">
   {{errorMessage}}
 </div>
+
+<script type="text/javascript">  
+  var myWidget = cloudinary.createUploadWidget({
+    cloudName: 'dlomgjt1k', 
+    uploadPreset: 'plan-preset'}, (error, result) => { 
+      if (!error && result && result.event === "success") { 
+        console.log('Done! Here is the image info: ', result.info); 
+      }
+    }
+  )
+  
+  document.getElementById("upload_widget").addEventListener("click", function(){
+    console.log('clicked')
+      myWidget.open();
+    }, false);
+  </script>

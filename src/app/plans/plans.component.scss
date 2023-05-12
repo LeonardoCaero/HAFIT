@@ -1,6 +1,14 @@
 $color-terciario: #28a745;
 $primary-color: rgba(146, 135, 155, 0.8);
 
+a{
+  text-decoration: none;
+}
+img{
+  // width: 15rem !important;
+  height: 13rem !important;
+}
+
 .example-card {
   height: 20rem;
   width: 20rem;

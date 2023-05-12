@@ -5,6 +5,7 @@ import { IPlan } from '../interfaces/iplan';
 import { PlanDataService } from '../services/plan-data.service';  
 import { AuthServiceService } from '../services/auth-service.service';
 import { UserDataService } from '../services/user-data.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -31,7 +32,7 @@ export class PlansFormComponent implements OnInit {
   }
   plans :IPlan [] = [];
   plan: any = {};
-
+  apiTiny : String = environment.apiTiny;
 
 
 
@@ -79,8 +80,9 @@ deletePlan(): void {
         this.myForm = this.formBuilder.group({//Poner los datos del plan en el formulario
           name: [this.plan.name],
           description: [this.plan.description], 
-          featuredImg:[this.plan.featuredImage]
+          featuredImg:''
         });
+        console.log(this.plan.featuredImg)
       },
       (error) => {
         this.errorMessage = error.message;
@@ -139,7 +141,7 @@ deletePlan(): void {
     //     }
         
     // })}//IF THERE ISN'T FEATURED IMAGE UPLOAD THE PLAN
-      this.planServices.updatePlans(planId,name?.value,description?.value,'default',formData).subscribe({
+      this.planServices.updatePlans(planId,name?.value,description?.value,this.plan.featuredImg,formData).subscribe({
         next: (data) => {
           this.router.navigate(['plans']);
         },
@@ -150,6 +152,7 @@ deletePlan(): void {
             } else {
               console.log(
                 `Backend returned code ${error.status}, body was: `, error.error);
+                
             }
   
           }

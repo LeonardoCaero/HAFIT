@@ -20,8 +20,9 @@ export class PlanDataService {
     return this._http.get(url, { observe: 'response' });
   }
   public updatePlans(id:any,name:string,description:any,featuredImage:any,dada:any): Observable<HttpResponse<any>> {
-    const body = {id,name,description,featuredImage}
-    return this._http.put<IPlan[]>(environment.apiUrl+'/plan/edit?name='+dada.get('name')+'&planId='+id+'&description='+description+'&featuredImg='+featuredImage,dada,{ observe: 'response' });
+    const formData = new FormData();
+    formData.append('featuredImg', featuredImage);
+    return this._http.put<any>(environment.apiUrl+'/plan/edit?name='+dada.get('name')+'&planId='+id+'&description='+description+'&featuredImg='+featuredImage,dada,{observe:'response'});
     // return this._http.put(environment.apiUrl+'/plan/edit',body,{ observe: 'response' });
   }
   public deletePlan(deleteBy: any, data: any): Observable<HttpResponse<any>>{
@@ -33,7 +34,8 @@ export class PlanDataService {
     return this._http.post<any>(environment.apiUrl+'/plan/add',body,{observe: 'response'});
   }
   public uploadImage(data:any): Observable<HttpResponse<any>>{
-    return this._http.post<any>(environment.apiUrl+'/plan/uploadImages?featuredImg='+data,{observe: 'response'});
+    const headers = new HttpHeaders({'Access-Control-Allow-Origin':'*'});
+    return this._http.post<any>(environment.apiUrl+'/plan/uploadImages?featuredImg='+data,data,{headers,observe: 'response'});
   }
   
   public updateUser(userId: any, planId: any): Observable<HttpResponse<any>> {

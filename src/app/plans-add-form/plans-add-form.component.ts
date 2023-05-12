@@ -1,13 +1,17 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CloudinaryImage } from '@cloudinary/url-gen';
-import { Cloudinary } from '@cloudinary/angular-5.x';
+
+
 
 import { IPlan } from '../interfaces/iplan';
 import { PlanDataService } from '../services/plan-data.service';
 import { AuthServiceService } from '../services/auth-service.service';
 import { UserDataService } from '../services/user-data.service';
+
+import { environment } from 'src/environments/environment';
+// import { Cloudinary } from '@cloudinary/url-gen';
+
 
 
 @Component({
@@ -18,6 +22,8 @@ import { UserDataService } from '../services/user-data.service';
 export class PlansAddFormComponent {
   myForm: FormGroup;
   errorMessage: String = '';
+  fileName :any;
+  myWidget:any;
 
   // public uploader: FileUploader = new FileUploader({ url: URL, itemAlias: 'photo' });
   constructor(
@@ -37,6 +43,7 @@ export class PlansAddFormComponent {
   plan: any = {};
 
   ngOnInit(): void {
+    
     this.authService.checkUser().subscribe(
       (response)=>{
         if (response.type != 'soci') {
@@ -49,31 +56,67 @@ export class PlansAddFormComponent {
     this.myForm = this.formBuilder.group({
       name: '',
       description: '',
-      featuredImage: ''
+      featuredImg: ''
     });
   }
+  // onFileSelected(event: any) {
+  //   const file: File = event.target.files[0];
+  //   if (file) {
+  //     this.fileName = file;
+  //     this.formdata.append("featuredImg", file);
+     
 
-  onSubmit(plan: any): void {
+  //   }
+  // }
+  base64Img: string = '';
+  isFileReaderBusy = false;
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+  
+    if (!this.isFileReaderBusy) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      this.isFileReaderBusy = true;
+      reader.onload = () => {
+        this.base64Img = reader.result as string;
+        this.isFileReaderBusy = false;
+        console.log(this.base64Img)
+      };
+    }
+  }
+  
+
+  
+formdata: FormData = new FormData();
+/*
+*-------------------------------------------------ARREGLAR CORS ---------------------------------------------------------
+*/
+  onSubmit(plan: any){
 
     let formData = new FormData();
     var name = this.myForm.get('name')?.value; //Obtener valores del formulario
     var description = this.myForm.get('description')?.value;
-    var featuredImage = this.myForm.get('featuredImage');
-    console.log(featuredImage)
-
+    // var featuredImage = this.myForm.get('featuredImg');
+    var featuredImage = this.base64Img;
+    // console.log(featuredImage)
+    console.log(this.formdata.getAll('featuredImg'));
     // if (name) { formData.append("name", name.value) };// Si name tiene valor añadirlo al formdata
     // if (description) { formData.append("description", description.value) };
-    if (featuredImage?.value) {
-      this.planServices.uploadImage(featuredImage.value).subscribe({
-        next: (data) => {
+    if (featuredImage) {
+      this.planServices.uploadImage(this.base64Img).subscribe({
+        next: (responseImg) => {
           console.log('UPLOADING IMAGES....')
-          this.plan.featuredImg = data
+          this.plan.featuredImg = this.fileName
+          console.log(this.fileName)
+          console.log(responseImg)
           this.authService.checkUser().subscribe(
             (response) => {
               const userId = response.userId;//ID AUTOINCREMENT
               const user_id = response._id//ID DEFAULT DE MONGO
-              this.planServices.addPlan(name, description, this.plan.featuredImg.value).subscribe(
+             
+              this.planServices.addPlan(name, description, this.fileName).subscribe(
                 (response) => {
+                  console.log('ok')
                   this.planServices.updateUser(user_id, response.body.planId).subscribe(
                     (response) => {
                       console.log('AÑADIDO')
@@ -105,8 +148,7 @@ export class PlansAddFormComponent {
 
         }
       })
-    }
-
+    }else if (!featuredImage){
     this.authService.checkUser().subscribe(
       (response) => {
         const userId = response.userId;//ID AUTOINCREMENT
@@ -143,4 +185,5 @@ export class PlansAddFormComponent {
       }
     );
   }
+}
 }

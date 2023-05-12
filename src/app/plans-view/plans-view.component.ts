@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IPlan } from '../interfaces/iplan';
 import { PlanDataService } from '../services/plan-data.service';
 import { environment } from 'src/environments/environment';
+import { AuthServiceService } from '../services/auth-service.service';
 
 @Component({
   selector: 'app-plans-view',
@@ -14,7 +15,7 @@ export class PlansViewComponent {
   errorMessage: string = '';
   plan : IPlan | null = null;
   defaultImage = environment.defaultImage
-  constructor( private planServices: PlanDataService, private route: ActivatedRoute){
+  constructor( private planServices: PlanDataService, private route: ActivatedRoute,private authService : AuthServiceService,){
 
   }
  
@@ -28,6 +29,12 @@ export class PlansViewComponent {
         this.errorMessage = error.message;
       }
     );
+    this.authService.checkUser().subscribe(//MIRA EL USER LOGGEADO 
+    resp=>{
+      console.log(resp._id)
+      this.user = resp._id
+    }
+  )
   }
-
+  user: any = {};
 }

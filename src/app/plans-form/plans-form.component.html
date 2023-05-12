@@ -1,7 +1,7 @@
 <div class="container">
 <h2 class="form-title mt-4 ms-5">Edit plan</h2>
 <div class="container d-flex justify-content-center mt-lg-3 mt-3   ">
-  <form class="mt-lg-5 w-75 form" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
+  <form class="mt-lg-5 w-75 form" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)"  enctype="multipart/form-data">
     <div class="form-element">
       <h5 class="form-label">Name</h5>
       <input placeholder="Name" formControlName="name" class="form-control w-75">
@@ -13,12 +13,13 @@
     <div class="form-element" class="pt-2">
       <h5>Description</h5>
       <editor apiKey="t2j4xztrfvczi9wm2i8z8li2hses0j1jn2sv80yq0zw8wjam"
-  [init]="{ plugins: 'lists link table code wordcount quickbars image media', images_upload_url: 'http://localhost:8000/api/plan/uploadImages'}" 
+  [init]="{ selector:'textarea',plugins: 'lists link table code wordcount quickbars image media', images_upload_url: 'http://localhost:8000/api/plan/uploadImages'}" 
   formControlName="description" class="w-75"/><!--buscar como hacer para selecionar imagenes locales-->
     </div>
     <div class="form-element pt-4">
-      <button type="submit" class="btn btn-success btn-send  pt-2 btn-block">Update</button>
-      <button class="btn btn-danger btn-send ms-2 pt-2 btn-block delete"><a (click)="deletePlan()">Delete</a></button> 
+      <button type="submit" class="btn btn-success btn-send  pt-2 btn-block"><i class="fa-solid fa-pen"></i> Update</button>
+      <button class="btn btn-danger btn-send ms-2 pt-2 btn-block delete" (click)="deletePlan()"><i class="fa-solid fa-xmark"></i> Delete</button> 
+      
     </div>
     <div class="alert alert-danger w-75 mt-4" *ngIf="errorMessage">
       {{errorMessage}}

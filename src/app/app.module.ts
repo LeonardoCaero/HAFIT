@@ -32,9 +32,8 @@ import { ExercicesViewComponent } from './exercices/exercices-view/exercices-vie
 import {MatDialogModule} from '@angular/material/dialog';
 import { SociSubscribeComponent } from './soci-subscribe/soci-subscribe.component';
 import { DeletedPlanComponent } from './deleted-plan/deleted-plan.component';
-
-
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 
 
@@ -59,6 +58,7 @@ import { DeletedPlanComponent } from './deleted-plan/deleted-plan.component';
     ExercicesViewComponent,
     SociSubscribeComponent,
     DeletedPlanComponent,
+    ConfirmationDialogComponent,
 
   ],
   imports: [
@@ -80,8 +80,9 @@ import { DeletedPlanComponent } from './deleted-plan/deleted-plan.component';
     AngularEditorModule,
     EditorModule,
     MatDialogModule,
-    
+    MatSnackBarModule,
   ],
+
 
   providers: [ProductDataService],
   bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
 $color-letra: rgb(163, 159, 159);
 $color-terciario: #28a745;
+$color-terciario-hover: #28a746cc;
 h2{
     font-family: hafit-font;
     color: white;
@@ -29,6 +30,16 @@ h5{
 .from-title{
     margin-left: 15rem !important;
 }
+
+.btn-success{
+        background-color:$color-terciario !important;
+        border-color: $color-terciario !important;
+        &:hover{
+            background-color:$color-terciario-hover !important;
+            border-color: transparent !important;
+        }
+    }
+
 @media screen and (max-width: 600px) {
     .form{
         margin-top: 5rem !important;
