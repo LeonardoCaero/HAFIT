@@ -1,6 +1,4 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { environment } from 'src/environments/environment';
 import { IProduct } from '../interfaces/iproduct';
 
 @Component({
@@ -11,17 +9,10 @@ import { IProduct } from '../interfaces/iproduct';
 export class ProductCardComponent implements OnInit {
   public urlProduct: String = '';
   constructor(
-    private sanitizer: DomSanitizer
+  
   ) {}
 
   ngOnInit(): void {
-    // if (this.product.image != null && this.product.image != '') {
-    //   this.productImage = this.sanitizer.bypassSecurityTrustResourceUrl(
-    //     `${this.product.image}`
-    //   );
-    // } else {
-    //   this.productImage = environment.defaultImage;
-    // }    
 
     this.urlProduct = this.product.name.replace(/\s+/g, '-');
     if (
@@ -33,9 +24,8 @@ export class ProductCardComponent implements OnInit {
     }
   }
 
-  @Input()
-  product!: IProduct;
-  productImage: any;
+  @Input() product: IProduct = {} as IProduct;
+
 
   @ViewChild('bottomDiv') bottomDivRef!: ElementRef;
 }

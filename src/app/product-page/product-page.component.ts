@@ -6,6 +6,7 @@ import { NavbarService } from '../services/navbar.service';
 import { ProductDataService } from '../services/product-data.service';
 import { UserDataService } from '../services/user-data.service';
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
+import { SnackbarUtil } from 'src/utils/snackbar-util';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class ProductPageComponent implements OnInit {
     private navbarService: NavbarService,
     private authService: AuthServiceService,
     private userService: UserDataService,
-    private snackBar: MatSnackBar
+    private snackbarUtil: SnackbarUtil
   ) {}
 
   ngOnInit(): void {
@@ -44,7 +45,7 @@ export class ProductPageComponent implements OnInit {
             this.authService.checkUser().subscribe(
               (response) => {
                 this.navbarService.setCartItems(0);
-                this.openSnackBar();
+                this.snackbarUtil.openSnackBar("Product added succesfully!");
                 this.userService
                   .updateCart(response.userId, this.product.productId, quantityValue.value, "add")
                   .subscribe({
@@ -71,13 +72,6 @@ export class ProductPageComponent implements OnInit {
       input.value = 1;
     }
   }
-  openSnackBar() {
-    const config = new MatSnackBarConfig();
-    config.panelClass = ['my-snackbar'];
-    config.duration = 1500;
-    this.snackBar.open('Product added succesfully', 'Close', config);
-  } 
-
   
 
   product!: IProduct;

@@ -46,7 +46,6 @@ export class NavBarComponent implements OnInit {
     this.navbarService.cartItems$.subscribe((newCartItems: number) => {
       this.cartItems = newCartItems;
     });
-    
   }
 
   login() {

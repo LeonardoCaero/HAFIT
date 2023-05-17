@@ -13,6 +13,7 @@ import { UserDataService } from '../services/user-data.service';
 import { switchMap, tap } from 'rxjs/operators';
 import { fromEvent } from 'rxjs';
 import { NavbarService } from '../services/navbar.service';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-cart-item',
@@ -20,11 +21,13 @@ import { NavbarService } from '../services/navbar.service';
   styleUrls: ['./cart-item.component.scss'],
 })
 export class CartItemComponent implements OnInit {
+  public urlProduct: String = '';
   constructor(
     private authService: AuthServiceService,
     private userService: UserDataService,
     private elementRef: ElementRef,
-    private navbarService: NavbarService
+    private navbarService: NavbarService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +39,7 @@ export class CartItemComponent implements OnInit {
       const deleteButton =
         this.elementRef.nativeElement.querySelector('.deleteBtn');
       const qttValue = this.elementRef.nativeElement.querySelector('.qttValue');
+      this.urlProduct = this.product.name.replace(/\s+/g, '-');
 
       if (addButton && remButton && qttValue && deleteButton) {
         if (this.product.image == null || this.product.image === '') {
