@@ -8,5 +8,11 @@ export const environment = {
   //   product: 'Product',
   //   user: 'User',
   // },
-  defaultImage: "https://sesamobakery.com/wp-content/uploads/2020/12/product-default-list-350.jpg"
+  defaultImage:
+    'https://sesamobakery.com/wp-content/uploads/2020/12/product-default-list-350.jpg',
+  CLOUD_NAME: 'dlomgjt1k',
+  CLOUD_API_KEY: '447613727928719',
+  CLOUD_API_SECRET: 'ZrUxDk1iFEw57psqVsHVCLgjFMQ',
+  CLOUDINARY_URL:
+    'cloudinary://447613727928719:ZrUxDk1iFEw57psqVsHVCLgjFMQ@dlomgjt1k',
 };

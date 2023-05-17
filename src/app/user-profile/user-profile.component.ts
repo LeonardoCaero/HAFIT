@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-user-profile',
@@ -31,7 +32,7 @@ export class UserProfileComponent implements OnInit {
           (resp) => {
             if (resp.status === 200) {
               this.userData = resp.body;
-              console.log("Authorized user");
+              console.log('Authorized user');
             }
           },
           (error) => {
@@ -51,40 +52,50 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  fileName: any;
+  formdata: FormData = new FormData();
   userData!: IUser;
-  bioData: string = "";
-  userName: string = "";
+  bioData: string = '';
+  userName: string = '';
   public Editor = ClassicEditor;
   editActive = false;
 
-  public onChange({ editor }: ChangeEvent) {
-    const data = editor.data.get();
-    this.bioData = data;      
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.fileName = file;
+      this.formdata.append('file', file);
+      this.formdata.append('upload_preset', 'plan-preset');
+      this.formdata.append('cloud_name', environment.CLOUD_NAME);
+    }
   }
 
-  public nameChange(data: string){
+  public onChange({ editor }: ChangeEvent) {
+    const data = editor.data.get();
+    this.bioData = data;
+  }
+
+  public nameChange(data: string) {
     this.userName = data;
   }
 
-  public onSaveBio(){
-    if(this.bioData != ""){
+  public onSaveBio() {
+    if (this.bioData != '') {
       this.userData.biography = this.bioData;
     }
-    if(this.userName != ""){
+    if (this.userName != '') {
       this.userData.name = this.userName;
     }
 
-    this.userService.updateUser(this.userData).subscribe((resp) =>{
+    this.userService.updateUser(this.userData).subscribe((resp) => {
       console.log(resp);
     });
   }
 
-  public profileEdit(){
-    
-    if(this.editActive){
+  public profileEdit() {
+    if (this.editActive) {
       this.onSaveBio();
     }
-    this.editActive = !this.editActive; 
+    this.editActive = !this.editActive;
   }
-
 }
