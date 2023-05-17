@@ -34,7 +34,10 @@ import { SociSubscribeComponent } from './soci-subscribe/soci-subscribe.componen
 import { DeletedPlanComponent } from './deleted-plan/deleted-plan.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
-
+import { AuthServiceService } from './services/auth-service.service';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-5.x';
+import * as cloudinary from 'cloudinary-core';
 
 
 @NgModule({
@@ -81,10 +84,12 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     EditorModule,
     MatDialogModule,
     MatSnackBarModule,
+    CKEditorModule,
+    CloudinaryModule
   ],
 
 
-  providers: [ProductDataService],
+  providers: [ProductDataService, AuthServiceService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

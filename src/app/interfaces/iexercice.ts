@@ -1,3 +1,5 @@
+import { IUser } from "./iuser";
+
 export interface Iexercice {
     _id: {
         $oid: string;
@@ -6,4 +8,6 @@ export interface Iexercice {
       exerciceId: BigInteger;
       description: string;
       time: BigInteger;
+      featuredImg: string,
+      user?: IUser
 }

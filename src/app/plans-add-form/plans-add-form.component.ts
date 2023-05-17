@@ -1,38 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
-
-
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { IPlan } from '../interfaces/iplan';
 import { PlanDataService } from '../services/plan-data.service';
 import { AuthServiceService } from '../services/auth-service.service';
 import { UserDataService } from '../services/user-data.service';
-
 import { environment } from 'src/environments/environment';
-// import { Cloudinary } from '@cloudinary/url-gen';
+import { ImageUploadServiceService } from '../services/image-upload-service.service';
+
 
 
 
 @Component({
   selector: 'app-plans-add-form',
   templateUrl: './plans-add-form.component.html',
-  styleUrls: ['./plans-add-form.component.scss']
+  styleUrls: ['./plans-add-form.component.scss'],
+  providers: [ImageUploadServiceService]
 })
 export class PlansAddFormComponent {
+
   myForm: FormGroup;
   errorMessage: String = '';
   fileName :any;
-  myWidget:any;
+  public Editor = ClassicEditor;
 
-  // public uploader: FileUploader = new FileUploader({ url: URL, itemAlias: 'photo' });
+
+  private editorInstance: any;
+
   constructor(
     private planServices: PlanDataService,
     private router: Router,
-    private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private authService: AuthServiceService,
-    private userService: UserDataService) {
+    private userService: UserDataService,
+    private uploadService: ImageUploadServiceService,
+    private elementRef :ElementRef) {
     this.myForm = new FormGroup({
 
     });
@@ -43,6 +46,18 @@ export class PlansAddFormComponent {
   plan: any = {};
 
   ngOnInit(): void {
+    ClassicEditor.create(this.elementRef.nativeElement.querySelector('#editor'), {
+      cloudServices: {
+        tokenUrl: 'https://97727.cke-cs.com/token/dev/U1ePTKYik4hYbvLo1lTt33V88qVxgg9iXIGp?limit=10',
+        uploadUrl: 'https://97727.cke-cs.com/easyimage/upload/'
+      }
+    })
+      .then(editor => {
+        this.editorInstance = editor;
+      })
+      .catch(error => {
+        console.error('Error creating ckeditor instance', error);
+      });
     
     this.authService.checkUser().subscribe(
       (response)=>{
@@ -59,62 +74,38 @@ export class PlansAddFormComponent {
       featuredImg: ''
     });
   }
-  // onFileSelected(event: any) {
-  //   const file: File = event.target.files[0];
-  //   if (file) {
-  //     this.fileName = file;
-  //     this.formdata.append("featuredImg", file);
-     
 
-  //   }
-  // }
-  base64Img: string = '';
-  isFileReaderBusy = false;
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
-  
-    if (!this.isFileReaderBusy) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      this.isFileReaderBusy = true;
-      reader.onload = () => {
-        this.base64Img = reader.result as string;
-        this.isFileReaderBusy = false;
-        console.log(this.base64Img)
-      };
+    if (file) {
+      this.fileName = file;
+      this.formdata.append("file", file); 
+      this.formdata.append('upload_preset','plan-preset')  
+      this.formdata.append('cloud_name',environment.CLOUD_NAME)
+
     }
   }
+
   
 
   
 formdata: FormData = new FormData();
-/*
-*-------------------------------------------------ARREGLAR CORS ---------------------------------------------------------
-*/
-  onSubmit(plan: any){
 
-    let formData = new FormData();
+  onSubmit(plan: any){
+   let  formData = new FormData()
     var name = this.myForm.get('name')?.value; //Obtener valores del formulario
     var description = this.myForm.get('description')?.value;
-    // var featuredImage = this.myForm.get('featuredImg');
-    var featuredImage = this.base64Img;
-    // console.log(featuredImage)
-    console.log(this.formdata.getAll('featuredImg'));
-    // if (name) { formData.append("name", name.value) };// Si name tiene valor añadirlo al formdata
-    // if (description) { formData.append("description", description.value) };
-    if (featuredImage) {
-      this.planServices.uploadImage(this.base64Img).subscribe({
-        next: (responseImg) => {
-          console.log('UPLOADING IMAGES....')
-          this.plan.featuredImg = this.fileName
-          console.log(this.fileName)
-          console.log(responseImg)
+    var featuredImage = this.fileName;
+  if (description) { formData.append("description", description.value) };
+    if (featuredImage) { 
           this.authService.checkUser().subscribe(
             (response) => {
               const userId = response.userId;//ID AUTOINCREMENT
               const user_id = response._id//ID DEFAULT DE MONGO
-             
-              this.planServices.addPlan(name, description, this.fileName).subscribe(
+              this.uploadService.uploadImage(this.formdata).subscribe(
+                response=>{
+                  console.log(response);             
+              this.planServices.addPlan(name, description, response.secure_url).subscribe(
                 (response) => {
                   console.log('ok')
                   this.planServices.updateUser(user_id, response.body.planId).subscribe(
@@ -138,16 +129,15 @@ formdata: FormData = new FormData();
                   console.log('Add plan error: ', error.error)
                 }
               )
+            }, error =>{
+              console.log('Error subiendo la imagen a cloudinary: ',error.error)
+            }
+            )
             }, (error) => {
               console.log('Error auth:', error.error)
             }
 
           )
-        }, error: (error) => {
-
-
-        }
-      })
     }else if (!featuredImage){
     this.authService.checkUser().subscribe(
       (response) => {

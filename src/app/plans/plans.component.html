@@ -4,21 +4,22 @@
 </div>
 <div *ngIf="plans.length>0" class="d-flex justify-content-center align-items-center">
   <!-- <div class="container text-center w-25">HOLA</div> -->
-  <div class="container text-center w-75 d-flex p-3 me-5">
-  <a [routerLink]="['/plans/add']" class="w-25"><i class="fa-solid fa-plus"></i> Add new plan</a>
-  <div class="row row-cols-5 g-3 mt-5">
+  <div class="container d-flex p-3 row">
+  <a [routerLink]="['/plans/add']" class="w-100"><i class="fa-solid fa-plus"></i> Add new plan</a>
+  <div class="row row-cols-auto justify-content-center col-lg-12 ">
   <div  *ngFor= 'let plan of plans' class="col mb-3"> 
     <div class="row my-2"></div>
-
-      <!-- <mat-card class="example-card card h-200  " style="background-image: url({{plan.featuredImg}});">
+    <div class="col-lg-4 col-md-6 col-sm-6 w-100">
+      <mat-card class="example-card card h-200  " style="background-image: url({{plan.featuredImg}});">
         <a [routerLink]="['/plans/plan',plan.planId]">
         <mat-card-content class="card-body position-absolute bottom-0 start-0">
           <p class="card-title"><a [routerLink]="['/plans/plan',plan.planId]">{{plan.name}}</a></p>
           <p class="card-text"><a *ngIf="plan.user === user"[routerLink]="['/plans/edit',plan.planId]">Edit</a></p>
         </mat-card-content>
         </a>
-      </mat-card> -->
-      <div class="col-lg-4 col-md-6 col-sm-6 w-100">
+      </mat-card>
+      </div>
+      <!-- <div class="col-lg-4 col-md-6 col-sm-6 w-100">
         <div class="bg-image hover-zoom ripple shadow-1-strong">
             <img src="{{plan.featuredImg}}" alt="Product Image" class="w-100" >
             <a [routerLink]="['/plans/plan',plan.planId]">
@@ -33,7 +34,7 @@
                 </div>
             </a>
       </div>
-    </div>
+    </div> -->
   </div>
   </div>
    

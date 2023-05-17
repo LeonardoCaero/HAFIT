@@ -2,7 +2,7 @@
 <div *ngIf="exercices.length==0">
     <h4>No exercices found</h4>
   </div>
-    <a [routerLink]="['/exercices/add']">New Exercice</a>
+    <!-- <a [routerLink]="['/exercices/add']">New Exercice</a>
     <div  *ngFor= 'let exercice of exercices' class=" col mt-4 mb-4 ">
       <a [routerLink]="['/exercices/exercice',exercice.exerciceId]"><mat-card class="example-card card h-200  " style="background-image: url('https://material.angular.io/assets/img/examples/shiba2.jpg');">
           <mat-card-content class="card-body position-absolute bottom-0 start-0">
@@ -10,5 +10,41 @@
             <p class="card-text">{{exercice.exerciceId}} <a [routerLink]="['/exercices/edit',exercice.exerciceId]">Edit</a></p>
           </mat-card-content>
         </mat-card></a>
-    </div> 
+    </div>  -->
+    <div *ngIf="exercices.length>0" class="d-flex justify-content-center align-items-center">
+      <!-- <div class="container text-center w-25">HOLA</div> -->
+      <div class="container d-flex p-3 row">
+      <a [routerLink]="['/exercices/add']" class="w-100"><i class="fa-solid fa-plus"></i> Add new exercice</a>
+      <div class="row row-cols-auto justify-content-center col-lg-12 ">
+      <div  *ngFor= 'let exercice of exercices' class="col mb-3"> 
+        <div class="row my-2"></div>
+        <div class="col-lg-4 col-md-6 col-sm-6 w-100">
+          <mat-card class="example-card card h-200  " style="background-image: url({{exercice.featuredImg}});">
+            <a [routerLink]="['/exercices/exercice',exercice.exerciceId]">
+            <mat-card-content class="card-body position-absolute bottom-0 start-0">
+              <p class="card-title"><a [routerLink]="['/exercices/exercice',exercice.exerciceId]">{{exercice.name}}</a></p>
+              <p class="card-text"><a *ngIf="exercice.user === user"[routerLink]="['/exercices/edit',exercice.exerciceId]">Edit</a></p>
+            </mat-card-content>
+            </a>
+          </mat-card>
+          </div>
+          <!-- <div class="col-lg-4 col-md-6 col-sm-6 w-100">
+            <div class="bg-image hover-zoom ripple shadow-1-strong">
+                <img src="{{plan.featuredImg}}" alt="Product Image" class="w-100" >
+                <a [routerLink]="['/plans/plan',plan.planId]">
+                    <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
+                        <div class="d-flex justify-content-start align-items-end h-100">
+                            <h5><span class="text-light pt-2 ms-3 mt-3">{{plan.name.toUpperCase()}}</span></h5>
+                        </div>
+                    </div>
     
+                    <div class="hover-overlay">
+                        <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                    </div>
+                </a>
+          </div>
+        </div> -->
+      </div>
+      </div>
+       
+    </div>

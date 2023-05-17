@@ -6,6 +6,9 @@ import { PlanDataService } from '../services/plan-data.service';
 import { AuthServiceService } from '../services/auth-service.service';
 import { UserDataService } from '../services/user-data.service';
 import { environment } from 'src/environments/environment';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { ImageUploadServiceService } from '../services/image-upload-service.service';
+
 
 
 @Component({
@@ -21,19 +24,19 @@ export class PlansFormComponent implements OnInit {
     private route: ActivatedRoute,
     private formBuilder:FormBuilder, 
     private authService: AuthServiceService,
-    private userService:UserDataService
+    private userService:UserDataService,
+    private elementRef :ElementRef,
+    private uploadService: ImageUploadServiceService,
     ){
     this.myForm = this.formBuilder.group({//Inicializar formulario vacio para que no de error
       name:'',
       description:'',
       featuredImg:''
     });
-    this.onFileSelect = this.onFileSelect.bind(this);
   }
   plans :IPlan [] = [];
   plan: any = {};
-  apiTiny : String = environment.apiTiny;
-
+  public Editor = ClassicEditor;
 
 
 deletePlan(): void {
@@ -64,6 +67,7 @@ deletePlan(): void {
 }
  
   ngOnInit(): void {
+    
     this.authService.checkUser().subscribe(
       (response)=>{
         if (response.type != 'soci') {
@@ -90,90 +94,89 @@ deletePlan(): void {
     );
   }
 
-  
+
   myForm:FormGroup;
   errorMessage:String = '';
- 
+  fileName:any;
+  formdata: FormData = new FormData();
 
-    
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.fileName = file;
+      this.formdata.append("file", file); 
+      this.formdata.append('upload_preset','plan-preset')  
+      this.formdata.append('cloud_name',environment.CLOUD_NAME)
+
+    }
+  }
 
   onSubmit(plan:any):void{
     let formData = new FormData();
     var name = this.myForm.get('name'); //GET VALUES
     var description = this.myForm.get('description');
-    var featuredImage = this.myForm.get('featuredImg');
     const planId = this.route.snapshot.paramMap.get('planId');
+
+      var featuredImage =this.fileName;
+    
+   console.log('Featured Image: ',featuredImage?.value)
     // description = encodeURI(description?.value)
-
-
     if (name) {formData.append("name", name.value)} ;
     if (description) {formData.append("description", description.value)};
-    // if (featuredImage) {
-    //   this.planServices.uploadImage(featuredImage.value).subscribe({//FIRST UPLOAD THE FEATURED IMAGE TO CLOUDINARY
-    //   next: (data) => {
-    //       this.plan.featuredImg = data
-    //       formData.append("featuredImg",this.plan.featuredImg)
-
-    //       this.planServices.updatePlans(planId,formData,featuredImage).subscribe({//IF IT'S ALL OK UPDATE PLAN
-    //         next: (data) => {
-    //           this.router.navigate(['plans']);
-    //         },
-    //           error: (error) => {
-    //             if (error.status >= 500) {
-    //               console.error('An error occurred:', error.error);
-    //               this.errorMessage = error.error;
-    //             }else {
-    //               console.log(
-    //                 `Backend returned code ${error.status}, body was: `, error.error);
-    //             }
-      
-    //           }
-    //       });
-    //   },
-    //     error: (error) => {//MANAGE ERROR
-    //       if (error.status >= 500) {
-    //         console.error('An error occurred:', error.error);
-    //         this.errorMessage = error.error;
-    //       }else {
-    //         console.log(`Backend returned code ${error.status}, body was: `, error.error);
-    //       }
-    
-    //     }
-        
-    // })}//IF THERE ISN'T FEATURED IMAGE UPLOAD THE PLAN
-      this.planServices.updatePlans(planId,name?.value,description?.value,this.plan.featuredImg,formData).subscribe({
+    if (featuredImage) {  
+      this.uploadService.uploadImage(this.formdata).subscribe(
+        response=>{
+          console.log(response);  
+            this.planServices.updatePlans(planId,name?.value,formData,response.secure_url,description).subscribe({//IF IT'S ALL OK UPDATE PLAN
+              next: (data) => {
+                this.router.navigate(['plans']);
+              },
+                error: (error) => {
+                    console.log(
+                      `Backend returned sd code ${error.status}, body was: `, error.error);
+                      this.errorMessage = error.error;
+                }
+            })
+             }, error =>{
+              console.log('Error subiendo la imagen a cloudinary: ',error.error)
+            });
+        }else if(!featuredImage){
+//IF THERE ISN'T FEATURED IMAGE UPLOAD THE PLAN
+      this.planServices.getPlan('planId',planId).subscribe(
+        response =>{
+          const urlImg =  response.body.featuredImg
+          console.log(response.body.featuredImg)
+          this.planServices.updatePlans(planId,name?.value,description?.value,urlImg,formData).subscribe({
         next: (data) => {
           this.router.navigate(['plans']);
         },
           error: (error) => {
-            if (error.status >= 500) {
-              console.error('An error occurred:', error.error);
+     
               this.errorMessage = error.error;
-            } else {
+
               console.log(
-                `Backend returned code ${error.status}, body was: `, error.error);
-                
-            }
+                `Backend sdasds returned code ${error.status}, body was: `, error.error);             
   
           }
       });
+        }
+      )
+      
     
   
 
 }
-
-onFileSelect(event:any) {
-  if (event.target.files.length > 0) {
-    var file = event.target.files[0];
-    console.log(file)
-    var featuredImg = this.myForm.get('featuredImg');
-    if(featuredImg){
-      featuredImg.setValue(file);
-      console.log(featuredImg)
-    }
   }
-}
 
-
-
+// onFileSelect(event:any) {
+//   if (event.target.files.length > 0) {
+//     var file = event.target.files[0];
+//     console.log(file)
+//     var featuredImg = this.myForm.get('featuredImg');
+//     if(featuredImg){
+//       featuredImg.setValue(file);
+//       console.log(featuredImg)
+//     }
+//   }
+// }
 }
