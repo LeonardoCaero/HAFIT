@@ -11,7 +11,6 @@ export const environment = {
       user: 'User',
     },
     defaultImage: "https://sesamobakery.com/wp-content/uploads/2020/12/product-default-list-350.jpg",
-    apiTiny: "t2j4xztrfvczi9wm2i8z8li2hses0j1jn2sv80yq0zw8wjam",
     CLOUD_NAME: 'dlomgjt1k',
     CLOUD_API_KEY: '447613727928719',
     CLOUD_API_SECRET: 'ZrUxDk1iFEw57psqVsHVCLgjFMQ',

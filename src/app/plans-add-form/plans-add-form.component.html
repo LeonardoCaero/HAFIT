@@ -1,17 +1,35 @@
 <h3 class="fill-remaining-space">New plan</h3>
 <div class="container">
   <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
+    <!-- <div class="form-element">
+      <input placeholder="Name" formControlName="name">
+    </div> -->
     <div class="form-element">
       <input placeholder="Name" formControlName="name">
+      <div *ngIf="myForm.get('name')?.invalid && myForm.get('name')?.touched" style="color:red;">
+        *El nombre es obligatorio
+      </div>
     </div>
+    
     <div class="form-element">
       <ckeditor formControlName="description" [editor]="Editor" id="editor"></ckeditor>
   </div>
     <div class="form-element pt-2">
       <h5 class="form-label">Featured image</h5>
       <input placeholder="Featured image" enctype="multipart/form-data" formControlName="featuredImg" name="featuredImg" class="form-control w-75" type="file" (change)="onFileSelected($event)">
-     
+      <!-- <div class="wrapper" *ngIf="loading">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="shadow"></div>
+        <div class="shadow"></div>
+        <div class="shadow"></div>
+        <span>Uploading</span>
+    </div> -->
     </div>
+    <!-- <div class="loader" *ngIf="loading"> -->
+    
+    <!-- </div> -->
     <div class="form-element">
       <button  color="primary" type="submit" class="button">Submit</button>
     </div>

@@ -1,5 +1,5 @@
 import { Component,  ElementRef,  EventEmitter,  OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IPlan } from '../interfaces/iplan';
 import { PlanDataService } from '../services/plan-data.service';  
@@ -18,6 +18,7 @@ import { ImageUploadServiceService } from '../services/image-upload-service.serv
 })
 
 export class PlansFormComponent implements OnInit {
+  editorInstance: any;
 
   constructor( private planServices: PlanDataService,
     private router:Router,
@@ -67,6 +68,39 @@ deletePlan(): void {
 }
  
   ngOnInit(): void {
+    ClassicEditor.create(this.elementRef.nativeElement.querySelector('#editor'), {
+      cloudServices: {
+        tokenUrl: 'https://97727.cke-cs.com/token/dev/U1ePTKYik4hYbvLo1lTt33V88qVxgg9iXIGp?limit=10',
+        uploadUrl: 'https://97727.cke-cs.com/easyimage/upload/'
+      },
+      
+    })
+      .then(editor => {
+        this.editorInstance = editor;
+        const planId = this.route.snapshot.paramMap.get('planId');
+        this.planServices.getPlan("planId",planId).subscribe(
+          (data) => {
+            this.plan = data.body;  
+            this.myForm = this.formBuilder.group({//Poner los datos del plan en el formulario
+                name: [this.plan.name,[Validators.required,Validators.maxLength(15),Validators.minLength(2)]],//[this.plan.name,Validators.required,Validators.maxLength(15),Validators.minLength(2)],
+                description: ['',Validators.required],
+                featuredImg: ''
+            });
+            const plan_description = this.plan.description ? this.plan.description : '';
+            
+            this.editorInstance.setData(plan_description)
+            console.log(this.plan.featuredImg)
+    
+          },
+          (error) => {
+            this.errorMessage = error.message;
+          }
+        );
+      })
+      .catch(error => {
+        console.error('Error creating ckeditor instance', error);
+      });
+    
     
     this.authService.checkUser().subscribe(
       (response)=>{
@@ -77,24 +111,10 @@ deletePlan(): void {
         this.router.navigate(['subscibe-to-soci'])
       }
     )
-    const planId = this.route.snapshot.paramMap.get('planId');
-    this.planServices.getPlan("planId",planId).subscribe(
-      (data) => {
-        this.plan = data.body;  
-        this.myForm = this.formBuilder.group({//Poner los datos del plan en el formulario
-          name: [this.plan.name],
-          description: [this.plan.description], 
-          featuredImg:''
-        });
-        console.log(this.plan.featuredImg)
-      },
-      (error) => {
-        this.errorMessage = error.message;
-      }
-    );
+   
   }
-
-
+  description:string = ''
+  loading: boolean  = false
   myForm:FormGroup;
   errorMessage:String = '';
   fileName:any;
@@ -107,7 +127,7 @@ deletePlan(): void {
       this.formdata.append("file", file); 
       this.formdata.append('upload_preset','plan-preset')  
       this.formdata.append('cloud_name',environment.CLOUD_NAME)
-
+      this.loading = true
     }
   }
 
@@ -116,18 +136,15 @@ deletePlan(): void {
     var name = this.myForm.get('name'); //GET VALUES
     var description = this.myForm.get('description');
     const planId = this.route.snapshot.paramMap.get('planId');
-
-      var featuredImage =this.fileName;
+    var featuredImage =this.fileName;
     
-   console.log('Featured Image: ',featuredImage?.value)
-    // description = encodeURI(description?.value)
     if (name) {formData.append("name", name.value)} ;
     if (description) {formData.append("description", description.value)};
-    if (featuredImage) {  
+    if (featuredImage !='default') {  
       this.uploadService.uploadImage(this.formdata).subscribe(
         response=>{
           console.log(response);  
-            this.planServices.updatePlans(planId,name?.value,formData,response.secure_url,description).subscribe({//IF IT'S ALL OK UPDATE PLAN
+            this.planServices.updatePlans(planId,name?.value, this.editorInstance.getData(),response.secure_url,formData).subscribe({//IF IT'S ALL OK UPDATE PLAN
               next: (data) => {
                 this.router.navigate(['plans']);
               },
@@ -140,13 +157,9 @@ deletePlan(): void {
              }, error =>{
               console.log('Error subiendo la imagen a cloudinary: ',error.error)
             });
-        }else if(!featuredImage){
+        }
 //IF THERE ISN'T FEATURED IMAGE UPLOAD THE PLAN
-      this.planServices.getPlan('planId',planId).subscribe(
-        response =>{
-          const urlImg =  response.body.featuredImg
-          console.log(response.body.featuredImg)
-          this.planServices.updatePlans(planId,name?.value,description?.value,urlImg,formData).subscribe({
+      this.planServices.updatePlans(planId,name?.value, this.editorInstance.getData(),this.plan.featuredImg,formData).subscribe({
         next: (data) => {
           this.router.navigate(['plans']);
         },
@@ -159,24 +172,7 @@ deletePlan(): void {
   
           }
       });
-        }
-      )
-      
-    
-  
+        
 
-}
   }
-
-// onFileSelect(event:any) {
-//   if (event.target.files.length > 0) {
-//     var file = event.target.files[0];
-//     console.log(file)
-//     var featuredImg = this.myForm.get('featuredImg');
-//     if(featuredImg){
-//       featuredImg.setValue(file);
-//       console.log(featuredImg)
-//     }
-//   }
-// }
 }

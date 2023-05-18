@@ -1,5 +1,5 @@
 import { Component, ElementRef } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup,Validator, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { IPlan } from '../interfaces/iplan';
@@ -8,6 +8,7 @@ import { AuthServiceService } from '../services/auth-service.service';
 import { UserDataService } from '../services/user-data.service';
 import { environment } from 'src/environments/environment';
 import { ImageUploadServiceService } from '../services/image-upload-service.service';
+import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
 
 
 
@@ -69,12 +70,12 @@ export class PlansAddFormComponent {
       }
     )
     this.myForm = this.formBuilder.group({
-      name: '',
-      description: '',
+      name: ['',Validators.required,Validators.maxLength(15),Validators.minLength(2)],
+      description: ['',Validators.required],
       featuredImg: ''
     });
   }
-
+loading:boolean = false
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {
@@ -82,20 +83,22 @@ export class PlansAddFormComponent {
       this.formdata.append("file", file); 
       this.formdata.append('upload_preset','plan-preset')  
       this.formdata.append('cloud_name',environment.CLOUD_NAME)
+     
+      
 
     }
   }
 
-  
+  description:string = ''
 
-  
 formdata: FormData = new FormData();
 
   onSubmit(plan: any){
    let  formData = new FormData()
-    var name = this.myForm.get('name')?.value; //Obtener valores del formulario
-    var description = this.myForm.get('description')?.value;
-    var featuredImage = this.fileName;
+   var name = this.myForm.get('name')?.value; //Obtener valores del formulario
+   var description = this.myForm.get('description')?.value;
+   var featuredImage = this.fileName;
+
   if (description) { formData.append("description", description.value) };
     if (featuredImage) { 
           this.authService.checkUser().subscribe(
@@ -104,8 +107,8 @@ formdata: FormData = new FormData();
               const user_id = response._id//ID DEFAULT DE MONGO
               this.uploadService.uploadImage(this.formdata).subscribe(
                 response=>{
-                  console.log(response);             
-              this.planServices.addPlan(name, description, response.secure_url).subscribe(
+                  this.loading = true
+              this.planServices.addPlan(name, response.secure_url, this.editorInstance.getData()).subscribe(
                 (response) => {
                   console.log('ok')
                   this.planServices.updateUser(user_id, response.body.planId).subscribe(
@@ -114,6 +117,7 @@ formdata: FormData = new FormData();
 
                     }, (error) => {
                       console.log(`Error en update user: ${error.error}`)
+                      this.errorMessage = error.error;
                     }
                   )
                   this.userService.updatePlan(userId, response.body.planId).subscribe(
@@ -122,19 +126,22 @@ formdata: FormData = new FormData();
                     },
                     (error) => {
                       console.log('Update plans error: ', error.error)
+                      this.errorMessage = error.error;
                     }
                   )
                 },
                 (error) => {
-                  console.log('Add plan error: ', error.error)
+                  this.errorMessage = error.error;
                 }
               )
             }, error =>{
               console.log('Error subiendo la imagen a cloudinary: ',error.error)
+              this.errorMessage = error.error;
             }
             )
             }, (error) => {
               console.log('Error auth:', error.error)
+              this.errorMessage = error.error;
             }
 
           )
@@ -145,13 +152,14 @@ formdata: FormData = new FormData();
         const user_id = response._id//ID DEFAULT DE MONGO
         console.log(userId)
         if (response.type === "soci") {
-              this.planServices.addPlan(name, description, 'default').subscribe(//AFEGIR NOU PLAN
+              this.planServices.addPlan(name, 'default',this.editorInstance.getData()).subscribe(//AFEGIR NOU PLAN
                 (response) => {
                   this.planServices.updateUser(user_id, response.body.planId).subscribe(//AÑADIR _ID DEL USER AL PLAN
                     (response) => {
                       console.log('NO IMAGEN UPDATED')
                     }, (error) => {
                       console.log(`Error en update user: ${error.errorMessage}`)
+                      this.errorMessage = error.error;
                     }
                   )
                   this.userService.updatePlan(userId, response.body.planId).subscribe(//AÑADIR PLAN AL USUARIO LOGEADO
@@ -159,11 +167,11 @@ formdata: FormData = new FormData();
                       console.log('UserId: ', userId + 'PlanId: ', response.body.planId)
                       this.router.navigate(['plans']);
                     }, (error) => {
-                      console.log(`Error updatePlan service: ${error.errorMessage}`)
+                     this.errorMessage = error.error;
                     }
                   )
                 }, (error) => {
-                  console.error('Error addplan no img:', error.errorMessage + ' ' + name + ' ' + description );
+                  this.errorMessage = error.error;
                 }
               ) 
         } else {
