@@ -5,7 +5,7 @@
 <div *ngIf="plans.length>0" class="d-flex justify-content-center align-items-center">
   <!-- <div class="container text-center w-25">HOLA</div> -->
   <div class="container d-flex p-3 row">
-  <a [routerLink]="['/plans/add']" class="w-100"><i class="fa-solid fa-plus"></i> Add new plan</a>
+  <a [routerLink]="['/plans/add']" class="w-100 addPlan" ><i class="fa-solid fa-plus"></i> Add new plan</a>
   <div class="row row-cols-auto justify-content-center col-lg-12 ">
   <div  *ngFor= 'let plan of plans' class="col mb-3"> 
     <div class="row my-2"></div>
@@ -37,6 +37,7 @@
     </div> -->
   </div>
   </div>
+  <app-footer></app-footer>
    
 </div>
   

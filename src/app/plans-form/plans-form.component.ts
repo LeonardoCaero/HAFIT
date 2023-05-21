@@ -137,6 +137,7 @@ deletePlan(): void {
     var description = this.myForm.get('description');
     const planId = this.route.snapshot.paramMap.get('planId');
     var featuredImage =this.fileName;
+    console.log(featuredImage);
     
     if (name) {formData.append("name", name.value)} ;
     if (description) {formData.append("description", description.value)};

@@ -16,4 +16,5 @@ export class ImageUploadServiceService {
     let data = file;
     return this.http.post(`https://api.cloudinary.com/v1_1/${environment.CLOUD_NAME}/image/upload`,data)
   }
+  
 }

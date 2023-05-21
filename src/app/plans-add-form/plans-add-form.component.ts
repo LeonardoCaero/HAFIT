@@ -27,8 +27,8 @@ export class PlansAddFormComponent {
   public Editor = ClassicEditor;
 
 
-  private editorInstance: any;
-
+  editorInstance: any;
+  
   constructor(
     private planServices: PlanDataService,
     private router: Router,
@@ -70,12 +70,13 @@ export class PlansAddFormComponent {
       }
     )
     this.myForm = this.formBuilder.group({
-      name: ['',Validators.required,Validators.maxLength(15),Validators.minLength(2)],
+      name: ['',[Validators.required,Validators.maxLength(15),Validators.minLength(2)]],
       description: ['',Validators.required],
       featuredImg: ''
     });
   }
 loading:boolean = false
+
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {
@@ -83,9 +84,6 @@ loading:boolean = false
       this.formdata.append("file", file); 
       this.formdata.append('upload_preset','plan-preset')  
       this.formdata.append('cloud_name',environment.CLOUD_NAME)
-     
-      
-
     }
   }
 

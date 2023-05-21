@@ -1,12 +1,21 @@
 $color-letra: rgb(163, 159, 159);
 $color-terciario: #28a745;
 $color-terciario-hover: #28a746cc;
+$primary-color: rgba(146, 135, 155, 0.8);
+.container:nth-child(1){
+    margin-top: 2rem;
+    background-color: #dfdfdf11;
+    border-radius:0.3rem;
+    max-width: 80%;
+    height: 70% !important;
+    max-height: 70% !important;
+  }
 h2{
     font-family: hafit-font;
     color: white;
 }
 h5{
-    color: $color-letra;
+    color: white;
 }
 .delete{
     a{

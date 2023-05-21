@@ -25,7 +25,9 @@ export class SociSubscribeComponent {
     subscribeBtn.addEventListener('click',  () => {
       this.authService.checkUser().subscribe( 
         (response)=>{
+          console.log(response.userId)
           this.user.userId = response.userId;
+          
           const userUpdated = this.user
           console.log(userUpdated)
           this.userService.updateUserType(userUpdated).subscribe(//ACTUALIZAR A SOCI

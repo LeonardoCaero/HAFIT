@@ -11,7 +11,12 @@ img{
   // width: 15rem !important;
   height: 13rem !important;
 }
-
+.addPlan{
+  color:white;
+  &:hover{
+    color: $color-terciario;
+  }
+}
 .example-card {
   height: 20rem;
   width: 20rem;

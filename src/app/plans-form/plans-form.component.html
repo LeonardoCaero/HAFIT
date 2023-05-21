@@ -1,5 +1,5 @@
 <div class="container">
-<h2 class="form-title mt-4 ms-5">Edit plan {{this.plan.name}}</h2>
+<h2 class="form-title mt-4 pt-4 ms-5">Edit plan {{this.plan.name}}</h2>
 <div class="container d-flex justify-content-center mt-lg-3 mt-3   ">
   <form class="mt-lg-5 w-75 form" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)"  enctype="multipart/form-data">
     <!-- <div class="form-element">
@@ -15,7 +15,7 @@
     </div>
     <div class="form-element pt-2">
       <h5 class="form-label">Featured image</h5>      
-      <input type="file" class="file-upload form-control w-75" formControlName="featuredImg">
+      <input placeholder="Featured image" enctype="multipart/form-data" formControlName="featuredImg" name="featuredImg" class="form-control w-75" type="file" (change)="onFileSelected($event)">
     </div>
     
 
@@ -26,7 +26,7 @@
         *El nombre es obligatorio
       </div><!--buscar como hacer para selecionar imagenes locales-->
     </div>
-    <div class="form-element pt-4">
+    <div class="form-element pt-4 pb-4">
       <button type="submit" class="btn btn-success btn-send  pt-2 btn-block"><i class="fa-solid fa-pen"></i> Update</button>
       <button class="btn btn-danger btn-send ms-2 pt-2 btn-block delete" (click)="deletePlan()"><i class="fa-solid fa-xmark"></i> Delete</button> 
       
