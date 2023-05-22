@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Iexercice } from 'src/app/interfaces/iexercice';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { ExerciceDataService } from 'src/app/services/exercice-data.service';
+import { UserDataService } from 'src/app/services/user-data.service';
 
 @Component({
   selector: 'app-exercices-edit-form',
@@ -10,17 +13,25 @@ import { ExerciceDataService } from 'src/app/services/exercice-data.service';
   styleUrls: ['./exercices-edit-form.component.scss']
 })
 export class ExercicesEditFormComponent {
-  constructor( private exerciceServices: ExerciceDataService,private router:Router,  private route: ActivatedRoute,private formBuilder:FormBuilder){
+  constructor( private exerciceServices: ExerciceDataService,
+    private router:Router,
+    private route: ActivatedRoute,
+    private formBuilder:FormBuilder,
+    private authService: AuthServiceService,
+    private userService:UserDataService,
+    private elementRef :ElementRef,
+    ){
     this.myForm = this.formBuilder.group({//Inicializar formulario vacio para que no de error
       name: '',
       description: '',
-      time: ''
+      time: '',
+      featuredImg: ''
     });
     
   }
   exercices :Iexercice [] = [];
   exercice: any = {};
- 
+  public Editor = ClassicEditor;
 
   // deletePlan(): void {
   //   const planId = this.route.snapshot.paramMap.get('planId');
@@ -33,10 +44,33 @@ export class ExercicesEditFormComponent {
 deleteExercice(): void {
   if (confirm('Are you sure?')) {
   const exerciceId = this.route.snapshot.paramMap.get('exerciceId');
-  this.exerciceServices.deleteExercice('exerciceId',exerciceId).subscribe(
-    () => console.log(`Eliminado correctamente`),
-    error => console.log()
-  );
+  this.authService.checkUser().subscribe(
+    response =>{
+      const userId = response.userId
+      this.userService.deleteExercice(userId,exerciceId).subscribe(
+        response =>{
+          this.exerciceServices.deleteExercice('exerciceId',exerciceId).subscribe(
+            response =>{
+              console.log('Eliminado exercice');
+              
+            },error=>{
+              console.log(`Error eliminando el exercice ${error.errorMessage}`);
+              
+            }
+          )
+          console.log('eliminado correctamente');
+          
+        }, error =>{
+          console.log(`Error eliminando ${error.errorMessage}`);
+        }
+      )
+    },error=>{
+      console.log(`error check user ${error.errorMessage}`);
+      
+    }
+  )
+  this.router.navigate(['plans/deleted'])
+      console.log(`Eliminado correctamente`)
   }
 }
 

@@ -42,8 +42,17 @@ export class UserDataService {
     return this._http.put(`${environment.apiUrl}/user/plans`, body, { observe: 'response' });
   }
 
+  public updateExercice(userId: any, exerciceId: any): Observable<HttpResponse<any>> {
+    const body = { userId: userId, exerciceId: exerciceId};
+    return this._http.put(`${environment.apiUrl}/user/exercices`, body, { observe: 'response' });
+  }
+
   public deletePlan(userId: any, planId: any): Observable<HttpResponse<any>> {
     const body = { userId: userId, planId: planId};
     return this._http.put(`${environment.apiUrl}/user/deletePlans`, body, { observe: 'response' });
+  }
+  public deleteExercice(userId: any, exerciceId: any): Observable<HttpResponse<any>> {
+    const body = { userId: userId, exerciceId: exerciceId};
+    return this._http.put(`${environment.apiUrl}/user/deleteExercices`, body, { observe: 'response' });
   }
 }

@@ -147,7 +147,7 @@ deletePlan(): void {
           console.log(response);  
             this.planServices.updatePlans(planId,name?.value, this.editorInstance.getData(),response.secure_url,formData).subscribe({//IF IT'S ALL OK UPDATE PLAN
               next: (data) => {
-                this.router.navigate(['plans']);
+                this.router.navigate(['plans/updated']);
               },
                 error: (error) => {
                     console.log(

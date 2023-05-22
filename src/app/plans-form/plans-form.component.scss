@@ -2,13 +2,14 @@ $color-letra: rgb(163, 159, 159);
 $color-terciario: #28a745;
 $color-terciario-hover: #28a746cc;
 $primary-color: rgba(146, 135, 155, 0.8);
+
 .container:nth-child(1){
     margin-top: 2rem;
     background-color: #dfdfdf11;
     border-radius:0.3rem;
     max-width: 80%;
-    height: 70% !important;
-    max-height: 70% !important;
+    height: auto;
+    max-height: auto;
   }
 h2{
     font-family: hafit-font;
@@ -51,11 +52,23 @@ h5{
 
 @media screen and (max-width: 600px) {
     .form{
-        margin-top: 5rem !important;
+        margin-top: 1rem !important;
+        margin-left: 2rem !important;
         min-width: 75% !important;
         width: 80% !important;
     }
     .form-title{
         width: 100% !important;
     }
+}
+
+@media screen and (min-width: 601px) and (max-width: 1550px) {
+    .container:nth-child(1){
+        margin-top: 2rem;
+        background-color: #dfdfdf11;
+        border-radius:0.3rem;
+        max-width: 80%;
+        height: auto !important;
+    
+      }
 }

@@ -27,7 +27,8 @@ export class PlansAddFormComponent {
   public Editor = ClassicEditor;
 
 
-  editorInstance: any;
+ ditorInstance: any;
+   editorInstance: any;
   
   constructor(
     private planServices: PlanDataService,

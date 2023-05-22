@@ -27,5 +27,18 @@
   </div>
 </div>
 </div>
+<div class="container mt-1 "><h2 class="text-center pt-4 pb-4 promo-items ">BEST PLANS</h2></div>
+<!-- Cards with media area -->
+<div class="container ">
+  <div class="row row-cols-auto justify-content-center ">
+  <div  *ngFor= 'let plan of plans.slice(0,9)' class=" col mt-4 mb-4 ">
+    <mat-card class="example-card card h-200  " style="background-image: url({{plan.featuredImg}});">
+      <mat-card-content class="card-body position-absolute bottom-0 start-0">
+        <p class="card-title"><a [routerLink]="['/plans/plan',plan.planId]">{{plan.name}}</a></p>
+      </mat-card-content>
+    </mat-card>
+    </div>
+  </div>
+  </div>
 <!--FOOTER-->
 <app-footer class="w-100"></app-footer>

@@ -3,9 +3,8 @@
   <h4>No plans found</h4>
 </div>
 <div *ngIf="plans.length>0" class="d-flex justify-content-center align-items-center">
-  <!-- <div class="container text-center w-25">HOLA</div> -->
   <div class="container d-flex p-3 row">
-  <a [routerLink]="['/plans/add']" class="w-100 addPlan" ><i class="fa-solid fa-plus"></i> Add new plan</a>
+  <a  *ngIf="userType === 'soci'" [routerLink]="['/plans/add']" class="w-100 addPlan" ><i class="fa-solid fa-plus"></i> Add new plan</a>
   <div class="row row-cols-auto justify-content-center col-lg-12 ">
   <div  *ngFor= 'let plan of plans' class="col mb-3"> 
     <div class="row my-2"></div>
@@ -13,8 +12,7 @@
       <mat-card class="example-card card h-200  " style="background-image: url({{plan.featuredImg}});">
         <a [routerLink]="['/plans/plan',plan.planId]">
         <mat-card-content class="card-body position-absolute bottom-0 start-0">
-          <p class="card-title"><a [routerLink]="['/plans/plan',plan.planId]">{{plan.name}}</a></p>
-          <p class="card-text"><a *ngIf="plan.user === user"[routerLink]="['/plans/edit',plan.planId]">Edit</a></p>
+          <p class="card-title" ><a [routerLink]="['/plans/plan',plan.planId]">{{plan.name}}</a></p>
         </mat-card-content>
         </a>
       </mat-card>

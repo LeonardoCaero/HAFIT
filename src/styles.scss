@@ -12,3 +12,7 @@ $color-secundario: #393E46;
 body{
     background-color: $color-secundario;
 }
+.ck.ck-reset.ck-editor.ck-rounded-corners {
+  width: 75% !important;
+  border-radius: 0.3rem !important;
+}

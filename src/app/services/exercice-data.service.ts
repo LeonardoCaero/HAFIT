@@ -26,7 +26,15 @@ export class ExerciceDataService {
     const url = `${environment.apiUrl}/exercice/delete?deleteBy=${deleteBy}&data=${data}`;
     return this._http.delete(url, { observe: 'response' });
   }
-  public addExercice(data:any): Observable<HttpResponse<any>>{
-    return this._http.post<any>(environment.apiUrl+'/exercice/add?name='+data.get('name')+'&description='+data.get('description')+'&time='+data.get('time'),{observe: 'response'});
+  // public addExercice(data:any): Observable<HttpResponse<any>>{
+  //   return this._http.post<any>(environment.apiUrl+'/exercice/add?name='+data.get('name')+'&description='+data.get('description')+'&time='+data.get('time'),{observe: 'response'});
+  // }
+  public addExercice(name:any,description:any,featuredImg:any,time:any): Observable<HttpResponse<any>>{
+    const body = { name: name, description: description, featuredImg: featuredImg,time:time};
+    return this._http.post<any>(environment.apiUrl+'/exercice/add',body,{observe: 'response'});
+  }
+  public updateUser(userId: any, exerciceId: any): Observable<HttpResponse<any>> {
+    const body = { userId: userId, exerciceId: exerciceId};
+    return this._http.put(`${environment.apiUrl}/exercice/users`, body, { observe: 'response' });
   }
 }

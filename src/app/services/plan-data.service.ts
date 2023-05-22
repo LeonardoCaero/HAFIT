@@ -32,7 +32,6 @@ export class PlanDataService {
     return this._http.post<any>(environment.apiUrl+'/plan/add',body,{observe: 'response'});
   }
 
-  
   public updateUser(userId: any, planId: any): Observable<HttpResponse<any>> {
     const body = { userId: userId, planId: planId};
     return this._http.put(`${environment.apiUrl}/plan/users`, body, { observe: 'response' });

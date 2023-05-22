@@ -13,6 +13,7 @@ import { PlansComponent } from './plans/plans.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SociSubscribeComponent } from './soci-subscribe/soci-subscribe.component';
 import { DeletedPlanComponent } from './deleted-plan/deleted-plan.component';
+import { UpdatedSuccessComponent } from './updated-success/updated-success.component';
 const routes: Routes = [
   {path:'', component: HomeProductsComponent},
   {path:'login', component: LoginComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'plans/add',component: PlansAddFormComponent},
   {path: 'plans/plan/:planId',component: PlansViewComponent},
   {path: 'plans/deleted',component: DeletedPlanComponent},
+  {path: 'plans/updated',component: UpdatedSuccessComponent},
   {path: 'exercices', component: ExercicesComponent},
   {path: 'exercices/edit/:exerciceId',component: ExercicesEditFormComponent},
   {path: 'exercices/add',component: ExercicesAddFormComponent},

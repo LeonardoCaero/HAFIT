@@ -26,6 +26,7 @@ export class PlansComponent implements OnInit{
       
   }
 
+
   ngOnInit(): void {
    this.planSerivce.getPlans().subscribe(resp=>{
     if (resp.body != null) {
@@ -35,6 +36,12 @@ export class PlansComponent implements OnInit{
         resp=>{
           console.log(resp._id)
           this.user = resp._id
+          this.userService.getUser('_id',resp._id).subscribe(
+            response =>{
+              this.userType = response.body.type
+              console.log(response.body.type)
+            }
+          )
         }
       )
       this.plans.forEach(plan => {
@@ -58,5 +65,6 @@ export class PlansComponent implements OnInit{
   }
   plans: IPlan[] = [];
   user: any = {};
+  userType: any
 
 }

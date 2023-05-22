@@ -12,8 +12,8 @@ body{
   background-color: #dfdfdf11;
   border-radius:0.3rem;
   max-width: 80%;
-  height: 70% !important;
-  max-height: 70% !important;
+  height: auto;
+  max-height: auto;
 }
 h3{
   font-family: hafit-font;
@@ -29,6 +29,49 @@ h5{
       background-color:$color-terciario-hover !important;
       border-color: transparent !important;
   }
+}
+
+
+form-element:focus{
+  color: $color-terciario;
+}
+.form{
+  margin-left: 15rem !important;
+}
+.from-title{
+  margin-left: 15rem !important;
+}
+
+.btn-success{
+      background-color:$color-terciario !important;
+      border-color: $color-terciario !important;
+      &:hover{
+          background-color:$color-terciario-hover !important;
+          border-color: transparent !important;
+      }
+  }
+
+@media screen and (max-width: 600px) {
+  .form{
+      margin-top: 1rem !important;
+      margin-left: 2rem !important;
+      min-width: 75% !important;
+      width: 80% !important;
+  }
+  .form-title{
+      width: 100% !important;
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 1550px) {
+  .container:nth-child(1){
+      margin-top: 2rem;
+      background-color: #dfdfdf11;
+      border-radius:0.3rem;
+      max-width: 80%;
+      height: auto !important;
+  
+    }
 }
 
 .wrapper{
@@ -156,7 +199,7 @@ footer .fa-twitter-square{
 footer .fa-instagram{
   color: #f0007c;
 }
-fotter .fa-linkedin{
+footer .fa-linkedin{
   color:#0073b1;
 }
 footer .fa-codepen{

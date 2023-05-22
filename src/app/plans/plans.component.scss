@@ -7,10 +7,10 @@ $primary-color: rgba(146, 135, 155, 0.8);
 a{
   text-decoration: none;
 }
-img{
-  // width: 15rem !important;
-  height: 13rem !important;
-}
+// img{
+//   // width: 15rem !important;
+//   height: 13rem !important;
+// }
 .addPlan{
   color:white;
   &:hover{
@@ -43,6 +43,28 @@ img{
   height: 100%;
   position: absolute;
   width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+  .example-card {
+    height: 20rem;
+    width: 15rem;
+    max-width: 30rem;
+    color: white;
+    transition: 500ms;
+    position:relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    // background-color: rgba(0, 0, 0, 0.8) !important;
+    // mix-blend-mode: screen; 
+  
+    &:hover{
+      transform: scale(1.05);
+      transition: 500ms;
+    }
+    
+  }
 }
 
 mat-card-content{
