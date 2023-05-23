@@ -1,96 +1,69 @@
 $color-terciario: #28a745;
-.example-card {
-  height: 20rem;
-  width: 20rem;
-  max-width: 30rem;
-  color: white;
-  transition: 500ms;
+$primary-color: rgba(146, 135, 155, 0.8);
+
+.margin{
+  margin-top: 6rem !important;
+}
+a{
+  text-decoration: none;
+}
+// img{
+//   // width: 15rem !important;
+//   height: 13rem !important;
+// }
+.addExercice{
+  color:white;
   &:hover{
-    transform: scale(1.05);
-    transition: 500ms;
-  }
-}
-
-mat-card-content{
-  p{
-    margin-bottom: 0;
-  }
-  a{
-    color:white;
-    text-decoration: none;
-    &:hover{
-      color: rgb(70, 69, 69);
-    }
-  }
-  
-
-}
-.container{
-  margin-top: 2rem;
-  background-color: #dfdfdf11;
-  border-radius:0.3rem;
-  max-width: 80%;
-}
-.btn-buy{
-  background-color: $color-terciario;
-  border-color: $color-terciario;
-}
-.btn-buy:hover{
-  background-color: #268d3e;
-  border-color: #268d3e;
-}
-.promo-items{
     color: $color-terciario;
-    margin-top:10rem;
-}
-.container-promo{     
-    background-color: #dfdfdf11;
-  border-radius:0.3rem;
-}
-
-#myVideo {
-    right: 0;
-    min-width: 100%; 
-    max-width: 100%;
-    height: fit-content;
-  }
-  
-  .content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    background: rgba(0, 0, 0, 0.5);
-    color:white;
-    width: 30rem;
-    padding: 20px;
-    h1{
-        font-family: hafit-font;
-        color: $color-terciario;
-    }
-  }
-  @media (max-width:1024px){
-    .content{
-        max-width: 100%;
-    }
-    .promo-items{     
-    margin-top: 1rem !important;
-  }
-  mat-card-content{
-    margin-right: 2rem;
   }
 }
-$color-terciario: #28a745;
 .example-card {
   height: 20rem;
   width: 20rem;
   max-width: 30rem;
   color: white;
   transition: 500ms;
+  position:relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  // background-color: rgba(0, 0, 0, 0.8) !important;
+  // mix-blend-mode: screen; 
+
   &:hover{
     transform: scale(1.05);
     transition: 500ms;
+  }
+  
+}
+.example-card::before{
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+  .example-card {
+    height: 20rem;
+    width: 15rem;
+    max-width: 30rem;
+    color: white;
+    transition: 500ms;
+    position:relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    // background-color: rgba(0, 0, 0, 0.8) !important;
+    // mix-blend-mode: screen; 
+  
+    &:hover{
+      transform: scale(1.05);
+      transition: 500ms;
+    }
+    
   }
 }
 
@@ -102,7 +75,8 @@ mat-card-content{
     color:white;
     text-decoration: none;
     &:hover{
-      color: rgb(70, 69, 69);
+      // color: rgb(70, 69, 69);
+      color: $color-terciario;
     }
   }
   

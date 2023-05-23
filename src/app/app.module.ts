@@ -39,6 +39,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-5.x';
 import * as cloudinary from 'cloudinary-core';
 import { UpdatedSuccessComponent } from './updated-success/updated-success.component';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 
 @NgModule({
@@ -87,7 +88,8 @@ import { UpdatedSuccessComponent } from './updated-success/updated-success.compo
     MatDialogModule,
     MatSnackBarModule,
     CKEditorModule,
-    CloudinaryModule
+    CloudinaryModule,
+    NgxPayPalModule
   ],
 
 

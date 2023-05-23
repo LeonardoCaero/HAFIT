@@ -1,11 +1,13 @@
 import { Component, ElementRef } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Iexercice } from 'src/app/interfaces/iexercice';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { ExerciceDataService } from 'src/app/services/exercice-data.service';
+import { ImageUploadServiceService } from 'src/app/services/image-upload-service.service';
 import { UserDataService } from 'src/app/services/user-data.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-exercices-edit-form',
@@ -20,6 +22,7 @@ export class ExercicesEditFormComponent {
     private authService: AuthServiceService,
     private userService:UserDataService,
     private elementRef :ElementRef,
+    private uploadService: ImageUploadServiceService,
     ){
     this.myForm = this.formBuilder.group({//Inicializar formulario vacio para que no de error
       name: '',
@@ -32,14 +35,7 @@ export class ExercicesEditFormComponent {
   exercices :Iexercice [] = [];
   exercice: any = {};
   public Editor = ClassicEditor;
-
-  // deletePlan(): void {
-  //   const planId = this.route.snapshot.paramMap.get('planId');
-  //   this.planServices.deletePlan('planId', planId).subscribe(
-  //     () => console.log(`Eliminado correctamente`),
-  //     error => console.error(error)
-  //   );
-  // }
+  editorInstance: any;
 
 deleteExercice(): void {
   if (confirm('Are you sure?')) {
@@ -54,14 +50,14 @@ deleteExercice(): void {
               console.log('Eliminado exercice');
               
             },error=>{
-              console.log(`Error eliminando el exercice ${error.errorMessage}`);
+              console.log(`Error eliminando el exercice ${error.error}`);
               
             }
           )
           console.log('eliminado correctamente');
           
         }, error =>{
-          console.log(`Error eliminando ${error.errorMessage}`);
+          console.log(`Error eliminando ${error.error}`);
         }
       )
     },error=>{
@@ -76,25 +72,67 @@ deleteExercice(): void {
 
     
   ngOnInit(): void {
-    const exerciceId = this.route.snapshot.paramMap.get('exerciceId');
-    this.exerciceServices.getExercice("exerciceId",exerciceId).subscribe(
-      (data) => {
-        this.exercice = data.body;  
-        this.myForm = this.formBuilder.group({//Poner los datos del plan en el formulario
-          name: [this.exercice.name],
-          description: [this.exercice.description] ,
-          time: [this.exercice.time] 
-        });
+
+    ClassicEditor.create(this.elementRef.nativeElement.querySelector('#editor'), {
+      cloudServices: {
+        tokenUrl: 'https://97727.cke-cs.com/token/dev/U1ePTKYik4hYbvLo1lTt33V88qVxgg9iXIGp?limit=10',
+        uploadUrl: 'https://97727.cke-cs.com/easyimage/upload/'
       },
-      (error) => {
-        this.errorMessage = error.message;
-      }
-    );
+      
+    })
+      .then(editor => {
+        this.editorInstance = editor;
+        const exerciceId = this.route.snapshot.paramMap.get('exerciceId');
+        this.exerciceServices.getExercice("exerciceId",exerciceId).subscribe(
+          (data) => {
+            this.exercice = data.body;  
+            this.myForm = this.formBuilder.group({//Poner los datos del plan en el formulario
+                name: [this.exercice.name,[Validators.required,Validators.maxLength(15),Validators.minLength(2)]],//[this.plan.name,Validators.required,Validators.maxLength(15),Validators.minLength(2)],
+                description: ['',Validators.required],
+                time:[this.exercice.time,[Validators.pattern('^[0-9]+$')]],
+                featuredImg: ''
+            });
+            const exercice_description = this.exercice.description ? this.exercice.description : '';
+            
+            this.editorInstance.setData(exercice_description)
+            console.log(this.exercice.featuredImg)
+    
+          },
+          (error) => {
+            this.errorMessage = error.message;
+          }
+        );
+      })
+      .catch(error => {
+        console.error('Error creating ckeditor instance', error);
+      });
+
+      this.authService.checkUser().subscribe(
+        (response)=>{
+          if (response.type != 'soci') {
+            this.router.navigate(['subscibe-to-soci'])
+          }
+        },(error)=>{
+          this.router.navigate(['subscibe-to-soci'])
+        }
+      )
   }
 
   
   myForm:FormGroup;
   errorMessage:String = '';
+  fileName:any;
+  formdata: FormData = new FormData();
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.fileName = file;
+      this.formdata.append("file", file); 
+      this.formdata.append('upload_preset','plan-preset')  
+      this.formdata.append('cloud_name',environment.CLOUD_NAME)
+    }
+  }
 
   onSubmit(plan:any):void{
     let formData = new FormData();
@@ -102,13 +140,31 @@ deleteExercice(): void {
     var description = this.myForm.get('description');
     var time = this.myForm.get('time');
     const exerciceId = this.route.snapshot.paramMap.get('exerciceId');
-   
+    let featuredImg = this.fileName 
     if (name) {formData.append("name", name.value)} ;
     if (description) {formData.append("description", description.value)};
     if (time) {formData.append("time", time.value)};
 
-    console.log(formData.get('name'))
-    this.exerciceServices.updateExercice(exerciceId,formData).subscribe({
+    if (featuredImg!='default') {
+      this.uploadService.uploadImage(this.formdata).subscribe(
+        response=>{
+          this.exerciceServices.updateExercice(exerciceId,formData,this.editorInstance.getData(),response.secure_url).subscribe(
+            response =>{
+              this.router.navigate(['plans/updated'])
+            },error=>{
+              this.errorMessage = error.error
+            }
+          )
+        },
+        error=>{
+          console.log('error subieno l aimagen');
+          this.errorMessage = error.error
+        }
+      )
+    }
+
+    
+    this.exerciceServices.updateExercice(exerciceId,formData,this.editorInstance.getData(),this.exercice.featuredImg).subscribe({
       next: (data) => {
         this.router.navigate(['exercices']);
       },

@@ -1,27 +1,43 @@
-<h3 class="fill-remaining-space">New exercice</h3>
 <div class="container">
-  <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
-    <div class="form-element">
-      <input placeholder="Name" formControlName="name">
-    </div>
-    <div class="form-element">
-        <input placeholder="Time" formControlName="time">
-      </div>
-    <div class="form-element">
-      <h5 class="form-label">Description</h5>
-      <ckeditor formControlName="description" [editor]="Editor" formControlName="description"></ckeditor><!--buscar como hacer para selecionar imagenes locales-->
-    </div>
- 
-  <div class="form-element pt-2">
-    <h5 class="form-label">Featured image</h5>
-    <input placeholder="Featured image" enctype="multipart/form-data" formControlName="featuredImg" name="featuredImg" class="form-control w-75" type="file" (change)="onFileSelected($event)">
+<h3 class="orm-title mt-4 pt-4 ms-5">New exercice</h3>
+<div class="container d-flex justify-content-center mt-lg-3 mt-3">
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)" class="mt-lg-5 w-75 form">
    
-  </div>
     <div class="form-element">
-      <button  color="primary" type="submit" class="button">Submit</button>
+      <h5 class="form-label">Name</h5>
+      <input placeholder="Name" formControlName="name" class="form-control w-75">
+      <div *ngIf="myForm.get('name')?.invalid && myForm.get('name')?.touched" style="color:red;">
+        *El nombre es obligatorio y debe de contener como mínimo 2 caracterres
+      </div>
+    </div>
+
+    <div class="form-element pt-2">
+      <h5 class="form-label">Time</h5>
+        <input placeholder="Time" formControlName="time" class="form-control w-75">
+        <div *ngIf="myForm.get('time')?.invalid && myForm.get('time')?.touched" class="pt-2" style="color:rgb(241, 54, 54);">
+          *El tiempo estimado es obligatorio
+        </div>
+      </div>
+
+      <div class="form-element pt-2">
+        <h5 class="form-label">Featured image</h5>
+        <input placeholder="Featured image" enctype="multipart/form-data" formControlName="featuredImg" name="featuredImg" class="form-control w-75" type="file" (change)="onFileSelected($event)">
+      </div>
+
+      <div class="form-element pt-2">
+        <h5 class="form-label">Description</h5>
+        <ckeditor formControlName="description" [editor]="Editor" id="editor"></ckeditor>
+        <div *ngIf="editorInstance?.invalid && editorInstance?.touched" style="color:red;">
+          *El nombre es obligatorio
+        </div>
+    </div>
+
+    <div class="form-element pt-4 pb-4">
+      <button  color="primary" type="submit" class="btn btn-success btn-send  pt-2 btn-block"><i class="fa-solid fa-plus"></i> Submit</button>
     </div>
   </form>
 </div>
 <div class="alert alert-danger" *ngIf="errorMessage">
   {{errorMessage}}
+</div>
 </div>

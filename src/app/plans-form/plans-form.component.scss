@@ -50,18 +50,21 @@ h5{
         }
     }
 
-@media screen and (max-width: 600px) {
-    .form{
-        margin-top: 1rem !important;
-        margin-left: 2rem !important;
-        min-width: 75% !important;
-        width: 80% !important;
-    }
-    .form-title{
-        width: 100% !important;
-    }
-}
-
+    @media screen and (max-width: 600px) {
+        .form{
+            margin-top: 1rem !important;
+            margin-left: 5rem !important;
+            min-width: 75% !important;
+            width: 80% !important;
+        }
+        .form-title{
+            width: 100% !important;
+        }
+        .btn{
+          margin-left: 3rem !important;
+        }
+      }
+      
 @media screen and (min-width: 601px) and (max-width: 1550px) {
     .container:nth-child(1){
         margin-top: 2rem;

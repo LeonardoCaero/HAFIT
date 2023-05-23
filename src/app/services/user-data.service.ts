@@ -28,8 +28,9 @@ export class UserDataService {
   public updateUser(user: IUser): Observable<HttpResponse<any>> {
     return this._http.put(`${environment.apiUrl}/user/edit?userId=${user.userId}`, user, { observe: 'response' });
   }
-  public updateUserType(user: IUser): Observable<HttpResponse<any>> {
-    return this._http.put(`${environment.apiUrl}/user/edit?userId=${user.userId}&type=${user.type}`, user, { observe: 'response' });
+
+  public updateUserType(user: any, type:any): Observable<HttpResponse<any>> {
+    return this._http.put(`${environment.apiUrl}/user/editType?userId=${user}&type=${type}`, user, { observe: 'response' });
   }
   
   public updateCart(userId: any, productId: any, action: string): Observable<HttpResponse<any>> {
@@ -54,5 +55,9 @@ export class UserDataService {
   public deleteExercice(userId: any, exerciceId: any): Observable<HttpResponse<any>> {
     const body = { userId: userId, exerciceId: exerciceId};
     return this._http.put(`${environment.apiUrl}/user/deleteExercices`, body, { observe: 'response' });
+  }
+  public tokenGenerate(userId:any): Observable<HttpResponse<any>>{
+    const body = {userId}
+    return this._http.post(`${environment.apiUrl}/token/login`,body, {observe:"response"})
   }
 }

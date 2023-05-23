@@ -19,16 +19,13 @@ export class ExerciceDataService {
     const url = `${environment.apiUrl}/exercice/search?search=${searchBy}&data=${data}`;
     return this._http.get(url, { observe: 'response' });
   }
-  public updateExercice(id:any,dada:any): Observable<HttpResponse<Iexercice[]>> {
-    return this._http.put<Iexercice[]>(environment.apiUrl+'/exercice/edit?name='+dada.get('name')+'&exerciceId='+id+'&description='+dada.get('description')+'&time='+dada.get('time'),dada,{ observe: 'response' });
+  public updateExercice(id:any,dada:any,description:string,featuredImg:any): Observable<HttpResponse<Iexercice[]>> {
+    return this._http.put<Iexercice[]>(environment.apiUrl+'/exercice/edit?name='+dada.get('name')+'&exerciceId='+id+'&description='+description+'&time='+dada.get('time')+'&featuredImg='+featuredImg,dada,{ observe: 'response' });
   }
   public deleteExercice(deleteBy: any, data: any): Observable<HttpResponse<any>>{
     const url = `${environment.apiUrl}/exercice/delete?deleteBy=${deleteBy}&data=${data}`;
     return this._http.delete(url, { observe: 'response' });
   }
-  // public addExercice(data:any): Observable<HttpResponse<any>>{
-  //   return this._http.post<any>(environment.apiUrl+'/exercice/add?name='+data.get('name')+'&description='+data.get('description')+'&time='+data.get('time'),{observe: 'response'});
-  // }
   public addExercice(name:any,description:any,featuredImg:any,time:any): Observable<HttpResponse<any>>{
     const body = { name: name, description: description, featuredImg: featuredImg,time:time};
     return this._http.post<any>(environment.apiUrl+'/exercice/add',body,{observe: 'response'});

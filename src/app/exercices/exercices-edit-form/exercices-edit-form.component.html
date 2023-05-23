@@ -1,28 +1,45 @@
-<div class="container d-flex justify-content-center mt-lg-5 mt-5">
-    <h2 class="fill-remaining-space">Edit exercice</h2>
+<div class="container">
+  <h2 class="form-title mt-4 pt-4 ms-5">Edit plan {{this.exercice.name}}</h2>
+<div class="container d-flex justify-content-center mt-lg-3 mt-3">
       <form class="mt-lg-5 w-75 " [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
         <div class="form-element">
           <h5 class="form-label">Name</h5>
-          <input placeholder="Name" formControlName="name" class="form-control w-75">
+          <input placeholder="Name" formControlName="name" class="form-control  w-75 ">
+          <div *ngIf="myForm.get('name')?.invalid && myForm.get('name')?.touched" class="pt-2" style="color:rgb(241, 54, 54);">
+            *El nombre es obligatorio
+          </div>
         </div>
-        <div class="form-element">
+        
+        <div class="form-element pt-2">
+          <h5 class="form-label">Featured image</h5>      
+          <input placeholder="Featured image" enctype="multipart/form-data" formControlName="featuredImg" name="featuredImg" class="form-control w-75" type="file" (change)="onFileSelected($event)">
+        </div>
+
+        <div class="form-element pt-2">
             <h5 class="form-label">Time</h5>
             <input placeholder="Time" formControlName="time" class="form-control w-75">
+            <div *ngIf="myForm.get('time')?.invalid && myForm.get('time')?.touched" class="pt-2" style="color:rgb(241, 54, 54);">
+              *El tiempo estimado es obligatorio
+            </div>
           </div>
-        <div class="form-element" class="pt-2">
+
+        <div class="form-element pt-2">
           <h5>Description</h5>
-          <editor apiKey="t2j4xztrfvczi9wm2i8z8li2hses0j1jn2sv80yq0zw8wjam"
-      [init]="{ plugins: 'lists link table code wordcount quickbars image media'}" 
-      formControlName="description" class="w-75"/><!--buscar como hacer para selecionar imagenes locales-->
+          <ckeditor formControlName="description" [editor]="Editor" id="editor" ></ckeditor>
+          <div *ngIf="editorInstance?.invalid && editorInstance?.touched" style="color:red;">
+            *La descripción obligatoria
+          </div>
         </div>
-        <div class="form-element pt-4">
-          <button type="submit" class="btn btn-success btn-send  pt-2 btn-block">Update</button>
-          <button class="btn btn-danger btn-send ms-2 pt-2 btn-block delete"><a (click)="deleteExercice()">Delete</a></button> 
-        </div>
+
+        <div class="form-element pt-4 pb-4">
+          <button type="submit" class="btn btn-success btn-send  pt-2 btn-block"><i class="fa-solid fa-pen"></i> Update</button>
+          <button class="btn btn-danger btn-send ms-2 pt-2 btn-block delete" (click)="deleteExercice()"><i class="fa-solid fa-xmark"></i> Delete</button> 
+       </div>
         <div class="alert alert-danger w-75 mt-4" *ngIf="errorMessage">
           {{errorMessage}}
         </div>
       </form>
       
     </div>
-    
+      
+</div>

@@ -1,0 +1,25 @@
+$color-terciario: #28a745;
+*{
+    color: white;
+}
+img{
+    width: 30rem !important;
+    max-width: 30rem !important;
+    // height: 25rem !important;
+    max-height: 25rem !important;
+}
+.btn-success {
+    background-color:transparent !important;
+    border-color: $color-terciario !important;
+    margin-left: 30rem !important;
+    &:hover{
+        background-color:$color-terciario !important;
+    }
+}
+.margin{
+    margin-top: 5rem !important;
+}
+  
+.text{
+    width:75% !important;
+}

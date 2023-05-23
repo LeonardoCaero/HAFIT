@@ -1,11 +1,22 @@
 $color-letra: rgb(163, 159, 159);
 $color-terciario: #28a745;
+$color-terciario-hover: #28a746cc;
+$primary-color: rgba(146, 135, 155, 0.8);
+
+.container:nth-child(1){
+    margin-top: 2rem;
+    background-color: #dfdfdf11;
+    border-radius:0.3rem;
+    max-width: 80%;
+    height: auto;
+    max-height: auto;
+  }
 h2{
     font-family: hafit-font;
     color: white;
 }
 h5{
-    color: $color-letra;
+    color: white;
 }
 .delete{
     a{
@@ -22,4 +33,49 @@ h5{
 }
 .form-element:focus{
     color: $color-terciario;
+}
+.form{
+    margin-left: 15rem !important;
+}
+.from-title{
+    margin-left: 15rem !important;
+}
+
+.btn-success{
+        background-color:$color-terciario !important;
+        border-color: $color-terciario !important;
+        &:hover{
+            background-color:$color-terciario-hover !important;
+            border-color: transparent !important;
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .form{
+            margin-top: 1rem !important;
+            margin-left: 5rem !important;
+            min-width: 75% !important;
+            width: 80% !important;
+        }
+        .form-title{
+            width: 100% !important;
+        }
+        .btn{
+          margin-left: 3rem !important;
+        }
+        .btn:nth-child(2){
+            margin-top: 1rem !important;
+        }
+        
+      }
+      
+@media screen and (min-width: 601px) and (max-width: 1550px) {
+    .container:nth-child(1){
+        margin-top: 2rem;
+        background-color: #dfdfdf11;
+        border-radius:0.3rem;
+        max-width: 80%;
+        height: auto !important;
+    
+      }
 }

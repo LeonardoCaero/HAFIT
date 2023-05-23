@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Iexercice } from 'src/app/interfaces/iexercice';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { ExerciceDataService } from 'src/app/services/exercice-data.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-exercices-view',
@@ -11,8 +13,8 @@ import { ExerciceDataService } from 'src/app/services/exercice-data.service';
 export class ExercicesViewComponent {
   errorMessage: string = '';
   exercice : Iexercice | null = null;
-
-  constructor( private exerciceServices: ExerciceDataService, private route: ActivatedRoute){
+  defaultImage = environment.defaultImage
+  constructor( private exerciceServices: ExerciceDataService, private route: ActivatedRoute,private authService : AuthServiceService,){
 
   }
 
@@ -28,5 +30,12 @@ export class ExercicesViewComponent {
         this.errorMessage = error.message;
       }
     );
+    this.authService.checkUser().subscribe(//MIRA EL USER LOGGEADO 
+    resp=>{
+      console.log(resp._id)
+      this.user = resp._id
+    }
+  )
   }
+  user: any = {};
 }

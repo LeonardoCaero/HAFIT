@@ -1,5 +1,5 @@
 import { Component, ElementRef } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Iexercice } from 'src/app/interfaces/iexercice';
@@ -50,7 +50,7 @@ ngOnInit(): void {
       this.editorInstance = editor;
     })
     .catch(error => {
-      console.error('Error creating ckeditor instance', error.errorMessage);
+      console.error('Error creating ckeditor instance', error);
     });
   this.authService.checkUser().subscribe(
     (response)=>{
@@ -62,9 +62,9 @@ ngOnInit(): void {
     }
   )
   this.myForm = this.formBuilder.group({
-    name: '',
-    time: '',
-    description: '',
+    name: ['',[Validators.required,Validators.maxLength(15),Validators.minLength(2)]],
+    time: ['',[Validators.required,Validators.pattern('^[0-9]+$')]],
+    description: ['',Validators.required],
     featuredImg: ''
   });
 }
@@ -101,8 +101,11 @@ onSubmit(exercice:any):void{
 
         this.uploadService.uploadImage(this.formdata).subscribe(
           response =>{
+            console.log(response);
+            
            this.exerciceServices.addExercice(name,this.editorInstance.getData(),response.secure_url,time).subscribe(
             response=>{
+              console.log(response)
               this.exerciceServices.updateUser(user_id,response.body.exerciceId).subscribe(
                 response =>{
                   console.log('exercice añadido');
@@ -124,7 +127,7 @@ onSubmit(exercice:any):void{
               )
             },
             error=>{
-              console.log('Error subiendo la imagen a cloudinary: ',error.error)
+              console.log('Error en el update:  ',error.error)
               this.errorMessage = error.error;
             }
            )
@@ -144,18 +147,23 @@ onSubmit(exercice:any):void{
         console.log(userId)
         if (response.type === "soci") {
           this.exerciceServices.addExercice(name,'default',response.secure_url,time).subscribe(
-            response =>{
-              console.log('No img updated');
-            },error =>{
+            response =>{   
+              this.exerciceServices.updateUser(user_id,response.body.exerciceId).subscribe(
+                response =>{
+                  console.log('No img updated'); 
+                },error=>{
+                  this.errorMessage = error.error
+                }
+              )          
+            this.userService.updateExercice(user_id,response.body.exerciceId).subscribe(
+              response =>{
+                this.router.navigate(['exercices']);
+              },error=>{
+                this.errorMessage = error.errorMessage
+              }
+            )},error =>{
               console.log(`Error en update user: ${error.errorMessage}`)
               this.errorMessage = error.error;
-            }
-          )
-          this.userService.updateExercice(userId,response.body.exerciceId).subscribe(
-            response =>{
-              this.router.navigate(['exercices']);
-            },error=>{
-              this.errorMessage = error.errorMessage
             }
           )
         }else{
@@ -167,23 +175,6 @@ onSubmit(exercice:any):void{
       }
     )
   }
-//   this.exerciceServices.addExercice(formData).subscribe({//Crear el plan con los datos de formdata
-//     next: (data) => {// si es ok vuelve a plans
-//       this.router.navigate(['exercies']);
-//     },
-//       error: (error) => {
-//         if (error.status >= 500) {//Si hay un error de 500 hacia arriba muestra el error 
-//           console.error('An error occurred:', error.error);
-//           this.errorMessage = error.error;
-//         } else if(error.status === 201){
-//             this.router.navigate(['exercices']);// Si es ok vuelve a plans
-//         }else{
-//           console.log(
-//             `Backend returned code ${error.status}, body was: `, error.error);
-//         }
-
-//       }
-//   });
 }
 }
 

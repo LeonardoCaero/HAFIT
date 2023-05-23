@@ -34,6 +34,7 @@
     "cloudinary": "^1.36.2",
     "cloudinary-angular": "^1.0.1",
     "cloudinary-core": "^2.13.0",
+    "ngx-paypal": "^11.0.0",
     "rxjs": "~7.8.0",
     "tinymce": "^6.4.1",
     "tslib": "^2.3.0",

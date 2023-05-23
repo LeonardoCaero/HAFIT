@@ -8,7 +8,6 @@ import { AuthServiceService } from '../services/auth-service.service';
 import { UserDataService } from '../services/user-data.service';
 import { environment } from 'src/environments/environment';
 import { ImageUploadServiceService } from '../services/image-upload-service.service';
-import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
 
 
 
@@ -26,9 +25,7 @@ export class PlansAddFormComponent {
   fileName :any;
   public Editor = ClassicEditor;
 
-
- ditorInstance: any;
-   editorInstance: any;
+  editorInstance: any;
   
   constructor(
     private planServices: PlanDataService,

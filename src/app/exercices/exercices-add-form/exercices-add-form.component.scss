@@ -1,0 +1,78 @@
+$color-terciario-hover: #28a746cc;
+$color-terciario: #28a745;
+body{
+    padding:0;
+    margin:0;
+    width:100%;
+    height:100vh;
+    background:radial-gradient(#9b59b6, #8e44ad);
+}
+.container:nth-child(1){
+  margin-top: 2rem;
+  background-color: #dfdfdf11;
+  border-radius:0.3rem;
+  max-width: 80%;
+  height: auto;
+  max-height: auto;
+}
+h3{
+  font-family: hafit-font;
+  color: white;
+}
+h5{
+  color: white;
+}
+.btn-success{
+  background-color:$color-terciario !important;
+  border-color: $color-terciario !important;
+  &:hover{
+      background-color:$color-terciario-hover !important;
+      border-color: transparent !important;
+  }
+}
+
+
+form-element:focus{
+  color: $color-terciario;
+}
+.form{
+  margin-left: 15rem !important;
+}
+.from-title{
+  margin-left: 15rem !important;
+}
+
+.btn-success{
+      background-color:$color-terciario !important;
+      border-color: $color-terciario !important;
+      &:hover{
+          background-color:$color-terciario-hover !important;
+          border-color: transparent !important;
+      }
+  }
+
+@media screen and (max-width: 600px) {
+  .form{
+      margin-top: 1rem !important;
+      margin-left: 5rem !important;
+      min-width: 75% !important;
+      width: 80% !important;
+  }
+  .form-title{
+      width: 100% !important;
+  }
+  .btn{
+    margin-left: 3rem !important;
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 1550px) {
+  .container:nth-child(1){
+      margin-top: 2rem;
+      background-color: #dfdfdf11;
+      border-radius:0.3rem;
+      max-width: 80%;
+      height: auto !important;
+  
+    }
+}

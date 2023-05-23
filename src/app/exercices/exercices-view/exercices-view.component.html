@@ -1,5 +1,18 @@
-<div class="container mt-sm-3 mt-md-5 mt-lg-5 ">
-    <h1>{{exercice?.name}}</h1>
-    <p>Excpected time : {{exercice?.time}} minutes</p>
-    <p [innerHTML]="exercice?.description"></p>
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-6 w-25">
+            <img *ngIf="exercice?.featuredImg ==='default'" [src]=defaultImage alt="Plan" class="img-fluid" />
+            <img *ngIf="exercice?.featuredImg !='default'" [src]="exercice?.featuredImg" alt="" class="img-fluid" />
+        </div>
+        <div class="col-md-6 ms-2 mt-4 w-75">
+            <h1 class="text-light">{{exercice?.name?.toLocaleUpperCase()}}</h1>
+            <p class="text-light" >Excpected time : {{exercice?.time}} minutes</p>
+            <p class="lead text-light w-100" [innerHTML]="exercice?.description"></p>
+        </div>
+    </div>
+    <div class="row justify-content-end margin">
+        <div class="col-md-6">
+          <button id="edit" class="btn btn-success btn-send mt-4 pt-2 btn-block text-uppercase" *ngIf="exercice?.user === user"[routerLink]="['/exercice/edit',exercice?.exerciceId]"><i class="fa-solid fa-pen"></i> Edit</button>
+        </div>
+      </div>
 </div>
