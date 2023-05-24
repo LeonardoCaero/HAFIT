@@ -81,9 +81,11 @@ export class UserProfileComponent implements OnInit {
 
   public onSaveBio() {
     if (this.bioData != '') {
+      console.log(this.userData + "BIO");
       this.userData.biography = this.bioData;
     }
     if (this.userName != '') {
+      console.log(this.userData + "NAME");
       this.userData.name = this.userName;
     }
 
