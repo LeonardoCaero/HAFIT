@@ -11,5 +11,6 @@ export interface IUser {
   email?: string;
   type: 'client' | 'admin' | 'soci' | 'treballador';
   products?: (IProduct & { quantity: number })[];
+  auth_token?: string;
 }
   

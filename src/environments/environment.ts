@@ -1,6 +1,7 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://hafit-restapi-dwix.onrender.com/api/',
+  // apiUrl: 'https://hafit-restapi-dwix.onrender.com/api/',
+  apiUrl: 'http://localhost:8000/api/',
   // apiKey: 'mHG82elubMTLix7nC07tXfHitH85sp7Rfd4mkhlthretThvSC7AlfHBlEQVGDXTS',
   // db: 'HAFIT',
   // dataSource: 'HafitCluster',

@@ -59,7 +59,8 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
       domain: 'dev-jwr2u354q8g4qn7i.us.auth0.com',
       clientId: 'KvYM7uivBTAza66zaPJPmtBUz0kpoUCw',
       authorizationParams: {
-        redirect_uri: "https://leonardocaero.github.io/HAFIT/",
+        redirect_uri: window.location.origin,
+        // redirect_uri: "https://leonardocaero.github.io/HAFIT/",
       },
     }),
     EditorModule,

@@ -42,6 +42,7 @@ export class ProductPageComponent implements OnInit {
           this.product = resp.body;
 
           cartButton?.addEventListener('click', () => {
+            console.log("hola");
             this.authService.checkUser().subscribe(
               (response) => {
                 this.navbarService.setCartItems(0);

@@ -80,12 +80,13 @@ export class UserProfileComponent implements OnInit {
   }
 
   public onSaveBio() {
+    console.log("test");
     if (this.bioData != '') {
-      console.log(this.userData + "BIO");
+      console.log(this.userData.biography + "BIO");
       this.userData.biography = this.bioData;
     }
     if (this.userName != '') {
-      console.log(this.userData + "NAME");
+      console.log(this.userData.name + "NAME");
       this.userData.name = this.userName;
     }
 
