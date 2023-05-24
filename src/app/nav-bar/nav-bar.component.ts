@@ -29,7 +29,6 @@ export class NavBarComponent implements OnInit {
 
     this.auth.user$.subscribe((user) => {
       this.userProfile = user;
-
     });
 
     this.auth.getAccessTokenSilently().subscribe(
@@ -41,7 +40,7 @@ export class NavBarComponent implements OnInit {
         this.userProfile = null;
       }
     );
-    
+
     this.cartItems = this.navbarService.getCartItems();
     this.navbarService.cartItems$.subscribe((newCartItems: number) => {
       this.cartItems = newCartItems;
