@@ -33,7 +33,7 @@ export class AuthServiceService {
         if (user) {
           return this.userService.getUser('email', user.email).pipe(
             map((resp) => {
-              if (resp.status === 200) {                            
+              if (resp.status === 200) {         
                 return resp.body;
               } else {
                 throw new Error('Error obteniendo userId');
