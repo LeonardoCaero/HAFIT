@@ -5,6 +5,8 @@ import { ProductDataService } from '../services/product-data.service';
 import { IPlan } from '../interfaces/iplan';
 import { PlanDataService } from '../services/plan-data.service';
 import { environment } from 'src/environments/environment';
+import { AuthServiceService } from '../services/auth-service.service';
+
 
 @Component({
   selector: 'app-home-products',
@@ -18,7 +20,8 @@ export class HomeProductsComponent implements OnInit{
   plans: IPlan[] = [];
 
   constructor(private productService: ProductDataService,
-    private planService: PlanDataService) { }
+    private planService: PlanDataService,
+    private authService: AuthServiceService,) { }
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe(resp => {
@@ -27,12 +30,19 @@ export class HomeProductsComponent implements OnInit{
         this.products = resp.body;
       }
     });
-    this.planService.getPlans().subscribe(resp=>{
-      if (resp.body !=null) {
-        this.plans = resp.body
+    this.authService.checkUser().subscribe(
+      response =>{
+        let token  = response.body.token
+        let userId = response.body.userId
+        this.planService.getPlans().subscribe(resp=>{
+          if (resp.body !=null) {
+            this.plans = resp.body
+          }
+          
+        })
       }
-      
-    })
+    )
+   
     this.plans.forEach(plan => {
       if (plan.featuredImg === 'default') {
         plan.featuredImg = environment.defaultImage;

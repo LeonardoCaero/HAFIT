@@ -33,6 +33,7 @@ export class UserProfileComponent implements OnInit {
                     ? 'admin'
                     : 'client',
                 products: this.userData.products || [],
+                auth_token: user.sub
               };
               this.userService.updateUser(updatedUser).subscribe((resp) => {
                 console.log(resp);
@@ -43,11 +44,13 @@ export class UserProfileComponent implements OnInit {
         }, (error) => {
 
           if(error.status === 404){
+            console.log(user);
+            
             const newUser: IUser = {
               email: user.email,
               name: user.name,
               type: 'client',
-
+              auth_token: user.sub
             };
             this.userService.addUser(newUser).subscribe((resp) => {        
               this.userData = resp.body;

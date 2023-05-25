@@ -14,7 +14,7 @@ export class NavbarService {
   getCartItems() {
     this.authService.checkUser().subscribe(
       (response) => {      
-        const cartItems = response.cartItems.length;
+        const cartItems = response.userResponse.cartItems.length;
         this.setCartItems(cartItems);
         return this.setCartItems(cartItems);
       }

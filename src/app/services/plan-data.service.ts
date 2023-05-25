@@ -12,7 +12,12 @@ export class PlanDataService {
   constructor(private _http: HttpClient) { }
   plans:  IPlan[] = [];
 
-  public getPlans(): Observable<HttpResponse<any>>{
+  // public getPlans(userId:any,token:any): Observable<HttpResponse<any>>{
+  //   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`).set('userid',`${userId}`)
+                                        
+  //   return this._http.get(environment.apiUrl+'/plan/all', { observe: 'response' });
+  // }
+  public getPlans(): Observable<HttpResponse<any>>{                                        
     return this._http.get(environment.apiUrl+'/plan/all', { observe: 'response' });
   }
   public getPlan(searchBy: string, data: any): Observable<HttpResponse<any>> {

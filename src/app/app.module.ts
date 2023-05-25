@@ -40,6 +40,8 @@ import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-5
 import * as cloudinary from 'cloudinary-core';
 import { UpdatedSuccessComponent } from './updated-success/updated-success.component';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { DeletedExerciceComponent } from './deleted-exercice/deleted-exercice.component';
+import { UpdatedSuccessExercicesComponent } from './updated-success-exercices/updated-success-exercices.component';
 
 
 @NgModule({
@@ -65,6 +67,8 @@ import { NgxPayPalModule } from 'ngx-paypal';
     DeletedPlanComponent,
     ConfirmationDialogComponent,
     UpdatedSuccessComponent,
+    DeletedExerciceComponent,
+    UpdatedSuccessExercicesComponent,
 
   ],
   imports: [

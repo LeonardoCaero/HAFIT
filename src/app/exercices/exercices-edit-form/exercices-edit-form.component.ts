@@ -65,7 +65,7 @@ deleteExercice(): void {
       
     }
   )
-  this.router.navigate(['plans/deleted'])
+  this.router.navigate(['exercices/deleted'])
       console.log(`Eliminado correctamente`)
   }
 }
@@ -109,11 +109,11 @@ deleteExercice(): void {
 
       this.authService.checkUser().subscribe(
         (response)=>{
-          if (response.type != 'soci') {
-            this.router.navigate(['subscibe-to-soci'])
+          if (response.userResponse.type != 'soci') {
+            this.router.navigate(['subscribe-to-soci'])
           }
         },(error)=>{
-          this.router.navigate(['subscibe-to-soci'])
+          this.router.navigate(['subscribe-to-soci'])
         }
       )
   }
@@ -150,7 +150,7 @@ deleteExercice(): void {
         response=>{
           this.exerciceServices.updateExercice(exerciceId,formData,this.editorInstance.getData(),response.secure_url).subscribe(
             response =>{
-              this.router.navigate(['plans/updated'])
+              this.router.navigate(['exercices/updated'])
             },error=>{
               this.errorMessage = error.error
             }
@@ -166,7 +166,7 @@ deleteExercice(): void {
     
     this.exerciceServices.updateExercice(exerciceId,formData,this.editorInstance.getData(),this.exercice.featuredImg).subscribe({
       next: (data) => {
-        this.router.navigate(['exercices']);
+        this.router.navigate(['exercices/updated']);
       },
         error: (error) => {
           if (error.status >= 500) {

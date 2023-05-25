@@ -18,7 +18,8 @@ ngOnInit():void {
       this.exercices = resp.body;
       this.authService.checkUser().subscribe(
         resp=>{
-          this.user = resp._id
+          this.user = resp.userResponse._id
+          this.userType = resp.userResponse.type
         }
       )
       this.exercices.forEach(exercice=>{
@@ -33,4 +34,5 @@ ngOnInit():void {
 }
 exercices: Iexercice [] = []
 user: any = {}
+userType: string = '';
 }

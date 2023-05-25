@@ -32,7 +32,7 @@ export class PlansViewComponent {
     this.authService.checkUser().subscribe(//MIRA EL USER LOGGEADO 
     resp=>{
       console.log(resp._id)
-      this.user = resp._id
+      this.user = resp.userResponse._id
     }
   )
   }

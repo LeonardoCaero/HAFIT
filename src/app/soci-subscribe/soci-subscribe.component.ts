@@ -20,7 +20,7 @@ export class SociSubscribeComponent {
     ){}
     public payPalConfig: any;
     public showPaypalButtons: boolean | undefined;
-    user : IUser ={name: '',email:'', type:'soci',products:[],plans:[]};
+    user : IUser ={name: '',email:'', type:'soci',products:[],plans:[],auth_token: ''};
     id: any;
   ngOnInit():void{
     const subscribeBtn = this.elementRef.nativeElement.querySelector('#subscribeBtn')
@@ -28,35 +28,19 @@ export class SociSubscribeComponent {
     
     this.authService.checkUser().subscribe( 
       (response)=>{
-        this.id = response.userId
+        this.id = response.userResponse.userId
+        this.user._id  = response.userResponse._id
+        this.user.userId = response.userResponse.userId
+        this.user.name = response.userResponse.name
+        this.user.email = response.userResponse.email
+        this.user.products = response.userResponse.products
+        this.user.plans = response.userResponse.plans        
       }
     )
-    // subscribeBtn.addEventListener('click',  () => {
-    //   this.authService.checkUser().subscribe( 
-    //     (response)=>{
-    //       console.log(response.userId)
-    //       this.user.userId = response.userId;
-    //       this.id = response.userId
-    //       const userUpdated = this.user
-    //       console.log(userUpdated)
-    //       this.userService.updateUserType(userUpdated).subscribe(//ACTUALIZAR A SOCI
-    //         (response)=>{
-    //          this.router.navigate(['plans/add']);
-    //         },(error)=>{
-    //           console.log(`No se puede actualizar el ususario ${error.errorMessage}`)
-    //         }
-    //       )
-    //     },(error)=>{
-    //      this.authService.login()
-    //       console.log(`Error checkuser ${error.error}`)
-    //     }
-    //   )
 
+    // cancelBtn.addEventListener('click',()=>{
+    //   this.router.navigate([''])
     // })
-
-    cancelBtn.addEventListener('click',()=>{
-      this.router.navigate(['plans'])
-    })
     this.payPalConfig = {
       currency: "EUR",
       clientId: "ASyI_eXRoPpdyyRE7YZyDtQ9kgWP6qAqhkU5mJc8LZy-8nGmuB9xxN9-RFgWejyAMAGh1TAvCssrowEO",
@@ -111,11 +95,11 @@ export class SociSubscribeComponent {
       },
       onClientAuthorization: (data:any) => {
         
-        this.userService.updateUserType(this.id,'soci').subscribe(//ACTUALIZAR A SOCI
+        this.userService.updateUserType(this.user).subscribe(//ACTUALIZAR A SOCI
             (response)=>{
-             this.router.navigate(['exercices/add']);
+             this.router.navigate(['']);
             },(error)=>{
-              console.log(`No se puede actualizar el ususario ${error.error}`)
+              console.log(`No se puede actualizar el ususario ${error.message}`)
             }
           )
      

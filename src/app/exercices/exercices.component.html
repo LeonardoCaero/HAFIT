@@ -5,7 +5,13 @@
     <div *ngIf="exercices.length>0" class="d-flex justify-content-center align-items-center">
       <!-- <div class="container text-center w-25">HOLA</div> -->
       <div class="container d-flex p-3 row">
-      <a [routerLink]="['/exercices/add']" class="w-100 addExercice"><i class="fa-solid fa-plus"></i> Add new exercice</a>
+        <div class="row">
+          <div class="col"> 
+            <p class="fa-pull-right"><a  *ngIf="userType === 'soci'" [routerLink]="['/exercices/add']" class="w-100 addExercice" ><i class="fa-solid fa-plus"></i></a></p>
+            <p ><a [routerLink]="['exercices']">exercices </a></p>
+          </div>
+        </div>
+      
       <div class="row row-cols-auto justify-content-center col-lg-12 ">
       <div  *ngFor= 'let exercice of exercices' class="col mb-3"> 
         <div class="row my-2"></div>

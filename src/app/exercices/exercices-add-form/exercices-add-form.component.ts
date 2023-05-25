@@ -54,11 +54,11 @@ ngOnInit(): void {
     });
   this.authService.checkUser().subscribe(
     (response)=>{
-      if (response.type != 'soci') {
-        this.router.navigate(['subscibe-to-soci'])
+      if (response.userResponse.type != 'soci') {
+        this.router.navigate(['subscribe-to-soci'])
       }
     },(error)=>{
-      this.router.navigate(['subscibe-to-soci'])
+      this.router.navigate(['subscribe-to-soci'])
     }
   )
   this.myForm = this.formBuilder.group({
@@ -96,8 +96,8 @@ onSubmit(exercice:any):void{
   if (featuredImage) {
     this.authService.checkUser().subscribe(
       response =>{
-        const userId = response.userId
-        const user_id = response._id
+        const userId = response.userResponse.userId
+        const user_id = response.userResponse._id
 
         this.uploadService.uploadImage(this.formdata).subscribe(
           response =>{
@@ -142,8 +142,8 @@ onSubmit(exercice:any):void{
   }else if(!featuredImage){
     this.authService.checkUser().subscribe(
       response =>{
-        const userId = response.userId;//ID AUTOINCREMENT
-        const user_id = response._id//ID DEFAULT DE MONGO
+        const userId = response.userResponse.userId;//ID AUTOINCREMENT
+        const user_id = response.userResponse._id//ID DEFAULT DE MONGO
         console.log(userId)
         if (response.type === "soci") {
           this.exerciceServices.addExercice(name,'default',response.secure_url,time).subscribe(

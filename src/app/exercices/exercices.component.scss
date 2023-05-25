@@ -11,6 +11,14 @@ a{
 //   // width: 15rem !important;
 //   height: 13rem !important;
 // }
+p{
+  a{
+    color:white;
+    &:hover{
+      color: $color-terciario;
+    }
+  }
+}
 .addExercice{
   color:white;
   &:hover{

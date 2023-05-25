@@ -14,6 +14,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SociSubscribeComponent } from './soci-subscribe/soci-subscribe.component';
 import { DeletedPlanComponent } from './deleted-plan/deleted-plan.component';
 import { UpdatedSuccessComponent } from './updated-success/updated-success.component';
+import { DeletedExerciceComponent } from './deleted-exercice/deleted-exercice.component';
+import { UpdatedSuccessExercicesComponent } from './updated-success-exercices/updated-success-exercices.component';
 const routes: Routes = [
   {path:'', component: HomeProductsComponent},
   {path:'login', component: LoginComponent},
@@ -27,8 +29,10 @@ const routes: Routes = [
   {path: 'exercices/edit/:exerciceId',component: ExercicesEditFormComponent},
   {path: 'exercices/add',component: ExercicesAddFormComponent},
   {path: 'exercices/exercice/:exerciceId',component: ExercicesViewComponent},
+  {path: 'exercices/deleted',component: DeletedExerciceComponent},
+  {path: 'exercices/updated',component: UpdatedSuccessExercicesComponent},
   { path: 'user-profile', component: UserProfileComponent },
-  { path: 'subscibe-to-soci', component: SociSubscribeComponent },
+  { path: 'subscribe-to-soci', component: SociSubscribeComponent },
   {path:'', redirectTo:'home', pathMatch: 'full'},
 ];
 

@@ -1,4 +1,4 @@
-<div class="container d-flex justify-content-center align-items-center">
+<!-- <div class="container d-flex justify-content-center align-items-center">
     <div class="row row-cols-1">
         <div class="col">
             <h2>Subscribe to HAFIT PREMIUM</h2>
@@ -17,4 +17,52 @@
         </div>
     </div>
 
+</div> -->
+<div class="container d-flex justify-content-center">
+    <div class="row row-cols-1">
+        <div class="col">
+            <h2 class="text-center mt-5 pt-2 px-auto premium">HAFIT PREMIUM</h2>
+        </div>
+        <div class="col">
+            <p><b>Incluye</b></p>
+            <ul class="px-auto mb-4">
+                <li class="">Envios gratuitos</li>
+                <li class="">Descuentos exclusivos</li>
+                <li class="">Chat personalizado</li>
+                <li>Soporte personalizado</li>
+                <li class="">Añade y edita ejercicios </li>
+                <li class="">Añade y edita planes</li>
+               
+            </ul>
+        </div>
+    </div>
+    <!-- <div class="row row-cols-1">
+        <div class="col">
+            <button id="continueBtn" class="btn btn-success btn-send pt-2 mt-4 btn-block">Continue</button>
+        </div>
+    </div> -->
+ 
 </div>
+<div class="container d-flex justify-content-center">
+    <div class="row row-cols-1">
+        <div class="col">
+            <h2 class="text-center mt-5 pt-2 px-auto">Subscribe to HAFIT PREMIUM</h2>
+            <button *ngIf="!showPaypalButtons" class="btn btn-success btn-send mb-4 fa-pull-right" id="subscribeBtn" (click)="pay()">Subscribirse</button>
+            <!-- <button *ngIf="!showPaypalButtons" (click)="pay()">Pagar con paypal</button> -->
+             
+             
+            <ngx-paypal *ngIf="showPaypalButtons" [config]="payPalConfig">
+            </ngx-paypal>
+            <button *ngIf="showPaypalButtons" class="btn btn-danger btn-send mb-4 fa-pull-right"(click)="back()">Volver atras</button>
+            <!-- <button class="btn btn-danger btn-send mb-4 fa-pull-right" id="cancelBtn">Cancel</button> -->
+           
+        </div>
+    </div>
+    <!-- <div class="row row-cols-1">
+        <div class="col">
+            <button id="continueBtn" class="btn btn-success btn-send pt-2 mt-4 btn-block">Continue</button>
+        </div>
+    </div> -->
+ 
+</div>
+

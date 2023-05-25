@@ -60,11 +60,12 @@ export class PlansAddFormComponent {
     
     this.authService.checkUser().subscribe(
       (response)=>{
-        if (response.type != 'soci') {
-          this.router.navigate(['subscibe-to-soci'])
+
+        if (response.userResponse.type != 'soci') {
+          this.router.navigate(['subscribe-to-soci'])
         }
       },(error)=>{
-        this.router.navigate(['subscibe-to-soci'])
+        this.router.navigate(['subscribe-to-soci'])
       }
     )
     this.myForm = this.formBuilder.group({
@@ -99,8 +100,8 @@ formdata: FormData = new FormData();
     if (featuredImage) { 
           this.authService.checkUser().subscribe(
             (response) => {
-              const userId = response.userId;//ID AUTOINCREMENT
-              const user_id = response._id//ID DEFAULT DE MONGO
+              const userId = response.userResponse.userId;//ID AUTOINCREMENT
+              const user_id = response.userResponse._id//ID DEFAULT DE MONGO
               this.uploadService.uploadImage(this.formdata).subscribe(
                 response=>{
                   this.loading = true
@@ -144,8 +145,8 @@ formdata: FormData = new FormData();
     }else if (!featuredImage){
     this.authService.checkUser().subscribe(
       (response) => {
-        const userId = response.userId;//ID AUTOINCREMENT
-        const user_id = response._id//ID DEFAULT DE MONGO
+        const userId = response.userResponse.userId;//ID AUTOINCREMENT
+        const user_id = response.userResponse._id//ID DEFAULT DE MONGO
         console.log(userId)
         if (response.type === "soci") {
               this.planServices.addPlan(name, 'default',this.editorInstance.getData()).subscribe(//AFEGIR NOU PLAN

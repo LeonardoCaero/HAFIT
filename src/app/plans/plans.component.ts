@@ -28,6 +28,39 @@ export class PlansComponent implements OnInit{
 
 
   ngOnInit(): void {
+    // this.authService.checkUser().subscribe(
+    //   response =>{
+    //     //  console.log(response);
+    //     let token  = response.token
+    //     let userId = response.userResponse.auth_token
+    //     // console.log('View plans ',response);
+        
+    //     this.planSerivce.getPlans().subscribe(resp=>{
+    //       if (resp.body.data !=null) {
+    //         this.plans = resp.body.data
+
+    //       }
+    //       this.plans.forEach(plan => {
+    //         if (plan.featuredImg === 'default') {
+    //           plan.featuredImg = environment.defaultImage;
+    //         }else if(plan.featuredImg == 'null'){//SI FEATUREDIMG ES NULL LO ELIMINA DE LA BBDD
+    //           console.log(plan.planId)
+    //           this.planSerivce.deletePlan('planId',plan.planId).subscribe(
+    //             (response)=>{},error =>{}
+    //           )
+    //         }
+    //       });
+          
+    //     })
+    //     this.userService.getUser('_id',response.userResponse._id).subscribe(
+    //       response=>{
+    //         this.userType = response.body.type
+    //       }
+    //     )
+
+        
+    //   }
+    // )
    this.planSerivce.getPlans().subscribe(resp=>{
     if (resp.body != null) {
       console.log(resp.body);
@@ -35,8 +68,8 @@ export class PlansComponent implements OnInit{
       this.authService.checkUser().subscribe(//MIRA EL USER LOGGEADO 
         resp=>{
           console.log(resp._id)
-          this.user = resp._id
-          this.userService.getUser('_id',resp._id).subscribe(
+          this.user = resp.userResponse._id
+          this.userService.getUser('_id',resp.userResponse._id).subscribe(
             response =>{
               this.userType = response.body.type
               console.log(response.body.type)

@@ -4,7 +4,13 @@
 </div>
 <div *ngIf="plans.length>0" class="d-flex justify-content-center align-items-center">
   <div class="container d-flex p-3 row">
-  <a  *ngIf="userType === 'soci'" [routerLink]="['/plans/add']" class="w-100 addPlan" ><i class="fa-solid fa-plus"></i> Add new plan</a>
+    <div class="row">
+      <div class="col"> 
+        <p class="fa-pull-right"><a  *ngIf="userType === 'soci'" [routerLink]="['/plans/add']" class="w-100 addPlan" ><i class="fa-solid fa-plus"></i></a></p>
+        <p ><a [routerLink]="['plans']">plans </a></p>
+      </div>
+    </div>
+ 
   <div class="row row-cols-auto justify-content-center col-lg-12 ">
   <div  *ngFor= 'let plan of plans' class="col mb-3"> 
     <div class="row my-2"></div>
