@@ -9,5 +9,6 @@ export interface Iexercice {
       description: string;
       time: BigInteger;
       featuredImg: string,
-      user?: IUser
+      user?: IUser,
+      view: Number
 }

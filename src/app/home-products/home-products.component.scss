@@ -1,15 +1,55 @@
 $color-terciario: #28a745;
+
 .example-card {
   height: 20rem;
   width: 20rem;
   max-width: 30rem;
   color: white;
   transition: 500ms;
+  position:relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  // background-color: rgba(0, 0, 0, 0.8) !important;
+  // mix-blend-mode: screen; 
+
   &:hover{
     transform: scale(1.05);
     transition: 500ms;
   }
+  
 }
+.example-card::before{
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+  .example-card {
+    height: 20rem;
+    width: 17rem;
+    max-width: 30rem;
+    color: white;
+    transition: 500ms;
+    position:relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    // background-color: rgba(0, 0, 0, 0.8) !important;
+    // mix-blend-mode: screen; 
+  
+    &:hover{
+      transform: scale(1.05);
+      transition: 500ms;
+    }
+    
+  }
+}
+
 
 mat-card-content{
   p{
@@ -19,7 +59,7 @@ mat-card-content{
     color:white;
     text-decoration: none;
     &:hover{
-      color: rgb(70, 69, 69);
+      color: $color-terciario;
     }
   }
   

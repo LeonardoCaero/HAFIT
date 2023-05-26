@@ -29,7 +29,6 @@
 }
 ul { 
     padding-left: 5rem;
-    list-style-type: "✔️ "; 
     font-size: 1.3rem;
 }
 p{
@@ -76,7 +75,7 @@ p{
     }
     .container:nth-child(2) {
         position: relative;
-        top: -50%;
+        top: -30%;
         left: 40%;
         transform: translate(-50%, -50%);
         margin-top: 2rem;

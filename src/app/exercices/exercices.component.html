@@ -20,7 +20,7 @@
             <a [routerLink]="['/exercices/exercice',exercice.exerciceId]">
             <mat-card-content class="card-body position-absolute bottom-0 start-0">
               <p class="card-title"><a [routerLink]="['/exercices/exercice',exercice.exerciceId]">{{exercice.name}}</a></p>
-              <p class="card-text"><a *ngIf="exercice.user === user"[routerLink]="['/exercices/edit',exercice.exerciceId]">Edit</a></p>
+              <!-- <p class="card-text"><a *ngIf="exercice.user === user"[routerLink]="['/exercices/edit',exercice.exerciceId]">Edit</a></p> -->
             </mat-card-content>
             </a>
           </mat-card>

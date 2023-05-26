@@ -8,5 +8,6 @@ export interface IPlan {
       planId: BigInteger,
       description: string,
       featuredImg: string,
-      user?: IUser
+      user?: IUser,
+      view: Number
 }

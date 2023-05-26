@@ -9,7 +9,7 @@
             <img *ngIf="exercice?.featuredImg ==='default'" [src]=defaultImage alt="Plan" class="img-fluid" />
             <img *ngIf="exercice?.featuredImg !='default'" [src]="exercice?.featuredImg" alt="" class="img-fluid" />
         </div>
-        <div class="col-md-6 ms-2 mt-4 w-75">
+        <div class="col-md-6  description">
             <h1 class="text-light">{{exercice?.name?.toLocaleUpperCase()}}</h1>
             <p class="text-light" >Excpected time : {{exercice?.time}} minutes</p>
             <p class="lead text-light w-100" [innerHTML]="exercice?.description"></p>
@@ -17,7 +17,7 @@
     </div>
     <div class="row justify-content-end margin">
         <div class="col-md-6">
-          <button id="edit" class="btn btn-success btn-send mt-4 pt-2 btn-block text-uppercase" *ngIf="exercice?.user === user"[routerLink]="['/exercice/edit',exercice?.exerciceId]"><i class="fa-solid fa-pen"></i> Edit</button>
+          <button id="edit" class="btn btn-success btn-send mt-4 pt-2 btn-block text-uppercase fa-pull-right" *ngIf="exercice?.user === user"[routerLink]="['/exercices/edit',exercice?.exerciceId]"><i class="fa-solid fa-pen"></i> Edit</button>
         </div>
       </div>
 </div>

@@ -28,3 +28,18 @@ a{
         color: $color-terciario;
     }
 }
+.description{
+    width: 45rem ;
+    margin-left: 15rem !important;
+}
+
+@media screen and (max-width: 600px) {
+    .description{
+        margin-top: 2rem;
+        margin-left: 0rem !important;
+    }
+    img{
+        margin-top: 1rem ;
+        width: 24rem !important;
+    }
+}

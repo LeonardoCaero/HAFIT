@@ -22,6 +22,9 @@ export class ExerciceDataService {
   public updateExercice(id:any,dada:any,description:string,featuredImg:any): Observable<HttpResponse<Iexercice[]>> {
     return this._http.put<Iexercice[]>(environment.apiUrl+'/exercice/edit?name='+dada.get('name')+'&exerciceId='+id+'&description='+description+'&time='+dada.get('time')+'&featuredImg='+featuredImg,dada,{ observe: 'response' });
   }
+  public updateViews(id:any,view:any): Observable<HttpResponse<any>> {
+    return this._http.put<any>(environment.apiUrl+'/exercice/edit?view='+view+'&exerciceId='+id,{observe:'response'});
+  }
   public deleteExercice(deleteBy: any, data: any): Observable<HttpResponse<any>>{
     const url = `${environment.apiUrl}/exercice/delete?deleteBy=${deleteBy}&data=${data}`;
     return this._http.delete(url, { observe: 'response' });

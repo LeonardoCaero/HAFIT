@@ -23,9 +23,23 @@ img{
 .text{
     width:75% !important;
 }
+.description{
+    width: 45rem ;
+    margin-left: 15rem !important;
+}
 a{
     text-decoration: none;
     &:hover{
         color: $color-terciario;
+    }
+}
+@media screen and (max-width: 600px) {
+    .description{
+        margin-top: 2rem;
+        margin-left: 0rem !important;
+    }
+    img{
+        margin-top: 1rem ;
+        width: 24rem !important;
     }
 }

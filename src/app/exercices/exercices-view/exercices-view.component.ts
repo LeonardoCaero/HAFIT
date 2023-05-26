@@ -25,6 +25,18 @@ export class ExercicesViewComponent {
     this.exerciceServices.getExercice('exerciceId',exercicesId).subscribe(
       (data) => {
         this.exercice = data.body;  
+        if (this.exercice) {
+          this.exercice.view = data.body.view +1
+          this.exerciceServices.updateViews(this.exercice.exerciceId, this.exercice.view).subscribe(
+            response=>{
+              console.log(response);
+              
+            },error=>{
+              console.log(error.error);
+              
+            }
+          )
+        }
       },
       (error) => {
         this.errorMessage = error.message;
@@ -32,8 +44,8 @@ export class ExercicesViewComponent {
     );
     this.authService.checkUser().subscribe(//MIRA EL USER LOGGEADO 
     resp=>{
-      console.log(resp._id)
-      this.user = resp._id
+      console.log(resp.userResponse._id)
+      this.user = resp.userResponse._id
     }
   )
   }

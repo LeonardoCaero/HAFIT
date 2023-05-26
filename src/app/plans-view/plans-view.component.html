@@ -10,7 +10,7 @@
         <img *ngIf="plan?.featuredImg ==='default'" [src]=defaultImage alt="Plan" class="img-fluid" />
         <img *ngIf="plan?.featuredImg !='default'" [src]="plan?.featuredImg" alt="" class="img-fluid" />
       </div>
-      <div class="col-md-6 ms-2 mt-4 w-75">
+      <div class="col-md-6 description">
         <h1 class="text-light">{{plan?.name?.toLocaleUpperCase()}}</h1>
         <p class="lead text-light w-100" [innerHTML]="plan?.description"></p>
       </div>

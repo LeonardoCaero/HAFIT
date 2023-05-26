@@ -42,7 +42,7 @@ deleteExercice(): void {
   const exerciceId = this.route.snapshot.paramMap.get('exerciceId');
   this.authService.checkUser().subscribe(
     response =>{
-      const userId = response.userId
+      const userId = response.userResponse.userId
       this.userService.deleteExercice(userId,exerciceId).subscribe(
         response =>{
           this.exerciceServices.deleteExercice('exerciceId',exerciceId).subscribe(

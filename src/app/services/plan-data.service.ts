@@ -28,6 +28,9 @@ export class PlanDataService {
     return this._http.put<any>(environment.apiUrl+'/plan/edit?name='+dada.get('name')+'&planId='+id+'&description='+description+'&featuredImg='+featuredImage,dada,{observe:'response'});
     // return this._http.put(environment.apiUrl+'/plan/edit',body,{ observe: 'response' });
   }
+  public updateViews(id:any,view:any): Observable<HttpResponse<any>> {
+    return this._http.put<any>(environment.apiUrl+'/plan/edit?view='+view+'&planId='+id,{observe:'response'});
+  }
   public deletePlan(deleteBy: any, data: any): Observable<HttpResponse<any>>{
     const url = `${environment.apiUrl}/plan/delete?deleteBy=${deleteBy}&data=${data}`;
     return this._http.delete(url, { observe: 'response' });

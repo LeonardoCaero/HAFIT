@@ -13,7 +13,7 @@ import { AuthServiceService } from '../services/auth-service.service';
 })
 export class PlansViewComponent {
   errorMessage: string = '';
-  plan : IPlan | null = null;
+  plan : IPlan | undefined;
   defaultImage = environment.defaultImage
   constructor( private planServices: PlanDataService, private route: ActivatedRoute,private authService : AuthServiceService,){
 
@@ -23,7 +23,23 @@ export class PlansViewComponent {
     const planId = this.route.snapshot.paramMap.get('planId');
     this.planServices.getPlan('planId',planId).subscribe(
       (data) => {
-        this.plan = data.body;  
+        this.plan = data.body; 
+        if (this.plan) {
+          this.plan.view = data.body.view +1
+          this.planServices.updateViews(this.plan.planId, this.plan.view).subscribe(
+            response=>{
+              console.log(response);
+              
+            },error=>{
+              console.log(error.error);
+              
+            }
+          )
+        }
+       console.log(this.plan?.view);
+       
+        
+         
       },
       (error) => {
         this.errorMessage = error.message;
