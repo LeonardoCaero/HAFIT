@@ -148,7 +148,7 @@ formdata: FormData = new FormData();
         const userId = response.userResponse.userId;//ID AUTOINCREMENT
         const user_id = response.userResponse._id//ID DEFAULT DE MONGO
         console.log(userId)
-        if (response.type === "soci") {
+        if (response.userResponse.type == "soci") {
               this.planServices.addPlan(name, 'default',this.editorInstance.getData()).subscribe(//AFEGIR NOU PLAN
                 (response) => {
                   this.planServices.updateUser(user_id, response.body.planId).subscribe(//AÑADIR _ID DEL USER AL PLAN

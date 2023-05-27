@@ -162,7 +162,7 @@ deletePlan(): void {
 //IF THERE ISN'T FEATURED IMAGE UPLOAD THE PLAN
       this.planServices.updatePlans(planId,name?.value, this.editorInstance.getData(),this.plan.featuredImg,formData).subscribe({
         next: (data) => {
-          this.router.navigate(['plans']);
+          this.router.navigate(['plans/updated']);
         },
           error: (error) => {
      

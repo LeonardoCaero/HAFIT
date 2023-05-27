@@ -169,14 +169,9 @@ deleteExercice(): void {
         this.router.navigate(['exercices/updated']);
       },
         error: (error) => {
-          if (error.status >= 500) {
-            console.error('An error occurred:', error.error);
-            this.errorMessage = error.error;
-          } else {
-            console.log(
-              `Backend returned code ${error.status}, body was: `, error.error);
-          }
-
+         this.errorMessage = error.error
+         console.log(error.error);
+         
         }
     });
 
