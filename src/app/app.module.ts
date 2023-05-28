@@ -28,6 +28,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { FormsModule } from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     NotFoundComponent,
     CartItemComponent,
     CartPageComponent,
+    AboutUsComponent,
+    ContactUsComponent,
   ],
   imports: [
     BrowserModule,

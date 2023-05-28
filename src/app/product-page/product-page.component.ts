@@ -30,18 +30,18 @@ export class ProductPageComponent implements OnInit {
   ngOnInit(): void {
     const cartButton = this.elementRef.nativeElement.querySelector('.addcart');
     const quantityValue = this.elementRef.nativeElement.querySelector('.qttValue');
-    const planName = this.route.snapshot.paramMap.get('productName');
+    const productName = this.route.snapshot.paramMap.get('productName');
 
 
-    if (planName !== null) {
-      const decodedPlanName = decodeURIComponent(planName);
-      const planFormat = decodedPlanName.replace(/-/g, ' ').toLowerCase();
-      this.productService.getProduct('name', planFormat).subscribe((resp) => {
+    if (productName !== null) {
+      const decodedProdName = decodeURIComponent(productName);
+      const prodFormat = decodedProdName.replace(/-/g, ' ').toLowerCase();
+      this.productService.getProduct('name', prodFormat).subscribe((resp) => {
         if (resp.body != null) {
           console.log(resp.body);
           this.product = resp.body;
-
           cartButton?.addEventListener('click', () => {
+            this.snackbarUtil.openSnackBar("Product added succesfully!");
             this.authService.checkUser().subscribe(
               (response) => {
                 this.navbarService.setCartItems(0);
