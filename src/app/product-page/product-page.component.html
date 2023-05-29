@@ -5,14 +5,15 @@
     </div>
     <div class="col-md-6">
       <h1 class="text-light">{{product.name.toUpperCase()}}</h1>
-      <p class="lead text-light">{{product.description}}</p>
+      <p class="lead text-light" [innerHTML]="product.description"></p>
       <h2 class="fw-bold text-light">{{product.price.$numberDecimal}}€</h2>
       <div class="form-group">
         <label for="cantidad">Quantity:</label>
         <input type="number" id="cantidad" name="cantidad" class="form-control qttValue" value="1" min="1"
-          (change)="checkQuantity($event)" />
+          (change)="checkQuantity($event)" #quantityValue />
+
       </div>
-      <button class="btn cart-color mt-3 addcart">Add to cart</button>
+      <button class="btn cart-color mt-3 addcart" (click)="addToCart()">Add to cart</button>
     </div>
   </div>
 </div>

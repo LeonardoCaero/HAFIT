@@ -1,13 +1,6 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:8000/api/',
-  // apiKey: 'mHG82elubMTLix7nC07tXfHitH85sp7Rfd4mkhlthretThvSC7AlfHBlEQVGDXTS',
-  // db: 'HAFIT',
-  // dataSource: 'HafitCluster',
-  // collection: {
-  //   product: 'Product',
-  //   user: 'User',
-  // },
   defaultImage:
     'https://sesamobakery.com/wp-content/uploads/2020/12/product-default-list-350.jpg',
   CLOUD_NAME: 'dlomgjt1k',
@@ -15,4 +8,6 @@ export const environment = {
   CLOUD_API_SECRET: 'ZrUxDk1iFEw57psqVsHVCLgjFMQ',
   CLOUDINARY_URL:
     'cloudinary://447613727928719:ZrUxDk1iFEw57psqVsHVCLgjFMQ@dlomgjt1k',
+  auth_domain: 'dev-jwr2u354q8g4qn7i.us.auth0.com',
+  auth_clientId: 'KvYM7uivBTAza66zaPJPmtBUz0kpoUCw',
 };

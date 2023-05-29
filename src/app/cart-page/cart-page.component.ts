@@ -25,7 +25,7 @@ export class CartPageComponent implements OnInit {
   }
   onDeleteProduct(product: IProduct): void {
     this.products = this.products.filter(
-      (p) => p.productId !== product.productId
+      (p) => p.productId != product.productId
     );
   }
 

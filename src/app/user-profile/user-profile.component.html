@@ -4,10 +4,10 @@
       <div class="col col-lg-9 col-xl-7">
         <div class="card" *ngIf="auth.user$ | async as user">
           <div class="rounded-top text-white d-flex flex-row"
-            style="height:200px; background-image: url(https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547_1280.jpg)">
+            style="height:200px; background-image: url(https://res.cloudinary.com/dbml6cgrf/image/upload/v1685322451/HAFIT/Logos/ha-fit-high-resolution-color-logo_hp2oak.png)">
             <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
-              <img [src]="user.picture" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2 imageEdit"
-                style="width: 150px; z-index: 1">
+              <img [src]="user.picture" alt="Generic placeholder image"
+                class="img-fluid img-thumbnail mt-4 mb-2 imageEdit" style="width: 150px; z-index: 1">
               <button type="button" class="btn {{editActive ? 'btn-success text-light ': 'btn-outline-dark'}}"
                 data-mdb-ripple-color="dark" style="z-index: 1;" (click)="profileEdit()">
                 {{editActive ? "Save profile": "Edit profile" }}
@@ -29,12 +29,12 @@
           <div class="p-4 text-black" style="background-color: #f8f9fa;">
             <div class="d-flex justify-content-end text-center py-1">
               <div>
-                <p class="mb-1 h5">33</p>
+                <p class="mb-1 h5">{{userData?.products?.length}}</p>
                 <p class="small text-muted mb-0">Products</p>
               </div>
               <div class="px-3">
-                <p class="mb-1 h5">12</p>
-                <p class="small text-muted mb-0">Plans</p>
+                <p class="mb-1 h5"> </p>
+                <p class="small text-muted mb-0"> </p>
               </div>
             </div>
           </div>
@@ -51,10 +51,7 @@
                   [config]="{ toolbar: [ 'undo','redo','|','heading', '|', 'bold', 'italic', 'link' ] }"
                   (change)="onChange($event)"></ckeditor>
               </div>
-
             </div>
-
-
           </div>
         </div>
       </div>

@@ -28,37 +28,14 @@ export class ProductPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const cartButton = this.elementRef.nativeElement.querySelector('.addcart');
-    const quantityValue = this.elementRef.nativeElement.querySelector('.qttValue');
     const productName = this.route.snapshot.paramMap.get('productName');
-
 
     if (productName !== null) {
       const decodedProdName = decodeURIComponent(productName);
       const prodFormat = decodedProdName.replace(/-/g, ' ').toLowerCase();
       this.productService.getProduct('name', prodFormat).subscribe((resp) => {
         if (resp.body != null) {
-          console.log(resp.body);
           this.product = resp.body;
-          cartButton?.addEventListener('click', () => {
-            this.snackbarUtil.openSnackBar("Product added succesfully!");
-            this.authService.checkUser().subscribe(
-              (response) => {
-                this.navbarService.setCartItems(0);
-                this.snackbarUtil.openSnackBar("Product added succesfully!");
-                this.userService
-                  .updateCart(response.userId, this.product.productId, quantityValue.value, "add")
-                  .subscribe({
-                    next: (data) => {
-                      this.navbarService.setCartItems(data.body.cartItems.length);
-                    },
-                  });
-              },
-              (error) => {
-                console.log('Error obteniendo userId');
-              }
-            );
-          });
         }
       });
     }
@@ -72,6 +49,28 @@ export class ProductPageComponent implements OnInit {
       input.value = 1;
     }
   }
+
+  addToCart(): void {
+    const quantityValue = this.elementRef.nativeElement.querySelector('.qttValue');
+    this.authService.checkUser().subscribe(
+      (response) => {
+
+        this.snackbarUtil.openSnackBar("Product added successfully!");
+        this.userService
+          .updateCart(response.userId, this.product.productId, parseInt(quantityValue.value), "add")
+          .subscribe({
+            next: (data) => {
+              this.navbarService.setCartItems(0);
+              this.navbarService.setCartItems(data.body.cartItems.length);
+            },
+          });
+      },
+      (error) => {
+        console.log('Error obteniendo userId');
+      }
+    );
+  }
+  
   
 
   product!: IProduct;

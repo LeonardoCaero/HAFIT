@@ -32,12 +32,9 @@ export class CartItemComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.product) {
-      const addButton =
-        this.elementRef.nativeElement.querySelector('.addButton');
-      const remButton =
-        this.elementRef.nativeElement.querySelector('.remButton');
-      const deleteButton =
-        this.elementRef.nativeElement.querySelector('.deleteBtn');
+      const addButton = this.elementRef.nativeElement.querySelector('.addButton');
+      const remButton = this.elementRef.nativeElement.querySelector('.remButton');
+      const deleteButton = this.elementRef.nativeElement.querySelector('.deleteBtn');
       const qttValue = this.elementRef.nativeElement.querySelector('.qttValue');
       this.urlProduct = this.product.name.replace(/\s+/g, '-');
 

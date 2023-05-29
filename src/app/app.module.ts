@@ -10,7 +10,6 @@ import { ProductDataService } from './services/product-data.service';
 import { MatCardModule } from '@angular/material/card';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductCardComponent } from './product-card/product-card.component';
-import { TestShopComponent } from './test-shop/test-shop.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { CarouselComponent } from './carousel/carousel.component';
@@ -30,6 +29,7 @@ import { FormsModule } from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,6 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     NavBarComponent,
     ProductListComponent,
     ProductCardComponent,
-    TestShopComponent,
     CarouselComponent,
     FooterComponent,
     HomeComponent,
@@ -60,8 +59,8 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     MatIconModule,
     MatTooltipModule,
     AuthModule.forRoot({
-      domain: 'dev-jwr2u354q8g4qn7i.us.auth0.com',
-      clientId: 'KvYM7uivBTAza66zaPJPmtBUz0kpoUCw',
+      domain: environment.auth_domain,
+      clientId: environment.auth_clientId,
       authorizationParams: {
         redirect_uri: window.location.origin,
       },

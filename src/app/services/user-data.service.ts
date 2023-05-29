@@ -29,8 +29,8 @@ export class UserDataService {
     return this._http.put(`${environment.apiUrl}user/edit?userId=${user.userId}`, user, { observe: 'response' });
   }
   
-  public updateCart(userId: any, productId: number, quantity: number, operation: string): Observable<HttpResponse<any>> {
-    const body = { userId: userId, productId: productId, quantity: quantity, operation: operation };
+  public updateCart(userId: any, productId: number, quantity: number, action: string): Observable<HttpResponse<any>> {
+    const body = { userId: userId, productId: productId, quantity: quantity, action: action };
     return this._http.put(`${environment.apiUrl}user/cart`, body, { observe: 'response' });
   }
  

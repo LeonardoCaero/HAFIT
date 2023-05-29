@@ -1,24 +1,18 @@
 <div class="row my-2">
     <div class="col-lg-4 col-md-6 col-sm-6 w-100">
-        <div class="bg-image hover-zoom ripple shadow-1-strong">
-            <img src="{{product.image}}" alt="Product Image" class="w-100" >
-            <a [routerLink]="['/', product.type.toLowerCase() ,urlProduct]">
-                <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
-                    <div class="d-flex justify-content-end align-items-end h-100 me-2">
-                        <h5><span class="text-light pt-2 ms-3 mt-3">{{product.price.$numberDecimal}}€</span></h5>
-                    </div>
-
+        <div class="card mt-3">
+            <div class="product-1 align-items-center p-2 text-center">
+                <div class="image-container aspect-ratio">
+                    <img class="xyz rounded" src="{{product.image}}"
+                        [routerLink]="['/', product.type.toLowerCase(), urlProduct]">
                 </div>
-                <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
-                    <div class="d-flex justify-content-start align-items-end h-100">
-                        <h5><span class="text-light pt-2 ms-3 mt-3">{{product.name.toUpperCase()}}</span></h5>
+                <div class="product-details d-flex justify-content-between mt-4 mb-2">
+                    <h5 class="text-left">{{product.name.toUpperCase()}}</h5>
+                    <div class="cost">
+                        <span>{{product.price.$numberDecimal}}€</span>
                     </div>
                 </div>
-
-                <div class="hover-overlay">
-                    <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
-                </div>
-            </a>
+            </div>
         </div>
     </div>
 </div>
