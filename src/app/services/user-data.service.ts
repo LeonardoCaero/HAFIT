@@ -26,7 +26,7 @@ export class UserDataService {
   }
 
   public updateUser(user: IUser): Observable<HttpResponse<any>> {
-    return this._http.put(`${environment.apiUrl}user/edit?userId=${user.userId}`, user, { observe: 'response' });
+    return this._http.put(`${environment.apiUrl}user/edit?userId=${user.userId}&name=${user.name}&biography=${user.biography}`, user, { observe: 'response' });
   }
 
   public updateUserType(user: IUser): Observable<HttpResponse<any>> {
