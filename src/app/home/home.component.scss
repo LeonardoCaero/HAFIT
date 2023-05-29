@@ -49,7 +49,9 @@ $color-terciario: #28a745;
     
   }
 }
-
+div.container.mt-5{
+    height: 6rem !important;
+}
 
 mat-card-content{
   p{
@@ -81,7 +83,6 @@ mat-card-content{
 }
 .promo-items{
     color: $color-terciario;
-    margin-top:10rem;
 }
 .container-promo{     
     background-color: #dfdfdf11;

@@ -1,21 +1,20 @@
-import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { IProduct } from '../interfaces/iproduct';
-import { ProductDataService } from '../services/product-data.service';
-import { IPlan } from '../interfaces/iplan';
-import { PlanDataService } from '../services/plan-data.service';
 import { environment } from 'src/environments/environment';
+import { ProductDataService } from '../services/product-data.service';
+import { PlanDataService } from '../services/plan-data.service';
 import { AuthServiceService } from '../services/auth-service.service';
 import { ExerciceDataService } from '../services/exercice-data.service';
+import { IProduct } from '../interfaces/iproduct';
+import { IPlan } from '../interfaces/iplan';
 import { Iexercice } from '../interfaces/iexercice';
-
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
-  selector: 'app-home-products',
-  templateUrl: './home-products.component.html',
-  styleUrls: ['./home-products.component.scss']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
-export class HomeProductsComponent implements OnInit{
+export class HomeComponent implements OnInit{
   public data: any;
   public headers: HttpHeaders | undefined;
   products: IProduct[] = [];
@@ -69,8 +68,4 @@ export class HomeProductsComponent implements OnInit{
    
   
   }
-    
-  }
-
-  
-
+}

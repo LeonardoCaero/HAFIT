@@ -18,8 +18,8 @@ ngOnInit():void {
       this.exercices = resp.body;
       this.authService.checkUser().subscribe(
         resp=>{
-          this.user = resp.userResponse._id
-          this.userType = resp.userResponse.type
+          this.user = resp._id
+          this.userType = resp.type
         }
       )
       this.exercices.forEach(exercice=>{

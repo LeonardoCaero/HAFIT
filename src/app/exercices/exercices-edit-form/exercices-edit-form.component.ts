@@ -42,7 +42,7 @@ deleteExercice(): void {
   const exerciceId = this.route.snapshot.paramMap.get('exerciceId');
   this.authService.checkUser().subscribe(
     response =>{
-      const userId = response.userResponse.userId
+      const userId = response.userId
       this.userService.deleteExercice(userId,exerciceId).subscribe(
         response =>{
           this.exerciceServices.deleteExercice('exerciceId',exerciceId).subscribe(
@@ -109,7 +109,7 @@ deleteExercice(): void {
 
       this.authService.checkUser().subscribe(
         (response)=>{
-          if (response.userResponse.type != 'soci') {
+          if (response.type != 'soci') {
             this.router.navigate(['subscribe-to-soci'])
           }
         },(error)=>{

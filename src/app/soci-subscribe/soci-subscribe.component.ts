@@ -28,13 +28,13 @@ export class SociSubscribeComponent {
     
     this.authService.checkUser().subscribe( 
       (response)=>{
-        this.id = response.userResponse.userId
-        this.user._id  = response.userResponse._id
-        this.user.userId = response.userResponse.userId
-        this.user.name = response.userResponse.name
-        this.user.email = response.userResponse.email
-        this.user.products = response.userResponse.products
-        this.user.plans = response.userResponse.plans        
+        this.id = response.userId
+        this.user._id  = response._id
+        this.user.userId = response.userId
+        this.user.name = response.name
+        this.user.email = response.email
+        this.user.products = response.products
+        this.user.plans = response.plans        
       }
     )
 

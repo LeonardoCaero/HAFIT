@@ -1,0 +1,73 @@
+$color-secundario: #393E46;
+$primary-color: #007bff;
+$secondary-color: #393E46;
+$main-color: #28a745;
+$dark-grey: #222831;
+
+.card {
+  border: none;
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+.cost span {
+  color: $main-color;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.image-container {
+  position: relative;
+  cursor: pointer;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.image-container:hover .xyz-replacement {
+  display: block;
+  animation: fade_in_show 0.5s;
+}
+
+.xyz-replacement {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  z-index: 9;
+  transition: opacity 10s ease;
+}
+
+@keyframes fade_in_show {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.cart-text {
+  transition: all .2s ease-in-out;
+}
+
+.cart:hover .cart-text {
+  font-size: 18px;
+}
+
+.aspect-ratio {
+  position: relative;
+  width: 100%;
+  padding-top: 100%; /* Establece la relación de aspecto (1:1 en este caso) */
+}
+
+.aspect-ratio img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ajusta la imagen para que ocupe todo el espacio disponible */
+}

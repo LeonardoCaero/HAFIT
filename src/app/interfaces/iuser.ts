@@ -5,6 +5,7 @@ export interface IUser {
   _id?: {
     $oid: string;
   };
+  biography?: string;
   userId?: number;
   name?: string;
   email?: string;

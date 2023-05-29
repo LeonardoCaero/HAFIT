@@ -1,0 +1,18 @@
+<div class="row my-2">
+    <div class="col-lg-4 col-md-6 col-sm-6 w-100">
+        <div class="card mt-3">
+            <div class="product-1 align-items-center p-2 text-center">
+                <div class="image-container aspect-ratio">
+                    <img class="xyz rounded" src="{{product.image}}"
+                        [routerLink]="['/', product.type.toLowerCase(), urlProduct]">
+                </div>
+                <div class="product-details d-flex justify-content-between mt-4 mb-2">
+                    <h5 class="text-left">{{product.name.toUpperCase()}}</h5>
+                    <div class="cost">
+                        <span>{{product.price.$numberDecimal}}€</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -57,3 +57,5 @@ export class NavBarComponent implements OnInit {
     this.router.navigate(['/']);
   }
 }
+
+

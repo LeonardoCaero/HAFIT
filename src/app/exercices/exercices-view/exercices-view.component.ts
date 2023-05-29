@@ -44,8 +44,8 @@ export class ExercicesViewComponent {
     );
     this.authService.checkUser().subscribe(//MIRA EL USER LOGGEADO 
     resp=>{
-      console.log(resp.userResponse._id)
-      this.user = resp.userResponse._id
+      console.log(resp._id)
+      this.user = resp._id
     }
   )
   }

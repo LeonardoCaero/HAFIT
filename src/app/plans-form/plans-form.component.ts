@@ -45,7 +45,7 @@ deletePlan(): void {
   const planId = this.route.snapshot.paramMap.get('planId');
       this.authService.checkUser().subscribe(//CHECK USER
         (response)=>{
-          const userId = response.userResponse.userId
+          const userId = response.userId
           this.userService.deletePlan(userId,planId).subscribe(//ELIMINAR PLAN DEL USER
             (response) => {
               this.planServices.deletePlan('planId',planId).subscribe(//ELIMINAR PLAN
@@ -53,7 +53,7 @@ deletePlan(): void {
                   
                   console.log('Eliminado correctamente el plan')
                 },(error)=>{
-                  console.log(`Error eliminado el plan.plan ${error.errorMessage}`)
+                  console.log(`Error eliminado el plan.plan ${error.error}`)
                 }
               )
               console.log('Eliminado correctamente')
@@ -104,7 +104,7 @@ deletePlan(): void {
     
     this.authService.checkUser().subscribe(
       (response)=>{
-        if (response.userResponse.type != 'soci') {
+        if (response.type != 'soci') {
           this.router.navigate(['subscribe-to-soci'])
         }
       },(error)=>{
