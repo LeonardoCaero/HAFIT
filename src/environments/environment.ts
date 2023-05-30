@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8000/api/',
+  apiUrl: 'https://hafit-restapi-dwix.onrender.com/',//'http://localhost:8000/api/',
   defaultImage:
     'https://sesamobakery.com/wp-content/uploads/2020/12/product-default-list-350.jpg',
   CLOUD_NAME: 'dlomgjt1k',
