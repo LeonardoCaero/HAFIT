@@ -138,7 +138,8 @@ import { environment } from 'src/environments/environment';
       domain: environment.auth_domain,
       clientId: environment.auth_clientId,
       authorizationParams: {
-        redirect_uri: window.location.origin,
+        // redirect_uri: window.location.origin,
+       redirect_uri: "https://leonardocaero.github.io/HAFIT/",
       },
     }),
     EditorModule,
